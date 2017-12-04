@@ -2,6 +2,9 @@
     "doctrine/instantiator": {
         "version": "1.1.0"
     },
+    "moneyphp/money": {
+        "version": "v3.0.9"
+    },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
     },
