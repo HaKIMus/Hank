@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    defaults: { _controller: 'App\Controller\DefaultController::index' }
+
+app_bank_homepage:
+  path: /
+  controller: App\UI\Symfony\Controller\BankHomePage::index
