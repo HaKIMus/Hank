@@ -5,7 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
-@import url("https://fonts.googleapis.com/css?family=Lato:100,300,400,700&subset=latin-ext");
+@import url("https://fonts.googleapis.com/css?family=Kanit:100");
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -5989,5 +5989,77 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
     display: none !important; } }
 
 body {
-  font-family: "Lato", sans-serif;
-  background: #fff; }
+  font-family: "Kanit", sans-serif; }
+
+a {
+  color: #ff94c2; }
+  a:hover, a:focus {
+    color: #ba2d65; }
+
+.hank-color-special {
+  color: #ba2d65; }
+
+.navbar-hank {
+  background-color: #fff;
+  width: 100%;
+  padding-right: 50px;
+  padding-left: 50px;
+  min-height: 120px;
+  border-bottom: 1px solid #ff94c2;
+  justify-content: center; }
+  .navbar-hank a {
+    color: #333; }
+    .navbar-hank a h1 {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      font-weight: 300;
+      font-size: 36px; }
+  .navbar-hank ul {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 300; }
+    .navbar-hank ul li {
+      float: left;
+      margin-right: 10px; }
+    .navbar-hank ul a:hover, .navbar-hank ul a:focus {
+      border-bottom: 1px solid #ff94c2; }
+    .navbar-hank ul a.nav-link-active {
+      border-bottom: 1px solid #ba2d65; }
+
+.hank-main-header {
+  min-height: 920px;
+  background: linear-gradient(rgba(235, 1, 165, 0.5), rgba(209, 53, 49, 0.7)), url("/assets/img/wallpaper-header-homepage.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap; }
+  .hank-main-header h2 {
+    flex: 1 100%;
+    font-size: 16em;
+    font-weight: 100;
+    color: #fff;
+    text-align: center; }
+  .hank-main-header p {
+    flex: 1 100%;
+    font-size: 2em;
+    font-weight: 300;
+    color: #fff;
+    text-align: center; }
+
+.sign-in {
+  margin-top: 90px; }
+  .sign-in .form-sign-in {
+    width: 400px;
+    color: #ba2d65;
+    font-size: 19px; }
+    .sign-in .form-sign-in .btn-sign-in {
+      cursor: pointer;
+      background-color: #ff94c2;
+      color: #fff; }
+      .sign-in .form-sign-in .btn-sign-in:hover, .sign-in .form-sign-in .btn-sign-in:focus {
+        background-color: #ba2d65; }

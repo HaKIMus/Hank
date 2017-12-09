@@ -1,6 +1,35 @@
-$global-font: 'Lato', sans-serif;
+$global-font: 'Kanit', sans-serif;
+
+$assets: '/assets';
+
+$hank-color-text: #fff;
+$hank-color-background: #f06292;
+$hank-color-background-light: #ff94c2;
+$hank-color-background-dark: #ba2d65;
+
+$hank-primary-color-background: #eeeeee;
+$hank-primary-color-background-light: #ffffff;
+$hank-primary-color-background-dark: #bcbcbc;
+
+$hank-color-link: #ff94c2;
+$hank-color-link-hover: #ba2d65;
+$hank-color-link-focus: #ba2d65;
+
+$hank-color-special: #ba2d65;
+
 
 body {
   font-family: $global-font;
-  background: #fff;
+}
+
+a {
+  color: $hank-color-link;
+
+  &:hover, &:focus {
+    color: $hank-color-link-hover;
+  }
+}
+
+.hank-color-special {
+  color: $hank-color-special;
 }
