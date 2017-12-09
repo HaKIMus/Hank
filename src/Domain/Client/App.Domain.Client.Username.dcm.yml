@@ -1,7 +1,7 @@
-Coffeeman\Domain\Client\Email:
+App\Domain\Client\Username:
   type: embeddable
   fields:
-    email:
+    username:
       type: string
       nullable: false
       unique: true

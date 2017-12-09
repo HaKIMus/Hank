@@ -8,13 +8,13 @@
 
 namespace App\Domain\Client;
 
-class Email
+class Username
 {
-    private $email;
+    private $username;
 
     public function __construct(
-        string $email
+        string $username
     ) {
-        $this->email = $email;
+        $this->username = $username;
     }
 }

@@ -14,14 +14,15 @@ class Wallet
 {
     private $ownerId;
 
-    public function __construct(string $ownerId)
-    {
+    public function __construct(
+        string $ownerId,
+        Money $balance
+    ) {
         $this->ownerId = $ownerId;
     }
 
     public function payIn(): void
     {
-
     }
 
     public function payOut(): Money

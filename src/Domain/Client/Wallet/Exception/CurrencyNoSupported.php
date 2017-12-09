@@ -1,5 +1,5 @@
 <?php
 
-namespace App\Domain\Transfer\Exception;
+namespace App\Domain\Client\Wallet\Exception;
 
 final class CurrencyNoSupported extends \Exception {}

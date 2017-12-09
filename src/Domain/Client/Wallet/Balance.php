@@ -8,7 +8,6 @@
 
 namespace App\Domain\Client\Wallet;
 
-
 use Money\Money;
 
 class Balance

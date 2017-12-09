@@ -8,22 +8,13 @@
 
 namespace App\Domain\Client;
 
-class Client
+class Password
 {
-    private $id;
-    private $username;
     private $password;
-    private $email;
 
     public function __construct(
-        string $id,
-        string $username,
-        string $password,
-        string $email
+        string $password
     ) {
-        $this->id = $id;
-        $this->username = $username;
         $this->password = $password;
-        $this->email = $email;
     }
 }

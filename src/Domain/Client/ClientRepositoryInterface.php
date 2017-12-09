@@ -9,7 +9,15 @@
 namespace App\Domain\Client;
 
 
-class ClientRepositoryInterface
-{
+use Ramsey\Uuid\Uuid;
 
+interface ClientRepositoryInterface
+{
+    public function add(Client $client): void;
+
+    public function getById(Uuid $id): Client;
+
+    public function remove(Client $object): void;
+
+    public function contains(Client $client): bool;
 }
