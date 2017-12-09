@@ -8,3 +8,4 @@
 ###< symfony/framework-bundle ###
 
 composer.lock
+node_modules/

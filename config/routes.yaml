@@ -5,3 +5,7 @@
 app_bank_homepage:
   path: /
   controller: App\UI\Symfony\Controller\BankHomePage::index
+
+app_bank_sign_in:
+  path: /sign-in
+  controller: App\UI\Symfony\Controller\SignIn::index
