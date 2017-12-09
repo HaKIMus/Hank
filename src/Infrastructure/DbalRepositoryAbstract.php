@@ -8,8 +8,14 @@
 
 namespace App\Infrastructure;
 
+use Doctrine\DBAL\Connection;
 
-class DbalRepositoryAbstract
+abstract class DbalRepositoryAbstract
 {
+    protected $connection;
 
+    public function __construct(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
 }

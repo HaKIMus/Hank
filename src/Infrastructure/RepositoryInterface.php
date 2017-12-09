@@ -8,8 +8,15 @@
 
 namespace App\Infrastructure;
 
+use Ramsey\Uuid\Uuid;
 
 interface RepositoryInterface
 {
+    public function add(object $object): void;
 
+    public function getById(Uuid $id): object;
+
+    public function remove(object $object): void;
+
+    public function contains(object $object): bool;
 }
