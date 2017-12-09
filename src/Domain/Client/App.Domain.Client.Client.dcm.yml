@@ -1,0 +1,22 @@
+App\Domain\Client\Client:
+  type: entity
+  table: client
+  id:
+    id:
+      type: uuid
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidGenerator
+  fields:
+    ~ #none
+  embedded:
+    username:
+      class: App\Domain\Client\Username
+      columnPrefix: false
+    password:
+      class: App\Domain\Client\Password
+      columnPrefix: false
+    email:
+      class: App\Domain\Client\Email
+      columnPrefix: false
