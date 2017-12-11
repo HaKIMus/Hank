@@ -17,9 +17,9 @@ class Client
 
     public function __construct(
         string $id,
-        string $username,
-        string $password,
-        string $email
+        Username $username,
+        Password $password,
+        Email $email
     ) {
         $this->id = $id;
         $this->username = $username;
