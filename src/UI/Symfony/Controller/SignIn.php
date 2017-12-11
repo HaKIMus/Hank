@@ -27,17 +27,17 @@ class SignIn extends Controller
     public function signIn(Request $request): Response
     {
         $connParams = $this->container->getParameter('connection');
+        $session = $this->container->get('session');
 
         $authorization = new AuthorizationSignIn(
             $request->get('username'),
             $request->get('password'),
-            new ClientDbal(new Connection($connParams, new Driver()))
+            new ClientDbal(new Connection($connParams, new Driver())),
+            $session
         );
 
         if ($authorization->signIn()) {
-            print 'Well done!';
-            exit;
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('app_bank_client_panel');
         }
 
         return $this->redirectToRoute('app_bank_sign_in');
