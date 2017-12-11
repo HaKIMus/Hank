@@ -14,3 +14,7 @@ app_bank_sign_in_processing:
   path: /sign-in/processing
   controller: App\UI\Symfony\Controller\SignIn::signIn
   methods: [POST]
+
+app_bank_client_panel:
+  path: /client-panel
+  controller: App\UI\Symfony\Controller\ClientPanel::index
