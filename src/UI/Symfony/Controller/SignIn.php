@@ -3,9 +3,16 @@
 namespace App\UI\Symfony\Controller;
 
 use App\Application\Authorization\SignIn as AuthorizationSignIn;
+use App\Domain\Client\Client;
+use App\Domain\Client\Email;
+use App\Domain\Client\Password;
+use App\Domain\Client\Username;
 use App\Infrastructure\Domain\Dbal\Client\ClientDbal;
+use App\Infrastructure\Domain\Repository\Client\ClientRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\PDOMySql\Driver;
+use Ramsey\Uuid\Uuid;
+use Symfony\Bridge\Doctrine\Tests\Fixtures\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,6 +35,8 @@ class SignIn extends Controller
         );
 
         if ($authorization->signIn()) {
+            print 'Well done!';
+            exit;
             return $this->redirectToRoute('admin');
         }
 

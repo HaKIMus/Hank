@@ -12,6 +12,7 @@ use App\Domain\Client\Client;
 use App\Domain\Client\ClientRepositoryInterface;
 use App\Domain\Client\Exception\ClientNotFoundException;
 use App\Infrastructure\DoctrineRepositoryAbstract;
+use Doctrine\ORM\OptimisticLockException;
 use Ramsey\Uuid\Uuid;
 
 class ClientRepository extends DoctrineRepositoryAbstract implements ClientRepositoryInterface
@@ -20,6 +21,7 @@ class ClientRepository extends DoctrineRepositoryAbstract implements ClientRepos
     {
         $this->entityManager->persist($client);
         $this->entityManager->flush();
+        $this->entityManager->commit();
     }
 
     public function getById(Uuid $id): Client
