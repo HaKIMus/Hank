@@ -12,18 +12,22 @@ namespace App\Application\Authorization;
 use App\Application\Query\View\Client\ClientView;
 use App\Domain\Client\Exception\ClientNotFoundException;
 use App\Infrastructure\Domain\Dbal\Client\ClientDbal;
+use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class SignIn
 {
     private $username;
     private $password;
     private $client;
+    private $session;
 
-    public function __construct(string $username, string $password, ClientDbal $client)
+    public function __construct(string $username, string $password, ClientDbal $client, SessionInterface $session)
     {
         $this->username = $username;
         $this->password = $password;
         $this->client = $client;
+        $this->session = $session;
     }
 
     public function signIn(): bool
@@ -48,12 +52,10 @@ class SignIn
 
     public function setClientSession(ClientView $client): void
     {
-        if (isset($_SESSION['client'])) {
-            unset($_SESSION['client']);
+        if ($this->session->has('client')) {
+            $this->session->remove('client');
         }
 
-        $_SESSION['client']['id'] = $client->getId();
-        $_SESSION['client']['username'] = $client->getUsername();
-        $_SESSION['client']['email'] = $client->getEmail();
+        $this->session->set('client', $client);
     }
 }
