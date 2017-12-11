@@ -9,3 +9,8 @@ app_bank_homepage:
 app_bank_sign_in:
   path: /sign-in
   controller: App\UI\Symfony\Controller\SignIn::index
+
+app_bank_sign_in_processing:
+  path: /sign-in/processing
+  controller: App\UI\Symfony\Controller\SignIn::signIn
+  methods: [POST]
