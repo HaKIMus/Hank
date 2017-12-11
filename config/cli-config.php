@@ -1,8 +1,8 @@
 <?php
 
 use Doctrine\DBAL\Types\Type;
-use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Setup;
 
 $paths = [
     __DIR__ . '/../src/Domain/Client',
@@ -17,6 +17,7 @@ $dbParams = [
     'password' => '',
     'dbname' => 'hank',
     'host' => '127.0.0.1',
+    'charset' => 'utf8'
 ];
 
 $config = Setup::createYAMLMetadataConfiguration($paths, $isDevMode);
