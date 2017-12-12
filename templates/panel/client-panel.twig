@@ -3,5 +3,5 @@
 {% block body %}
     {% include 'components/navbar.twig' %}
 
-    <h1>Hello {{ client.username }}</h1>
+    <h1>Hello {{ client.username | capitalize }}</h1>
 {% endblock %}
