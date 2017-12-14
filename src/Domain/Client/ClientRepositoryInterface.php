@@ -8,7 +8,6 @@
 
 namespace App\Domain\Client;
 
-
 use Ramsey\Uuid\Uuid;
 
 interface ClientRepositoryInterface
@@ -20,4 +19,6 @@ interface ClientRepositoryInterface
     public function remove(Client $object): void;
 
     public function contains(Client $client): bool;
+
+    public function commit(): void;
 }

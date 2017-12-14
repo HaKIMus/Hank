@@ -21,7 +21,6 @@ class ClientRepository extends DoctrineRepositoryAbstract implements ClientRepos
     {
         $this->entityManager->persist($client);
         $this->entityManager->flush();
-        $this->entityManager->commit();
     }
 
     public function getById(Uuid $id): Client
@@ -46,5 +45,10 @@ class ClientRepository extends DoctrineRepositoryAbstract implements ClientRepos
     public function contains(Client $client): bool
     {
         return $this->entityManager->contains($client);
+    }
+
+    public function commit(): void
+    {
+        $this->entityManager->commit();
     }
 }
