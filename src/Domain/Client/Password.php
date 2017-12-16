@@ -15,6 +15,6 @@ class Password
     public function __construct(
         string $password
     ) {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 }
