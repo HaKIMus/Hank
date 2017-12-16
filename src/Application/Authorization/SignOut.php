@@ -8,8 +8,24 @@
 
 namespace App\Application\Authorization;
 
+use App\Application\Authorization\Exception\ClientNotSignedIn;
+use Symfony\Component\HttpFoundation\Session\Session;
 
-class SignOut
+final class SignOut
 {
+    private $session;
 
+    public function __construct(Session $session)
+    {
+        $this->session = $session;
+    }
+
+    public function execute(): void
+    {
+        if ($this->session->has('client')) {
+            $this->session->remove('client');
+        }
+
+        throw new ClientNotSignedIn();
+    }
 }
