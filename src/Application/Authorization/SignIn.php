@@ -15,7 +15,7 @@ use App\Infrastructure\Domain\Dbal\Client\ClientDbal;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class SignIn
+final class SignIn
 {
     private $username;
     private $password;
