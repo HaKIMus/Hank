@@ -9,13 +9,14 @@
 namespace App\Domain\Client\Wallet;
 
 use Money\Money;
+use Ramsey\Uuid\UuidInterface;
 
 class Wallet
 {
     private $ownerId;
 
     public function __construct(
-        string $ownerId,
+        UuidInterface $ownerId,
         Money $balance
     ) {
         $this->ownerId = $ownerId;
@@ -23,6 +24,7 @@ class Wallet
 
     public function payIn(): void
     {
+
     }
 
     public function payOut(): Money

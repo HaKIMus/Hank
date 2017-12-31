@@ -1,0 +1,14 @@
+{% extends 'template.twig' %}
+
+{% block body %}
+    {% include 'components/navbar.twig' %}
+
+    <main class="client-panel">
+        <div class="container">
+            <div class="row d-flex">
+                {% include 'components/header-client-panel.twig' %}
+                {% include 'components/navbar-client-panel.twig' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -12,12 +12,17 @@ $hank-primary-color-background: #eeeeee;
 $hank-primary-color-background-light: #ffffff;
 $hank-primary-color-background-dark: #bcbcbc;
 
-$hank-color-link: #ff94c2;
+$hank-color-link: #e44588;
 $hank-color-link-hover: #ba2d65;
 $hank-color-link-focus: #ba2d65;
 
 $hank-color-special: #ba2d65;
+$hank-color-special-light: #de337c;
 
+$hank-color-gradient-light: #ff1e90;
+$hank-color-gradient-dark: #ff1677;
+$hank-color-gradient-light-hover: #bb3277;
+$hank-color-gradient-dark-hover: #e8199f;
 
 body {
   font-family: $global-font;
@@ -33,4 +38,28 @@ a {
 
 .hank-color-special {
   color: $hank-color-special;
+}
+
+.hank-color-special-light {
+  color: $hank-color-special-light;
+}
+
+.btn-hank {
+  cursor: pointer;
+  border: 1px solid #eee;
+  background: linear-gradient(to right, $hank-color-gradient-light, $hank-color-gradient-dark);
+  color: #fff;
+
+  &:hover {
+    background: linear-gradient(to right, $hank-color-gradient-light-hover, $hank-color-gradient-dark-hover);
+  }
+
+  &:focus {
+    background: linear-gradient(to right, $hank-color-gradient-light-hover, $hank-color-gradient-dark-hover);
+    box-shadow: 0 0 0 2px rgba(195, 36, 95, 0.45)
+  }
+
+  &:active {
+    background: linear-gradient(to right, $hank-color-gradient-light, $hank-color-gradient-dark);
+  }
 }

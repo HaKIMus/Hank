@@ -4,12 +4,32 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link nav-link-active" href="{{ path('app_bank_homepage') }}">Home</a>
+                <a class="nav-link {% if app.request.get('_route') == 'app_bank_homepage' %} nav-link-active{% endif %}"
+                   href="{{ path('app_bank_homepage') }}">
+                    Home
+                </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_bank_sign_in') }}">Sign in</a>
-            </li>
+            {% if client is defined %}
+                <li class="nav-item">
+                    <a class="nav-link{% if app.request.get('_route') == 'app_bank_client_panel' %} nav-link-active{% endif %}"
+                       href="{{ path('app_bank_client_panel') }}">
+                        Panel
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_bank_sign_out') }}">Sign out</a>
+                </li>
+
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.get('_route') == 'app_bank_sign_in' %} nav-link-active{% endif %}"
+                           href="{{ path('app_bank_sign_in') }}">
+                            Sign in
+                        </a>
+                    </li>
+            {% endif %}
         </ul>
     </div>
 </nav>

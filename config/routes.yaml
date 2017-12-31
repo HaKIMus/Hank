@@ -15,6 +15,14 @@ app_bank_sign_in_processing:
   controller: App\UI\Symfony\Controller\SignIn::signIn
   methods: [POST]
 
+app_bank_sign_out:
+  path: /sign-out
+  controller: App\UI\Symfony\Controller\SignOut::index
+
 app_bank_client_panel:
   path: /client-panel
   controller: App\UI\Symfony\Controller\ClientPanel::index
+
+app_bank_pay_in_client_panel:
+  path: /client-panel/pay-in
+  controller: App\UI\Symfony\Controller\PayIn::index

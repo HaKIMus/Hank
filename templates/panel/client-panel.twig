@@ -3,5 +3,81 @@
 {% block body %}
     {% include 'components/navbar.twig' %}
 
-    <h1>Hello {{ client.username | capitalize }}</h1>
+    <main class="client-panel">
+        <div class="container">
+            <div class="row d-flex">
+                {% include 'components/header-client-panel.twig' %}
+                {% include 'components/navbar-client-panel.twig' %}
+
+                <div class="col-sm-9">
+                    <header class="w-100 d-inline-flex">
+                        <div class="col-md-4">
+                            <button class="btn btn-block btn-hank">Money tranfser</button>
+                        </div>
+
+                        <div class="col-md-4">
+                            <button class="btn btn-block btn-hank" disabled>Send money to friends</button>
+                        </div>
+
+                        <div class="col-md-4">
+                            <button class="btn btn-block btn-hank">Check transactions</button>
+                        </div>
+                    </header>
+
+                    <ul class="nav last-purchased p-4 flex-wrap">
+                        <li class="d-inline-flex w-100 justify-content-between">
+                            <p class="purchase-date">
+                                <span>NOV</span>
+                                <span>05</span>
+                            </p>
+
+                            <p>
+                                <span>HELION.PL Sp. z o.o</span>
+                                <span>Payment</span>
+                            </p>
+
+                            <p>
+                                <span>- 18,89</span>
+                                <span>EUR</span>
+                            </p>
+                        </li>
+
+                        <li class="d-inline-flex w-100 justify-content-between">
+                            <p class="purchase-date">
+                                <span>NOV</span>
+                                <span>05</span>
+                            </p>
+
+                            <p>
+                                <span>Wydawnictwo Rozwojowiec Damian Redmer</span>
+                                <span>Payment</span>
+                            </p>
+
+                            <p>
+                                <span>- 34,20</span>
+                                <span>EUR</span>
+                            </p>
+                        </li>
+
+                        <li class="d-inline-flex w-100 justify-content-between">
+                            <p class="purchase-date">
+                                <span>NOV</span>
+                                <span>05</span>
+                            </p>
+
+                            <p>
+                                <span>OVH</span>
+                                <span>Payment</span>
+                            </p>
+
+                            <p>
+                                <span>- 4,75</span>
+                                <span>EUR</span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}

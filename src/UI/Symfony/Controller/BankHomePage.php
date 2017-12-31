@@ -2,14 +2,19 @@
 
 namespace App\UI\Symfony\Controller;
 
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Application\Authorization\Exception\ClientNotSignedIn;
 use Symfony\Component\HttpFoundation\Response;
 
-class BankHomePage extends Controller
+class BankHomePage extends HankController
 {
     public function index(): Response
     {
-        return $this->render('main/homepage.twig');
+        try {
+            return $this->render('main/homepage.twig', [
+                'client' => $this->getClient()
+            ]);
+        } catch (ClientNotSignedIn $e) {
+            return $this->render('main/homepage.twig');
+        }
     }
 }

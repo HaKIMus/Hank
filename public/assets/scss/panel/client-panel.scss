@@ -1,0 +1,40 @@
+.client-panel {
+  margin-top: 37px;
+}
+
+.client-panel-header {
+  border-bottom: 2px solid $hank-color-special;
+  padding: 5px;
+  color: #333;
+  margin-bottom: 30px;
+
+  h3 {
+    span {
+      font-size: inherit;
+      color: $hank-color-special;
+    }
+  }
+
+  img {
+    width: 75px;
+    height: 75px;
+    border-radius: 180px;
+    border: 2px solid $hank-color-special-light;
+  }
+
+  span {
+    width: 100%;
+    font-size: 17px;
+    b {
+      font-weight: 300;
+    }
+  }
+}
+
+.last-purchased {
+  li {
+    border-bottom: 1px solid $hank-color-special-light;
+    margin-bottom: 15px;
+    height: 25px;
+  }
+}

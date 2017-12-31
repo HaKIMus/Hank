@@ -5993,12 +5993,28 @@ body {
   font-family: "Lato", sans-serif; }
 
 a {
-  color: #ff94c2; }
+  color: #e44588; }
   a:hover, a:focus {
     color: #ba2d65; }
 
 .hank-color-special {
   color: #ba2d65; }
+
+.hank-color-special-light {
+  color: #de337c; }
+
+.btn-hank {
+  cursor: pointer;
+  border: 1px solid #eee;
+  background: linear-gradient(to right, #ff1e90, #ff1677);
+  color: #fff; }
+  .btn-hank:hover {
+    background: linear-gradient(to right, #bb3277, #e8199f); }
+  .btn-hank:focus {
+    background: linear-gradient(to right, #bb3277, #e8199f);
+    box-shadow: 0 0 0 2px rgba(195, 36, 95, 0.45); }
+  .btn-hank:active {
+    background: linear-gradient(to right, #ff1e90, #ff1677); }
 
 .navbar-hank {
   background-color: #fff;
@@ -6027,6 +6043,33 @@ a {
       border-bottom: 1px solid #ff94c2; }
     .navbar-hank ul a.nav-link-active {
       border-bottom: 1px solid #ba2d65; }
+
+.client-panel {
+  margin-top: 37px; }
+
+.client-panel-header {
+  border-bottom: 2px solid #ba2d65;
+  padding: 5px;
+  color: #333;
+  margin-bottom: 30px; }
+  .client-panel-header h3 span {
+    font-size: inherit;
+    color: #ba2d65; }
+  .client-panel-header img {
+    width: 75px;
+    height: 75px;
+    border-radius: 180px;
+    border: 2px solid #de337c; }
+  .client-panel-header span {
+    width: 100%;
+    font-size: 17px; }
+    .client-panel-header span b {
+      font-weight: 300; }
+
+.last-purchased li {
+  border-bottom: 1px solid #de337c;
+  margin-bottom: 15px;
+  height: 25px; }
 
 .hank-main-header {
   font-family: "Kanit", sans-serif;
