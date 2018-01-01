@@ -10,7 +10,7 @@ namespace App\Domain\Client;
 
 use Ramsey\Uuid\Uuid;
 
-interface ClientRepositoryInterface
+interface ClientRepositoryInterface extends ClientStore
 {
     public function add(Client $client): void;
 
