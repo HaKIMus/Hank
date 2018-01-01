@@ -32,6 +32,11 @@ class Wallet
 
     }
 
+    public function moneyTransfer(): void
+    {
+
+    }
+
     private function balance(): Balance
     {
 

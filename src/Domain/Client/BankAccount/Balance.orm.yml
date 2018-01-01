@@ -1,0 +1,7 @@
+App\Domain\Client\Email:
+  type: embeddable
+  fields:
+    email:
+      type: string
+      nullable: false
+      unique: true
