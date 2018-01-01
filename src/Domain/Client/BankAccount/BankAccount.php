@@ -6,20 +6,23 @@
  * Time: 00:41
  */
 
-namespace App\Domain\Client\Wallet;
+namespace App\Domain\Client\BankAccount;
 
 use Money\Money;
 use Ramsey\Uuid\UuidInterface;
 
-class Wallet
+class BankAccount
 {
-    private $ownerId;
+    private $id;
+    private $accountOwner;
+    private $balance;
 
     public function __construct(
-        UuidInterface $ownerId,
-        Money $balance
+        UuidInterface $accountOwner,
+        Balance $balance
     ) {
-        $this->ownerId = $ownerId;
+        $this->accountOwner = $accountOwner;
+        $this->balance = $balance;
     }
 
     public function payIn(): void
@@ -27,17 +30,12 @@ class Wallet
 
     }
 
-    public function payOut(): Money
+    public function payOut(): void
     {
 
     }
 
     public function moneyTransfer(): void
-    {
-
-    }
-
-    private function balance(): Balance
     {
 
     }

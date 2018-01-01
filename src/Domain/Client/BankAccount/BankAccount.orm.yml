@@ -1,6 +1,6 @@
-App\Domain\Client\Wallet\Wallet:
+App\Domain\Client\BankAccount\BankAccount:
   type: entity
-  table: wallet
+  table: bank_account
   id:
     id:
       type: uuid
@@ -11,12 +11,13 @@ App\Domain\Client\Wallet\Wallet:
   fields:
     ~ #none
   embedded:
-    username:
-      class: App\Domain\Client\Username
+    balance:
+      class: App\Domain\Client\BankAccount\Balance
       columnPrefix: false
-    password:
-      class: App\Domain\Client\Password
-      columnPrefix: false
-    email:
-      class: App\Domain\Client\Email
-      columnPrefix: false
+  oneToOne:
+    accountOwner:
+      targetEntity: App\Domain\Client\Client
+      cascade: ["persist"]
+      joinColumn:
+        name: clientId
+        referencedColumnName: id
