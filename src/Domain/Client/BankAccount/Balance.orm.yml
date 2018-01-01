@@ -1,7 +1,11 @@
-App\Domain\Client\Email:
+App\Domain\Client\BankAccount\Balance:
   type: embeddable
   fields:
-    email:
+    balance:
+      type: decimal
+      nullable: false
+      unique: false
+    currency:
       type: string
       nullable: false
-      unique: true
+      unique: false

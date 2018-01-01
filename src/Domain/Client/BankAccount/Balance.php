@@ -9,7 +9,16 @@
 namespace App\Domain\Client\BankAccount;
 
 
+use Money\Currency;
+
 class Balance
 {
+    private $balance;
+    private $currency;
 
+    public function __construct(float $balance, Currency $currency)
+    {
+        $this->balance = $balance;
+        $this->currency = $currency;
+    }
 }
