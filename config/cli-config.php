@@ -6,7 +6,7 @@ use Doctrine\ORM\Tools\Setup;
 
 $paths = [
     __DIR__ . '/../src/Domain/Client',
-    __DIR__ . '/../src/Domain/Client/Wallet'
+    __DIR__ . '/../src/Domain/Client/BankAccount'
 ];
 
 $isDevMode  = true;
