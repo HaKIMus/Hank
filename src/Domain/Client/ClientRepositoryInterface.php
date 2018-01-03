@@ -8,7 +8,7 @@
 
 namespace App\Domain\Client;
 
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 interface ClientRepositoryInterface
 {
@@ -20,7 +20,7 @@ interface ClientRepositoryInterface
 
     public function commit(): void;
 
-    public function getById(Uuid $id): Client;
+    public function getById(UuidInterface $id): Client;
 
     public function getAll(): array;
 }

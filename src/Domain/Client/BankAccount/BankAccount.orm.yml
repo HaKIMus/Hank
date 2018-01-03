@@ -14,10 +14,3 @@ App\Domain\Client\BankAccount\BankAccount:
     balance:
       class: App\Domain\Client\BankAccount\Balance
       columnPrefix: false
-  oneToOne:
-    accountOwner:
-      targetEntity: App\Domain\Client\Client
-      cascade: ["persist"]
-      joinColumn:
-        name: clientId
-        referencedColumnName: id

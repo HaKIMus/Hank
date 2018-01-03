@@ -20,3 +20,10 @@ App\Domain\Client\Client:
     email:
       class: App\Domain\Client\Email
       columnPrefix: false
+  oneToOne:
+    bankAccount:
+      targetEntity: App\Domain\Client\BankAccount\BankAccount
+      cascade: ["persist"]
+      joinColumn:
+        name: bankAccountId
+        referencedColumnName: id

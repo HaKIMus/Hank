@@ -8,6 +8,17 @@
             <div class="row d-flex">
                 {% include 'components/header-client-panel.twig' %}
                 {% include 'components/navbar-client-panel.twig' %}
+
+                <div class="col-sm-9">
+                    <form method="post" class="form-pay-in" action="{{ path('app_bank_pay_in_processing') }}">
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" class="form-control" id="amount" name="amount" value="00.00" step="05.00" max="10000" min="5">
+                        </div>
+
+                        <button type="submit" class="btn btn-block btn-hank">Pay In</button>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
