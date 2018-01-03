@@ -3,6 +3,7 @@
 namespace App\UI\Symfony\Controller;
 
 use App\Application\Authorization\SignIn as AuthorizationSignIn;
+use App\Domain\Client\Exception\ClientNotFoundException;
 use App\Infrastructure\Domain\Dbal\Client\ClientDbal;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\PDOMySql\Driver;
@@ -22,14 +23,21 @@ class SignIn extends Controller
         $connParams = $this->container->getParameter('connection');
         $session = $this->container->get('session');
 
+        $name = $request->get('name');
+        $password = $request->get('password');
+
+        $clientDbal = new ClientDbal(new Connection($connParams, new Driver()));
+
         $authorization = new AuthorizationSignIn(
-            $request->get('username'),
-            $request->get('password'),
-            new ClientDbal(new Connection($connParams, new Driver())),
+            $name,
+            $password,
+            $clientDbal,
             $session
         );
 
-        if ($authorization->signIn()) {
+        if ($authorization->validateData()) {
+            $authorization->setClientSession();
+
             return $this->redirectToRoute('app_bank_client_panel');
         }
 

@@ -9,8 +9,8 @@
 namespace App\Infrastructure\Domain\Repository\Client;
 
 use App\Domain\Client\Client;
+use App\Domain\Client\ClientRepositoryInterface;
 use App\Domain\Client\Exception\ClientNotFoundException;
-use App\Domain\Ports\ORM\ClientRepositoryInterface;
 use App\Infrastructure\DoctrineRepositoryAbstract;
 use Ramsey\Uuid\Uuid;
 

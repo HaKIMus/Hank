@@ -10,11 +10,11 @@ namespace App\Infrastructure\Domain\Dbal\Client;
 
 use App\Application\Query\View\Client\ClientView;
 use App\Domain\Client\Exception\ClientNotFoundException;
-use App\Domain\Ports\Dbal\ClientStoreInterface;
+use App\Domain\Ports\Db\Dbal\ClientStore;
 use App\Infrastructure\DbalRepositoryAbstract;
 use Ramsey\Uuid\UuidInterface;
 
-class ClientDbal extends DbalRepositoryAbstract implements ClientStoreInterface
+class ClientDbal extends DbalRepositoryAbstract implements ClientStore
 {
     public function getById(UuidInterface $id): ClientView
     {

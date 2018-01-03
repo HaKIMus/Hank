@@ -6,12 +6,12 @@
  * Time: 06:23
  */
 
-namespace App\Domain\Ports\Dbal;
+namespace App\Domain\Ports\Db\Dbal;
 
 use App\Application\Query\View\Client\ClientView;
 use Ramsey\Uuid\UuidInterface;
 
-interface ClientStoreInterface
+interface ClientStore
 {
     public function getById(UuidInterface $id): ClientView;
     public function getAll(): array;
