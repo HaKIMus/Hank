@@ -15,4 +15,9 @@ class BankAccountSpec extends ObjectBehavior
         $this->beConstructedWith(Uuid::uuid4(), new Balance( 20, new Currency('EUR')));
         $this->shouldHaveType(BankAccount::class);
     }
+
+    function it_allows_us_to_pay_in_money()
+    {
+
+    }
 }
