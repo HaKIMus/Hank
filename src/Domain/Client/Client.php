@@ -11,18 +11,18 @@ namespace App\Domain\Client;
 class Client
 {
     private $id;
-    private $username;
+    private $name;
     private $password;
     private $email;
 
     public function __construct(
         string $id,
-        Username $username,
+        Name $name,
         Password $password,
         Email $email
     ) {
         $this->id = $id;
-        $this->username = $username;
+        $this->name = $name;
         $this->password = $password;
         $this->email = $email;
     }

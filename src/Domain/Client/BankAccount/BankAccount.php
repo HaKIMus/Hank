@@ -8,7 +8,6 @@
 
 namespace App\Domain\Client\BankAccount;
 
-use Money\Money;
 use Ramsey\Uuid\UuidInterface;
 
 class BankAccount

@@ -10,18 +10,20 @@ namespace App\Infrastructure\Domain\Dbal\Client;
 
 use App\Application\Query\View\Client\ClientView;
 use App\Domain\Client\Exception\ClientNotFoundException;
+use App\Domain\Ports\Dbal\ClientStoreInterface;
 use App\Infrastructure\DbalRepositoryAbstract;
+use Ramsey\Uuid\UuidInterface;
 
-class ClientDbal extends DbalRepositoryAbstract
+class ClientDbal extends DbalRepositoryAbstract implements ClientStoreInterface
 {
-    public function getById(string $id): ClientView
+    public function getById(UuidInterface $id): ClientView
     {
         $queryBuilder = $this->connection->createQueryBuilder();
 
         $queryBuilder
             ->select(
                 'id',
-                'username',
+                'name',
                 'password',
                 'email'
             )
@@ -33,7 +35,7 @@ class ClientDbal extends DbalRepositoryAbstract
 
         return new ClientView(
             $clientData['id'],
-            $clientData['username'],
+            $clientData['name'],
             $clientData['password'],
             $clientData['email']
         );
@@ -46,7 +48,7 @@ class ClientDbal extends DbalRepositoryAbstract
         $queryBuilder
             ->select(
                 'id',
-                'username',
+                'name',
                 'password',
                 'email'
             )
@@ -57,27 +59,27 @@ class ClientDbal extends DbalRepositoryAbstract
         return array_map(function (array $clientData) {
             new ClientView(
                 $clientData['id'],
-                $clientData['username'],
+                $clientData['name'],
                 $clientData['password'],
                 $clientData['email']
             );
         }, $clientData);
     }
 
-    public function getByUsername(string $username): ClientView
+    public function getByClientName(string $name): ClientView
     {
         $queryBuilder = $this->connection->createQueryBuilder();
 
         $queryBuilder
             ->select(
                 'id',
-                'username',
+                'name',
                 'password',
                 'email'
             )
             ->from('client')
-            ->where('username = :username')
-            ->setParameter('username', $username);
+            ->where('name = :name')
+            ->setParameter('name', $name);
 
         $clientData = $this->connection->fetchAssoc($queryBuilder->getSQL(), $queryBuilder->getParameters());
 
@@ -87,7 +89,7 @@ class ClientDbal extends DbalRepositoryAbstract
 
         return new ClientView(
             $clientData['id'],
-            $clientData['username'],
+            $clientData['name'],
             $clientData['password'],
             $clientData['email']
         );

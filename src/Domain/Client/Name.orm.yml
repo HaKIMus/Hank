@@ -1,7 +1,7 @@
-App\Domain\Client\Username:
+App\Domain\Client\Name:
   type: embeddable
   fields:
-    username:
+    name:
       type: string
       nullable: false
       unique: true

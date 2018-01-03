@@ -11,8 +11,8 @@ App\Domain\Client\Client:
   fields:
     ~ #none
   embedded:
-    username:
-      class: App\Domain\Client\Username
+    name:
+      class: App\Domain\Client\Name
       columnPrefix: false
     password:
       class: App\Domain\Client\Password

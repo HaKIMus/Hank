@@ -12,19 +12,19 @@ namespace App\Application\Query\View\Client;
 class ClientView
 {
     private $id;
-    private $username;
+    private $name;
     private $password;
     private $email;
 
     public function __construct(
         string $id,
-        string $username,
+        string $name,
         string $password,
         string $email
     ) {
 
         $this->id = $id;
-        $this->username = $username;
+        $this->name = $name;
         $this->password = $password;
         $this->email = $email;
     }
@@ -34,9 +34,9 @@ class ClientView
         return $this->id;
     }
 
-    public function getUsername(): string
+    public function getName(): string
     {
-        return $this->username;
+        return $this->name;
     }
 
     public function getPassword(): string

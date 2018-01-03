@@ -36,7 +36,7 @@ final class SignIn
         $password = filter_var($this->password, FILTER_SANITIZE_STRING);
 
         try {
-            $client = $this->client->getByUsername($username);
+            $client = $this->client->getByClientName($username);
         } catch (ClientNotFoundException $clientNotFoundException) {
             return false;
         }
