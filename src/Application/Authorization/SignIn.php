@@ -8,10 +8,8 @@
 
 namespace App\Application\Authorization;
 
-use App\Application\Query\View\Client\ClientView;
 use App\Domain\Client\Exception\ClientNotFoundException;
-use App\Infrastructure\Domain\Dbal\Client\ClientDbal;
-use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
+use App\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 final class SignIn
@@ -21,7 +19,7 @@ final class SignIn
     private $client;
     private $session;
 
-    public function __construct(string $username, string $password, ClientDbal $client, SessionInterface $session)
+    public function __construct(string $username, string $password, ClientDbalAdapter $client, SessionInterface $session)
     {
         $this->username = $username;
         $this->password = $password;

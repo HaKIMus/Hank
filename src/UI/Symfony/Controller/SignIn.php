@@ -3,10 +3,10 @@
 namespace App\UI\Symfony\Controller;
 
 use App\Application\Authorization\SignIn as AuthorizationSignIn;
-use App\Domain\Client\Exception\ClientNotFoundException;
-use App\Infrastructure\Domain\Dbal\Client\ClientDbal;
+use App\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\PDOMySql\Driver;
+use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +26,7 @@ class SignIn extends Controller
         $name = $request->get('name');
         $password = $request->get('password');
 
-        $clientDbal = new ClientDbal(new Connection($connParams, new Driver()));
+        $clientDbal = new ClientDbalAdapter(new Connection($connParams, new Driver()));
 
         $authorization = new AuthorizationSignIn(
             $name,

@@ -6,7 +6,7 @@
  * Time: 06:23
  */
 
-namespace App\Domain\Ports\Db\Dbal;
+namespace App\Domain\Ports;
 
 use App\Application\Query\View\Client\ClientView;
 use Ramsey\Uuid\UuidInterface;

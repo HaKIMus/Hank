@@ -13,6 +13,7 @@ use App\Domain\Client\ClientRepositoryInterface;
 use App\Domain\Client\Exception\ClientNotFoundException;
 use App\Infrastructure\DoctrineRepositoryAbstract;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class ClientRepository extends DoctrineRepositoryAbstract implements ClientRepositoryInterface
 {
@@ -22,7 +23,7 @@ class ClientRepository extends DoctrineRepositoryAbstract implements ClientRepos
         $this->entityManager->flush();
     }
 
-    public function getById(Uuid $id): Client
+    public function getById(UuidInterface $id): Client
     {
         $client = $this->entityManager->getRepository(Client::class)
         ->findOneBy([

@@ -26,3 +26,8 @@ app_bank_client_panel:
 app_bank_pay_in_client_panel:
   path: /client-panel/pay-in
   controller: App\UI\Symfony\Controller\PayIn::index
+
+app_bank_pay_in_processing:
+  path: /client-panel/pay-in-processing
+  controller: App\UI\Symfony\Controller\PayIn::payIn
+  methods: [POST]
