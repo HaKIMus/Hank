@@ -8,7 +8,6 @@
 
 namespace App\Application\Authorization;
 
-
 use App\Application\Query\View\Client\ClientView;
 use App\Domain\Client\Exception\ClientNotFoundException;
 use App\Infrastructure\Domain\Dbal\Client\ClientDbal;
@@ -30,7 +29,7 @@ final class SignIn
         $this->session = $session;
     }
 
-    public function signIn(): bool
+    public function validateData(): bool
     {
         $username = filter_var($this->username, FILTER_SANITIZE_STRING);
         $password = filter_var($this->password, FILTER_SANITIZE_STRING);
@@ -42,20 +41,18 @@ final class SignIn
         }
 
         if (password_verify($password, $client->getPassword())) {
-            $this->setClientSession($client);
-
             return true;
         } else {
             return false;
         }
     }
 
-    public function setClientSession(ClientView $client): void
+    public function setClientSession(): void
     {
         if ($this->session->has('client')) {
             $this->session->remove('client');
         }
 
-        $this->session->set('client', $client);
+        $this->session->set('client', $this->client->getByClientName($this->username));
     }
 }
