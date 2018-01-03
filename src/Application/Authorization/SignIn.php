@@ -40,9 +40,9 @@ final class SignIn
 
         if (password_verify($password, $client->getPassword())) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     public function setClientSession(): void
