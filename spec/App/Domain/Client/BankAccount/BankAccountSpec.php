@@ -20,6 +20,7 @@ class BankAccountSpec extends ObjectBehavior
     function let()
     {
         $this->beConstructedWith(Uuid::uuid4(), new Balance( 20, new Currency('EUR')));
+        $this->setId(Uuid::uuid4());
     }
 
     function it_is_initializable()

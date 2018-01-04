@@ -13,6 +13,7 @@ use App\Domain\Client\BankAccount\Exception\NoAmountOfMoneyException;
 use App\Domain\Client\BankAccount\Exception\TooLargeAmountOfMoneyException;
 use App\Domain\Client\BankAccount\Exception\TooSmallAmountOfMoneyException;
 use App\Domain\Ports\BankAccountStore;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class BankAccount
@@ -47,7 +48,7 @@ class BankAccount
             throw new TooLargeAmountOfMoneyException();
         }
 
-        $accountStore->payIn($this->accountOwner, $amount);
+        $accountStore->payIn($this->id, $amount);
     }
 
     public function payOut(): void
@@ -58,5 +59,10 @@ class BankAccount
     public function moneyTransfer(): void
     {
 
+    }
+
+    public function setId(UuidInterface $id): void
+    {
+        $this->id = $id;
     }
 }

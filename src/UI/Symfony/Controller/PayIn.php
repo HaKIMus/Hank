@@ -35,7 +35,7 @@ class PayIn extends HankController
     public function payIn(Request $request): Response
     {
         $payInCommand = new PayInCommand(
-            Uuid::fromString($this->getClient()->getBankAccount()->id()),
+            Uuid::fromString($this->getClient()->getBankAccount()->id())->toString(),
             $request->get('amount')
         );
 

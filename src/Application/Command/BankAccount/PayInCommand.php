@@ -8,21 +8,18 @@
 
 namespace App\Application\Command\BankAccount;
 
-
-use Ramsey\Uuid\UuidInterface;
-
 class PayInCommand
 {
     private $id;
     private $amount;
 
-    public function __construct(UuidInterface $id, float $amount)
+    public function __construct(string $id, float $amount)
     {
         $this->id = $id;
         $this->amount = $amount;
     }
 
-    public function getId(): UuidInterface
+    public function getId(): string
     {
         return $this->id;
     }
