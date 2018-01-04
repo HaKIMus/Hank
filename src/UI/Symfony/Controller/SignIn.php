@@ -20,13 +20,12 @@ class SignIn extends Controller
 
     public function signIn(Request $request): Response
     {
-        $connParams = $this->container->getParameter('connection');
         $session = $this->container->get('session');
 
         $name = $request->get('name');
         $password = $request->get('password');
 
-        $clientDbal = new ClientDbalAdapter(new Connection($connParams, new Driver()));
+        $clientDbal = new ClientDbalAdapter($this->getDoctrine()->getConnection());
 
         $authorization = new AuthorizationSignIn(
             $name,
