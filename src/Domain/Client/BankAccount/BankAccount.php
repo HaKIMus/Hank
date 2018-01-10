@@ -13,7 +13,6 @@ use App\Domain\Client\BankAccount\Exception\NoAmountOfMoneyException;
 use App\Domain\Client\BankAccount\Exception\TooLargeAmountOfMoneyException;
 use App\Domain\Client\BankAccount\Exception\TooSmallAmountOfMoneyException;
 use App\Domain\Ports\BankAccountStore;
-use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class BankAccount
