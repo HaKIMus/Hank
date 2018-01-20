@@ -28,6 +28,6 @@ doctrine:
             BankAccount:
                 is_bundle: false
                 type: yml
-                dir: '%kernel.project_dir%/src/Domain/Client/BankAccount'
-                prefix: 'App\Domain\Client\BankAccount'
+                dir: '%kernel.project_dir%/src/Domain/BankAccount'
+                prefix: 'App\Domain\BankAccount'
                 alias: BankAccount

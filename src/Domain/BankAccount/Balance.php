@@ -6,8 +6,7 @@
  * Time: 09:53
  */
 
-namespace App\Domain\Client\BankAccount;
-
+namespace App\Domain\BankAccount;
 
 use Money\Currency;
 

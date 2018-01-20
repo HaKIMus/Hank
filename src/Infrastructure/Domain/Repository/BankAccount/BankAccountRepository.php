@@ -8,9 +8,9 @@
 
 namespace App\Infrastructure\Domain\Repository\BankAccount;
 
-use App\Domain\Client\BankAccount\BankAccount;
-use App\Domain\Client\BankAccount\BankAccountRepositoryInterface;
-use App\Domain\Client\BankAccount\Exception\BankAccountNotFoundException;
+use App\Domain\BankAccount\BankAccount;
+use App\Domain\BankAccount\BankAccountRepositoryInterface;
+use App\Domain\BankAccount\Exception\BankAccountNotFoundException;
 use App\Infrastructure\DoctrineRepositoryAbstract;
 use Ramsey\Uuid\UuidInterface;
 

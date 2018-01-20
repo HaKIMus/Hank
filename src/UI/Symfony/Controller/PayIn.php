@@ -8,7 +8,6 @@
 
 namespace App\UI\Symfony\Controller;
 
-
 use App\Application\Authorization\Exception\ClientNotSignedIn;
 use App\Application\Command\PayInCommand;
 use App\Application\Handler\PayInHandler;

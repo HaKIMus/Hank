@@ -1,16 +1,14 @@
 <?php
 
-namespace spec\App\Domain\Client\BankAccount;
+namespace spec\App\Domain\BankAccount;
 
-use App\Domain\Client\BankAccount\Balance;
-use App\Domain\Client\BankAccount\BankAccount;
-use App\Domain\Client\BankAccount\Exception\NegativeAmountOfMoneyException;
-use App\Domain\Client\BankAccount\Exception\NoAmountOfMoneyException;
-use App\Domain\Client\BankAccount\Exception\TooLargeAmountOfMoneyException;
-use App\Domain\Client\BankAccount\Exception\TooSmallAmountOfMoneyException;
+use App\Domain\BankAccount\Balance;
+use App\Domain\BankAccount\BankAccount;
+use App\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
+use App\Domain\BankAccount\Exception\NoAmountOfMoneyException;
+use App\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
+use App\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
 use App\Domain\Ports\BankAccountStore;
-use App\Infrastructure\Domain\Adapters\Db\Dbal\BankAccountDbalAdapter;
-use Doctrine\DBAL\Connection;
 use Money\Currency;
 use PhpSpec\ObjectBehavior;
 use Ramsey\Uuid\Uuid;

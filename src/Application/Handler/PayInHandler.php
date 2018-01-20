@@ -9,7 +9,7 @@
 namespace App\Application\Handler;
 
 use App\Application\Command\PayInCommand;
-use App\Domain\Client\BankAccount\BankAccountRepositoryInterface;
+use App\Domain\BankAccount\BankAccountRepositoryInterface;
 use App\Domain\Ports\BankAccountStore;
 use Ramsey\Uuid\Uuid;
 

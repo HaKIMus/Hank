@@ -6,7 +6,7 @@
  * Time: 14:47
  */
 
-namespace App\Domain\Client\BankAccount;
+namespace App\Domain\BankAccount;
 
 use Ramsey\Uuid\UuidInterface;
 

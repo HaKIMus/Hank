@@ -8,7 +8,6 @@
 
 namespace App\Domain\Ports;
 
-
 use Ramsey\Uuid\UuidInterface;
 
 interface BankAccountStore

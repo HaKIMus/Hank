@@ -1,4 +1,4 @@
-App\Domain\Client\BankAccount\Balance:
+App\Domain\BankAccount\Balance:
   type: embeddable
   fields:
     balance:

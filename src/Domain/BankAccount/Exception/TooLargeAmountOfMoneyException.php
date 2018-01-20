@@ -1,5 +1,5 @@
 <?php
 
-namespace App\Domain\Client\BankAccount\Exception;
+namespace App\Domain\BankAccount\Exception;
 
 final class TooLargeAmountOfMoneyException extends \DomainException {}

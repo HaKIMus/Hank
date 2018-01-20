@@ -22,7 +22,7 @@ App\Domain\Client\Client:
       columnPrefix: false
   oneToOne:
     bankAccount:
-      targetEntity: App\Domain\Client\BankAccount\BankAccount
+      targetEntity: App\Domain\BankAccount\BankAccount
       cascade: ["persist"]
       joinColumn:
         name: bankAccountId

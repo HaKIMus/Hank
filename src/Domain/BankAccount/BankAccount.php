@@ -6,12 +6,12 @@
  * Time: 00:41
  */
 
-namespace App\Domain\Client\BankAccount;
+namespace App\Domain\BankAccount;
 
-use App\Domain\Client\BankAccount\Exception\NegativeAmountOfMoneyException;
-use App\Domain\Client\BankAccount\Exception\NoAmountOfMoneyException;
-use App\Domain\Client\BankAccount\Exception\TooLargeAmountOfMoneyException;
-use App\Domain\Client\BankAccount\Exception\TooSmallAmountOfMoneyException;
+use App\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
+use App\Domain\BankAccount\Exception\NoAmountOfMoneyException;
+use App\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
+use App\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
 use App\Domain\Ports\BankAccountStore;
 use Ramsey\Uuid\UuidInterface;
 

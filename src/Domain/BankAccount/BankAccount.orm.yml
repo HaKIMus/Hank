@@ -1,4 +1,4 @@
-App\Domain\Client\BankAccount\BankAccount:
+App\Domain\BankAccount\BankAccount:
   type: entity
   table: bank_account
   id:
@@ -12,5 +12,5 @@ App\Domain\Client\BankAccount\BankAccount:
     ~ #none
   embedded:
     balance:
-      class: App\Domain\Client\BankAccount\Balance
+      class: App\Domain\BankAccount\Balance
       columnPrefix: false

@@ -8,7 +8,7 @@
 
 namespace App\Domain\Client;
 
-use App\Domain\Client\BankAccount\BankAccount;
+use App\Domain\BankAccount\BankAccount;
 use Ramsey\Uuid\UuidInterface;
 
 class Client
