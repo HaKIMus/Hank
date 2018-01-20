@@ -21,7 +21,7 @@ class BankAccount
     private $accountOwner;
     private $balance;
 
-    public function __construct(
+    public function __construct (
         UuidInterface $accountOwner,
         Balance $balance
     ) {

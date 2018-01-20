@@ -6,12 +6,11 @@
  * Time: 07:26
  */
 
-namespace App\Application\Command\BankAccount;
+namespace App\Application\Handler;
 
+use App\Application\Command\PayInCommand;
 use App\Domain\Client\BankAccount\BankAccountRepositoryInterface;
 use App\Domain\Ports\BankAccountStore;
-use App\Infrastructure\Domain\Adapters\Db\Dbal\BankAccountDbalAdapter;
-use Doctrine\DBAL\Connection;
 use Ramsey\Uuid\Uuid;
 
 class PayInHandler
