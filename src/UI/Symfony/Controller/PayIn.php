@@ -12,9 +12,12 @@ use App\Application\Authorization\Exception\ClientNotSignedIn;
 use App\Application\Command\PayInCommand;
 use App\Application\Handler\PayInHandler;
 use App\Infrastructure\Domain\Adapters\Db\Dbal\BankAccountDbalAdapter;
+use App\Infrastructure\Domain\Adapters\LoggingSystem\DbalPayInLogSystemAdapter;
 use App\Infrastructure\Domain\Repository\BankAccount\BankAccountRepository;
 use App\Infrastructure\Service\ClientService;
 use App\Infrastructure\Service\UpdateClientSessionService;
+use Doctrine\DBAL\Connection;
+use Doctrine\ORM\EntityManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,14 +46,25 @@ class PayIn extends Controller
 
     public function payIn(Request $request, UpdateClientSessionService $updateClientSessionService): Response
     {
+        $clientId = Uuid::fromString($this->clientService->getClient()->id());
+
+        $bankAccountId = Uuid::fromString($this->clientService->getClient()->getBankAccount()->id())->toString();
+
+        /** @var Connection $connection */
+        $connection = $this->getDoctrine()->getConnection();
+
+        /** @var EntityManager $entityManager */
+        $entityManager = $this->getDoctrine()->getManager();
+
         $payInCommand = new PayInCommand(
-            Uuid::fromString($this->clientService->getClient()->getBankAccount()->id())->toString(),
+            $bankAccountId,
             $request->get('amount')
         );
 
         $payInHandler = new PayInHandler(
-            new BankAccountRepository($this->getDoctrine()->getConnection(), $this->getDoctrine()->getManager()),
-            new BankAccountDbalAdapter($this->getDoctrine()->getConnection())
+            new BankAccountRepository($connection, $entityManager),
+            new BankAccountDbalAdapter($connection),
+            new DbalPayInLogSystemAdapter($bankAccountId, $clientId, $connection)
         );
 
         $payInHandler->handle($payInCommand);

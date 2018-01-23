@@ -13,7 +13,10 @@ use App\Domain\BankAccount\Exception\NoAmountOfMoneyException;
 use App\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
 use App\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
 use App\Domain\Ports\BankAccountStore;
+use App\Domain\Ports\PayInLogSystem;
+use App\Infrastructure\Domain\Adapters\LoggingSystem\DbalPayInLogSystemAdapter;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\HttpKernel\Log\Logger;
 
 class BankAccount
 {
@@ -29,23 +32,48 @@ class BankAccount
         $this->balance = $balance;
     }
 
-    public function payIn(BankAccountStore $accountStore, float $amount): void
+    public function payIn(BankAccountStore $accountStore, float $amount, PayInLogSystem $logSystem): void
     {
         if ($amount < 0.00) {
+            $logSystem->setMessageOfLog('Trying to pay in: ' . $amount . ' - it\'s negative amount of money');
+            $logSystem->setImportanceOfLog(1);
+
+            $logSystem->log();
+
             throw new NegativeAmountOfMoneyException();
         }
 
         if ($amount === 0.00) {
+            $logSystem->setMessageOfLog('Trying to pay in: ' . $amount . ' - it\'s no amount of money');
+            $logSystem->setImportanceOfLog(1);
+
+            $logSystem->log();
+
             throw new NoAmountOfMoneyException();
         }
 
         if ($amount < 5.00) {
+            $logSystem->setMessageOfLog('Trying to pay in: ' . $amount . ' - it\'s too small amount of money');
+            $logSystem->setImportanceOfLog(1);
+
+            $logSystem->log();
+
             throw new TooSmallAmountOfMoneyException();
         }
 
         if ($amount > 10000.00) {
+            $logSystem->setMessageOfLog('Trying to pay in: ' . $amount . ' - it\'s too large amount of money');
+            $logSystem->setImportanceOfLog(1);
+
+            $logSystem->log();
+
             throw new TooLargeAmountOfMoneyException();
         }
+
+        $logSystem->setMessageOfLog('Trying to pay in ' . $amount . ' amount of money done with success');
+        $logSystem->setImportanceOfLog(1);
+
+        $logSystem->log();
 
         $accountStore->payIn($this->id, $amount);
     }

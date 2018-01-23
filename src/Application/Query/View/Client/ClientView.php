@@ -33,22 +33,22 @@ class ClientView
         $this->bankAccount = $bankAccount;
     }
 
-    public function getId(): string
+    public function id(): string
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function name(): string
     {
         return $this->name;
     }
 
-    public function getPassword(): string
+    public function password(): string
     {
         return $this->password;
     }
 
-    public function getEmail(): string
+    public function email(): string
     {
         return $this->email;
     }
