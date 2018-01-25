@@ -8,7 +8,8 @@ use App\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
 use App\Domain\BankAccount\Exception\NoAmountOfMoneyException;
 use App\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
 use App\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
-use App\Domain\Ports\BankAccountStore;
+use App\Domain\Ports\PayIn;
+use App\Domain\Ports\PayInLogSystem;
 use Money\Currency;
 use PhpSpec\ObjectBehavior;
 use Ramsey\Uuid\Uuid;
@@ -26,43 +27,48 @@ class BankAccountSpec extends ObjectBehavior
         $this->shouldHaveType(BankAccount::class);
     }
 
-    function it_allows_us_to_pay_in_money($bankAccountStore)
+    function it_allows_us_to_pay_in_money($bankAccountStore, $logSystem)
     {
-        $bankAccountStore->implement(BankAccountStore::class);
+        $bankAccountStore->implement(PayIn::class);
+        $logSystem->beADoubleOf(PayInLogSystem::class);
 
-        $this->payIn($bankAccountStore, 20);
+        $this->payIn($bankAccountStore, 20, $logSystem);
     }
 
-    function it_throws_exception_when_amount_is_null($bankAccountStore)
+    function it_throws_exception_when_amount_is_null($bankAccountStore, $logSystem)
     {
-        $bankAccountStore->implement(BankAccountStore::class);
+        $bankAccountStore->implement(PayIn::class);
+        $logSystem->beADoubleOf(PayInLogSystem::class);
 
         $this->shouldThrow(NoAmountOfMoneyException::class)
-            ->during("payIn", [$bankAccountStore, 0]);
+            ->during("payIn", [$bankAccountStore, 0, $logSystem]);
     }
 
 
-    function it_throws_exception_when_amount_is_negative($bankAccountStore)
+    function it_throws_exception_when_amount_is_negative($bankAccountStore, $logSystem)
     {
-        $bankAccountStore->implement(BankAccountStore::class);
+        $bankAccountStore->implement(PayIn::class);
+        $logSystem->beADoubleOf(PayInLogSystem::class);
 
         $this->shouldThrow(NegativeAmountOfMoneyException::class)
-            ->during("payIn", [$bankAccountStore, -20]);
+            ->during("payIn", [$bankAccountStore, -20, $logSystem]);
     }
 
-    function it_throws_exception_when_amount_is_smaller_than_5($bankAccountStore)
+    function it_throws_exception_when_amount_is_smaller_than_5($bankAccountStore, $logSystem)
     {
-        $bankAccountStore->implement(BankAccountStore::class);
+        $bankAccountStore->implement(PayIn::class);
+        $logSystem->beADoubleOf(PayInLogSystem::class);
 
         $this->shouldThrow(TooSmallAmountOfMoneyException::class)
-            ->during("payIn", [$bankAccountStore, 4]);
+            ->during("payIn", [$bankAccountStore, 4, $logSystem]);
     }
 
-    function it_throws_exception_when_amount_is_greater_than_10000($bankAccountStore)
+    function it_throws_exception_when_amount_is_greater_than_10000($bankAccountStore, $logSystem)
     {
-        $bankAccountStore->implement(BankAccountStore::class);
+        $bankAccountStore->implement(PayIn::class);
+        $logSystem->beADoubleOf(PayInLogSystem::class);
 
         $this->shouldThrow(TooLargeAmountOfMoneyException::class)
-            ->during("payIn", [$bankAccountStore, 10001]);
+            ->during("payIn", [$bankAccountStore, 10001, $logSystem]);
     }
 }

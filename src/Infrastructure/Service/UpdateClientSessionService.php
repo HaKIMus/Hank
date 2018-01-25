@@ -25,7 +25,7 @@ final class UpdateClientSessionService
     public function update(): void
     {
         if ($this->session->has('client')) {
-            $this->session->set('client', $this->clientDbalAdapter->getByClientName($this->session->get('client')->getName()));
+            $this->session->set('client', $this->clientDbalAdapter->getByClientName($this->session->get('client')->name()));
         }
     }
 }

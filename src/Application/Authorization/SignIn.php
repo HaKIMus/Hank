@@ -38,7 +38,7 @@ final class SignIn
             return false;
         }
 
-        if (password_verify($password, $client->getPassword())) {
+        if (password_verify($password, $client->password())) {
             return true;
         }
 
