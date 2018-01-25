@@ -6,23 +6,22 @@
  * Time: 14:27
  */
 
-namespace App\Infrastructure\Domain\Repository\BankAccount;
+namespace App\Infrastructure\Domain\Repository;
 
 use App\Domain\BankAccount\BankAccount;
-use App\Domain\BankAccount\BankAccountRepositoryInterface;
 use App\Domain\BankAccount\Exception\BankAccountNotFoundException;
 use App\Infrastructure\DoctrineRepositoryAbstract;
-use Ramsey\Uuid\UuidInterface;
+use App\Infrastructure\RepositoryInterface;
 
-class BankAccountRepository extends DoctrineRepositoryAbstract implements BankAccountRepositoryInterface
+class BankAccountRepository extends DoctrineRepositoryAbstract implements RepositoryInterface
 {
-    public function add(BankAccount $bankAccount): void
+    public function add(object $bankAccount): void
     {
         $this->entityManager->persist($bankAccount);
         $this->entityManager->flush();
     }
 
-    public function getById(UuidInterface $id): BankAccount
+    public function getById(object $id): object
     {
         $account = $this->entityManager->getRepository(BankAccount::class)
         ->findOneBy([
@@ -36,12 +35,12 @@ class BankAccountRepository extends DoctrineRepositoryAbstract implements BankAc
         return $account;
     }
 
-    public function remove(BankAccount $bankAccount): void
+    public function remove(object $bankAccount): void
     {
         $this->entityManager->remove($bankAccount);
     }
 
-    public function contains(BankAccount $bankAccount): bool
+    public function contains(object $bankAccount): bool
     {
         return $this->entityManager->contains($bankAccount);
     }

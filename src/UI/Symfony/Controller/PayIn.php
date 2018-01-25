@@ -11,9 +11,9 @@ namespace App\UI\Symfony\Controller;
 use App\Application\Authorization\Exception\ClientNotSignedIn;
 use App\Application\Command\PayInCommand;
 use App\Application\Handler\PayInHandler;
-use App\Infrastructure\Domain\Adapters\Db\Dbal\BankAccountDbalAdapter;
+use App\Infrastructure\Domain\Adapters\Db\Dbal\PayInDbalAdapter;
 use App\Infrastructure\Domain\Adapters\LoggingSystem\DbalPayInLogSystemAdapter;
-use App\Infrastructure\Domain\Repository\BankAccount\BankAccountRepository;
+use App\Infrastructure\Domain\Repository\BankAccountRepository;
 use App\Infrastructure\Service\ClientService;
 use App\Infrastructure\Service\UpdateClientSessionService;
 use Doctrine\DBAL\Connection;
@@ -63,7 +63,7 @@ class PayIn extends Controller
 
         $payInHandler = new PayInHandler(
             new BankAccountRepository($connection, $entityManager),
-            new BankAccountDbalAdapter($connection),
+            new PayInDbalAdapter($connection),
             new DbalPayInLogSystemAdapter($bankAccountId, $clientId, $connection)
         );
 

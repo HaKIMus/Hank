@@ -9,9 +9,10 @@
 namespace App\Application\Handler;
 
 use App\Application\Command\PayInCommand;
-use App\Domain\BankAccount\BankAccountRepositoryInterface;
-use App\Domain\Ports\BankAccountStore;
+
+use App\Domain\Ports\PayIn;
 use App\Domain\Ports\PayInLogSystem;
+use App\Infrastructure\Domain\Repository\BankAccountRepository;
 use Ramsey\Uuid\Uuid;
 
 class PayInHandler
@@ -20,7 +21,7 @@ class PayInHandler
     private $bankAccountStore;
     private $payInLogSystem;
 
-    public function __construct(BankAccountRepositoryInterface $bankAccountRepository, BankAccountStore $bankAccountStore, PayInLogSystem $payInLogSystem)
+    public function __construct(BankAccountRepository $bankAccountRepository, PayIn $bankAccountStore, PayInLogSystem $payInLogSystem)
     {
         $this->bankAccountRepository = $bankAccountRepository;
         $this->bankAccountStore = $bankAccountStore;

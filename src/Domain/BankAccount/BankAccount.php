@@ -12,13 +12,11 @@ use App\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
 use App\Domain\BankAccount\Exception\NoAmountOfMoneyException;
 use App\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
 use App\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
-use App\Domain\Ports\BankAccountStore;
+use App\Domain\Ports\PayIn;
 use App\Domain\Ports\PayInLogSystem;
-use App\Infrastructure\Domain\Adapters\LoggingSystem\DbalPayInLogSystemAdapter;
 use Ramsey\Uuid\UuidInterface;
-use Symfony\Component\HttpKernel\Log\Logger;
 
-class BankAccount
+final class BankAccount
 {
     private $id;
     private $accountOwner;
@@ -32,7 +30,7 @@ class BankAccount
         $this->balance = $balance;
     }
 
-    public function payIn(BankAccountStore $accountStore, float $amount, PayInLogSystem $logSystem): void
+    public function payIn(PayIn $accountStore, float $amount, PayInLogSystem $logSystem): void
     {
         if ($amount < 0.00) {
             $logSystem->setMessageOfLog('Trying to pay in: ' . $amount . ' - it\'s negative amount of money');

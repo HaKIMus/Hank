@@ -10,10 +10,10 @@ namespace App\Infrastructure\Domain\Adapters\Db\Dbal;
 
 
 use App\Infrastructure\DbalRepositoryAbstract;
-use App\Domain\Ports\BankAccountStore;
+use App\Domain\Ports\PayIn;
 use Ramsey\Uuid\UuidInterface;
 
-class BankAccountDbalAdapter extends DbalRepositoryAbstract implements BankAccountStore
+class PayInDbalAdapter extends DbalRepositoryAbstract implements PayIn
 {
     public function payIn(UuidInterface $walletId, float $amount): void
     {

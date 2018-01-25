@@ -6,24 +6,22 @@
  * Time: 14:27
  */
 
-namespace App\Infrastructure\Domain\Repository\Client;
+namespace App\Infrastructure\Domain\Repository;
 
 use App\Domain\Client\Client;
-use App\Domain\Client\ClientRepositoryInterface;
 use App\Domain\Client\Exception\ClientNotFoundException;
 use App\Infrastructure\DoctrineRepositoryAbstract;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
+use App\Infrastructure\RepositoryInterface;
 
-class ClientRepository extends DoctrineRepositoryAbstract implements ClientRepositoryInterface
+class ClientRepository extends DoctrineRepositoryAbstract implements RepositoryInterface
 {
-    public function add(Client $client): void
+    public function add(object $client): void
     {
         $this->entityManager->persist($client);
         $this->entityManager->flush();
     }
 
-    public function getById(UuidInterface $id): Client
+    public function getById(object $id): object
     {
         $client = $this->entityManager->getRepository(Client::class)
         ->findOneBy([
@@ -37,12 +35,12 @@ class ClientRepository extends DoctrineRepositoryAbstract implements ClientRepos
         return $client;
     }
 
-    public function remove(Client $client): void
+    public function remove(object $client): void
     {
         $this->entityManager->remove($client);
     }
 
-    public function contains(Client $client): bool
+    public function contains(object $client): bool
     {
         return $this->entityManager->contains($client);
     }
