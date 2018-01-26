@@ -6129,3 +6129,16 @@ a {
       color: #fff; }
       .sign-in .form-sign-in .btn-sign-in:hover, .sign-in .form-sign-in .btn-sign-in:focus {
         background-color: #ba2d65; }
+
+.sign-up {
+  margin-top: 90px; }
+  .sign-up .form-sign-up {
+    width: 400px;
+    color: #ba2d65;
+    font-size: 19px; }
+    .sign-up .form-sign-up .btn-sign-up {
+      cursor: pointer;
+      background-color: #ff94c2;
+      color: #fff; }
+      .sign-up .form-sign-up .btn-sign-up:hover, .sign-up .form-sign-up .btn-sign-up:focus {
+        background-color: #ba2d65; }

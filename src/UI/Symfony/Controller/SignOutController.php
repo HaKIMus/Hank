@@ -7,7 +7,7 @@ use App\Application\Authorization\SignOut as SignOutApplication;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class SignOut extends Controller
+class SignOutController extends Controller
 {
     public function index(): Response
     {
