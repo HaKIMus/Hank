@@ -21,7 +21,7 @@ class BankAccountRepository extends DoctrineRepositoryAbstract implements Reposi
         $this->entityManager->flush();
     }
 
-    public function getById(object $id): object
+    public function getById(string $id): object
     {
         $account = $this->entityManager->getRepository(BankAccount::class)
         ->findOneBy([
@@ -38,6 +38,7 @@ class BankAccountRepository extends DoctrineRepositoryAbstract implements Reposi
     public function remove(object $bankAccount): void
     {
         $this->entityManager->remove($bankAccount);
+        $this->entityManager->flush();
     }
 
     public function contains(object $bankAccount): bool

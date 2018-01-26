@@ -16,17 +16,14 @@ use App\Domain\Ports\PayIn;
 use App\Domain\Ports\PayInLogSystem;
 use Ramsey\Uuid\UuidInterface;
 
-final class BankAccount
+class BankAccount
 {
     private $id;
-    private $accountOwner;
     private $balance;
 
     public function __construct (
-        UuidInterface $accountOwner,
         Balance $balance
     ) {
-        $this->accountOwner = $accountOwner;
         $this->balance = $balance;
     }
 

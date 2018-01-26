@@ -2,12 +2,12 @@
 
 namespace App\UI\Symfony\Controller;
 
-use App\Application\Authorization\SignIn as AuthorizationSignIn;
-use App\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter;
+use App\Application\Command\CreateNewClientCommand;
+use App\Application\Handler\CreateNewClientHandler;
+use App\Infrastructure\Domain\Repository\ClientRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class SignUpController extends Controller
 {
@@ -16,23 +16,21 @@ class SignUpController extends Controller
         return $this->render('authorization/sign-up.twig');
     }
 
-    public function signIn(Request $request, SessionInterface $session, ClientDbalAdapter $clientDbal): Response
+    public function signUp(Request $request, ClientRepository $clientRepository): Response
     {
         $name = $request->get('name');
+        $email = $request->get('email');
         $password = $request->get('password');
 
-        $authorization = new AuthorizationSignIn(
+        $signUpCommand = new CreateNewClientCommand(
             $name,
             $password,
-            $clientDbal,
-            $session
+            $email
         );
 
-        if ($authorization->validateData()) {
-            $authorization->setClientSession();
+        $signUpHandler = new CreateNewClientHandler($clientRepository);
 
-            return $this->redirectToRoute('app_bank_client_panel');
-        }
+        $signUpHandler->handle($signUpCommand);
 
         return $this->redirectToRoute('app_bank_sign_in');
     }

@@ -21,7 +21,7 @@ class ClientRepository extends DoctrineRepositoryAbstract implements RepositoryI
         $this->entityManager->flush();
     }
 
-    public function getById(object $id): object
+    public function getById(string $id): object
     {
         $client = $this->entityManager->getRepository(Client::class)
         ->findOneBy([
@@ -38,6 +38,7 @@ class ClientRepository extends DoctrineRepositoryAbstract implements RepositoryI
     public function remove(object $client): void
     {
         $this->entityManager->remove($client);
+        $this->entityManager->flush();
     }
 
     public function contains(object $client): bool

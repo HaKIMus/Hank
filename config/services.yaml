@@ -31,3 +31,8 @@ services:
         arguments:
             $session: '@session'
             $clientDbalAdapter: '@App\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter'
+
+    App\Infrastructure\Domain\Repository\ClientRepository:
+        arguments:
+            $connection: '@doctrine.dbal.default_connection'
+            $entityManager: '@doctrine.orm.entity_manager'

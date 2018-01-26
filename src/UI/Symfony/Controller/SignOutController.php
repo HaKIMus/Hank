@@ -2,23 +2,18 @@
 
 namespace App\UI\Symfony\Controller;
 
-use App\Application\Authorization\Exception\ClientNotSignedIn;
 use App\Application\Authorization\SignOut as SignOutApplication;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class SignOutController extends Controller
 {
-    public function index(): Response
+    public function index(SessionInterface $session): Response
     {
-        $signOut = new SignOutApplication($this->get('session'));
+        $signOut = new SignOutApplication($session);
 
-        try {
-            $signOut->execute();
-        } catch (ClientNotSignedIn $e) {
-            return $this->render('authorization/sign-in.twig')
-                ->setStatusCode(401);
-        }
+        $signOut->execute();
 
         return $this->render('authorization/sign-in.twig')
             ->setStatusCode(200);

@@ -29,6 +29,13 @@
                             Sign in
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.get('_route') == 'app_bank_sign_up' %} nav-link-active{% endif %}"
+                           href="{{ path('app_bank_sign_up') }}">
+                            Sign up
+                        </a>
+                    </li>
             {% endif %}
         </ul>
     </div>
