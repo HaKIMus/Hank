@@ -6,5 +6,5 @@ use Ramsey\Uuid\UuidInterface;
 
 interface PayOut
 {
-    public function payOut(UuidInterface $walletId, int $amountOfMoney): void;
+    public function payOut(UuidInterface $walletId, float $amountOfMoney): void;
 }

@@ -2,19 +2,18 @@
 
 namespace Hank\Infrastructure\Domain\Adapters\Db\Dbal;
 
-
+use Hank\Domain\Ports\PayOut;
 use Hank\Infrastructure\DbalRepositoryAbstract;
-use Hank\Domain\Ports\PayIn;
 use Ramsey\Uuid\UuidInterface;
 
-class PayInDbalAdapter extends DbalRepositoryAbstract implements PayIn
+class PayOutDbalAdapter extends DbalRepositoryAbstract implements PayOut
 {
-    public function payIn(UuidInterface $walletId, float $amountOfMoney): void
+    public function payOut(UuidInterface $walletId, float $amountOfMoney): void
     {
         $queryBuilder = $this->connection->createQueryBuilder();
 
         $queryBuilder->update('bank_account')
-            ->set('balance', 'balance + :amount')
+            ->set('balance', 'balance - :amount')
             ->where('id = :id')
             ->setParameter('amount', $amountOfMoney)
             ->setParameter('id', $walletId);

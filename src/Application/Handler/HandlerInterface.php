@@ -5,5 +5,5 @@ namespace Hank\Application\Handler;
 
 interface HandlerInterface
 {
-    public function handle(): void;
+    public function handle(object $command): void;
 }

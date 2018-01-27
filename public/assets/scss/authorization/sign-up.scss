@@ -6,15 +6,5 @@
 
     color: $hank-color-background-dark;
     font-size: 19px;
-
-    .btn-sign-up {
-      cursor: pointer;
-      background-color: $hank-color-background-light;
-      color: #fff;
-
-      &:hover, &:focus {
-        background-color: $hank-color-background-dark;
-      }
-    }
   }
 }

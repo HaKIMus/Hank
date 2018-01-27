@@ -2,7 +2,6 @@
 
 namespace Hank\Application\Handler;
 
-use Hank\Application\Command\CreateNewClientCommand;
 use Hank\Domain\BankAccount\Balance;
 use Hank\Domain\BankAccount\BankAccount;
 use Hank\Domain\Client\Client;
@@ -22,7 +21,7 @@ class CreateNewClientHandler
         $this->clientRepository = $clientRepository;
     }
 
-    public function handle(CreateNewClientCommand $command): void
+    public function handle(object $command): void
     {
         $bankAccount = new BankAccount(new Balance(
             0.00,

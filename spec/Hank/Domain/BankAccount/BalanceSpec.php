@@ -9,9 +9,11 @@ use Hank\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
 use Hank\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
 use Hank\Domain\Ports\PayIn;
 use Hank\Domain\Ports\PayInLogSystem;
+use Hank\Domain\Ports\PayOut;
 use Money\Currency;
 use PhpSpec\ObjectBehavior;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class BalanceSpec extends ObjectBehavior
 {
@@ -74,6 +76,6 @@ class BalanceSpec extends ObjectBehavior
     {
         $payOutPort->implement(PayOut::class);
 
-        $this->payOut(20, $payOutPort);
+        $this->payOut(20, $payOutPort, Uuid::uuid4());
     }
 }

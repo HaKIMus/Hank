@@ -2,12 +2,7 @@
 
 namespace Hank\Domain\BankAccount;
 
-use Hank\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
-use Hank\Domain\BankAccount\Exception\NoAmountOfMoneyException;
-use Hank\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
-use Hank\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
-use Hank\Domain\Ports\PayIn;
-use Hank\Domain\Ports\PayInLogSystem;
+use Hank\Domain\Ports;
 use Ramsey\Uuid\UuidInterface;
 
 class BankAccount
@@ -21,14 +16,14 @@ class BankAccount
         $this->balance = $balance;
     }
 
-    public function payIn(PayIn $accountStore, float $amount, PayInLogSystem $logSystem): void
+    public function payIn(Ports\PayIn $accountStore, float $amount, Ports\PayInLogSystem $logSystem): void
     {
         $this->balance->payIn($accountStore, $amount, $logSystem, $this->id);
     }
 
-    public function payOut(): void
+    public function payOut(float $amountOfMoneyOfMoney, Ports\PayOut $payOut): void
     {
-
+        $this->balance->payOut($amountOfMoneyOfMoney, $payOut, $this->id);
     }
 
     public function moneyTransfer(): void

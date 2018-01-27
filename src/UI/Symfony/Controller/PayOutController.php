@@ -4,8 +4,9 @@ namespace Hank\UI\Symfony\Controller;
 
 use Hank\Application\Authorization\Exception\ClientNotSignedIn;
 use Hank\Application\Command\PayInCommand;
+use Hank\Application\Command\PayOutCommand;
 use Hank\Application\Handler\PayInHandler;
-use Hank\Infrastructure\Domain\Adapters\Db\Dbal\PayInDbalAdapter;
+use Hank\Application\Handler\PayOutHandler;
 use Hank\Infrastructure\Domain\Adapters\Db\Dbal\PayOutDbalAdapter;
 use Hank\Infrastructure\Domain\Adapters\LoggingSystem\DbalPayInLogSystemAdapter;
 use Hank\Infrastructure\Domain\Repository\BankAccountRepository;
@@ -18,32 +19,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class PayInController extends Controller
+class PayOutController extends Controller
 {
-    private $clientService;
-
-    public function __construct(ClientService $clientService)
-    {
-        $this->clientService = $clientService;
-    }
-
-    public function index(): Response
+    public function index(ClientService $clientService): Response
     {
         try {
-            return $this->render('panel/pay-in-client-panel.twig', [
-                'client' => $this->clientService->getClient()
+            return $this->render('panel/pay-out-client-panel.twig', [
+                'client' => $clientService->getClient()
             ]);
         } catch (ClientNotSignedIn $e) {
-            return $this->redirectToRoute('app_bank_sign_in')
+            return $this->redirectToRoute('app_bank_sign_out')
                 ->setStatusCode(401);
         }
     }
 
-    public function payIn(Request $request, UpdateClientSessionService $updateClientSessionService): Response
+    public function payOut(Request $request, UpdateClientSessionService $updateClientSessionService, ClientService $clientService): Response
     {
-        $clientId = Uuid::fromString($this->clientService->getClient()->id());
-
-        $bankAccountId = Uuid::fromString($this->clientService->getClient()->getBankAccount()->id())->toString();
+        $bankAccountId = Uuid::fromString($clientService->getClient()->getBankAccount()->id())->toString();
 
         /** @var Connection $connection */
         $connection = $this->getDoctrine()->getConnection();
@@ -51,21 +43,20 @@ class PayInController extends Controller
         /** @var EntityManager $entityManager */
         $entityManager = $this->getDoctrine()->getManager();
 
-        $payInCommand = new PayInCommand(
+        $payOutCommand = new PayOutCommand(
             $bankAccountId,
             $request->get('amount')
         );
 
-        $payInHandler = new PayInHandler(
+        $payOutHandler = new PayOutHandler(
             new BankAccountRepository($connection, $entityManager),
-            new PayInDbalAdapter($connection),
-            new DbalPayInLogSystemAdapter($bankAccountId, $clientId, $connection)
+            new PayOutDbalAdapter($connection)
         );
 
-        $payInHandler->handle($payInCommand);
+        $payOutHandler->handle($payOutCommand);
 
         $updateClientSessionService->update();
 
-        return $this->redirectToRoute('app_bank_pay_in_client_panel');
+        return $this->redirectToRoute('app_bank_pay_out_client_panel');
     }
 }
