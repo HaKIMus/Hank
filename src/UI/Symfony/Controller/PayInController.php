@@ -6,16 +6,16 @@
  * Time: 02:58
  */
 
-namespace App\UI\Symfony\Controller;
+namespace Hank\UI\Symfony\Controller;
 
-use App\Application\Authorization\Exception\ClientNotSignedIn;
-use App\Application\Command\PayInCommand;
-use App\Application\Handler\PayInHandler;
-use App\Infrastructure\Domain\Adapters\Db\Dbal\PayInDbalAdapter;
-use App\Infrastructure\Domain\Adapters\LoggingSystem\DbalPayInLogSystemAdapter;
-use App\Infrastructure\Domain\Repository\BankAccountRepository;
-use App\Infrastructure\Service\ClientService;
-use App\Infrastructure\Service\UpdateClientSessionService;
+use Hank\Application\Authorization\Exception\ClientNotSignedIn;
+use Hank\Application\Command\PayInCommand;
+use Hank\Application\Handler\PayInHandler;
+use Hank\Infrastructure\Domain\Adapters\Db\Dbal\PayInDbalAdapter;
+use Hank\Infrastructure\Domain\Adapters\LoggingSystem\DbalPayInLogSystemAdapter;
+use Hank\Infrastructure\Domain\Repository\BankAccountRepository;
+use Hank\Infrastructure\Service\ClientService;
+use Hank\Infrastructure\Service\UpdateClientSessionService;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;
 use Ramsey\Uuid\Uuid;

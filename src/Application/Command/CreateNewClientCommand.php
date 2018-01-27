@@ -6,7 +6,7 @@
  * Time: 16:54
  */
 
-namespace App\Application\Command;
+namespace Hank\Application\Command;
 
 
 class CreateNewClientCommand

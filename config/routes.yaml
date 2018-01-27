@@ -1,42 +1,42 @@
 #index:
 #    path: /
-#    defaults: { _controller: 'App\Controller\DefaultController::index' }
+#    defaults: { _controller: 'Hank\Controller\DefaultController::index' }
 
 app_bank_homepage:
   path: /
-  controller: App\UI\Symfony\Controller\BankHomePageController::index
+  controller: Hank\UI\Symfony\Controller\BankHomePageController::index
 
 app_bank_sign_in:
   path: /sign-in
-  controller: App\UI\Symfony\Controller\SignInController::index
+  controller: Hank\UI\Symfony\Controller\SignInController::index
 
 app_bank_sign_in_processing:
   path: /sign-in/processing
-  controller: App\UI\Symfony\Controller\SignInController::signIn
+  controller: Hank\UI\Symfony\Controller\SignInController::signIn
   methods: [POST]
 
 app_bank_sign_up:
   path: /sign-up
-  controller: App\UI\Symfony\Controller\SignUpController::index
+  controller: Hank\UI\Symfony\Controller\SignUpController::index
 
 app_bank_sign_up_processing:
   path: /sign-up/processing
-  controller: App\UI\Symfony\Controller\SignUpController::signUp
+  controller: Hank\UI\Symfony\Controller\SignUpController::signUp
   methods: [POST]
 
 app_bank_sign_out:
   path: /sign-out
-  controller: App\UI\Symfony\Controller\SignOutController::index
+  controller: Hank\UI\Symfony\Controller\SignOutController::index
 
 app_bank_client_panel:
   path: /client-panel
-  controller: App\UI\Symfony\Controller\ClientPanelController::index
+  controller: Hank\UI\Symfony\Controller\ClientPanelController::index
 
 app_bank_pay_in_client_panel:
   path: /client-panel/pay-in
-  controller: App\UI\Symfony\Controller\PayInController::index
+  controller: Hank\UI\Symfony\Controller\PayInController::index
 
 app_bank_pay_in_processing:
   path: /client-panel/pay-in-processing
-  controller: App\UI\Symfony\Controller\PayInController::payIn
+  controller: Hank\UI\Symfony\Controller\PayInController::payIn
   methods: [POST]

@@ -6,7 +6,7 @@
  * Time: 14:33
  */
 
-namespace App\Infrastructure;
+namespace Hank\Infrastructure;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;

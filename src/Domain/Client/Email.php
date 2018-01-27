@@ -6,7 +6,7 @@
  * Time: 00:32
  */
 
-namespace App\Domain\Client;
+namespace Hank\Domain\Client;
 
 class Email
 {

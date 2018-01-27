@@ -6,11 +6,11 @@
  * Time: 21:38
  */
 
-namespace App\Infrastructure\Domain\Adapters\Db\Dbal;
+namespace Hank\Infrastructure\Domain\Adapters\Db\Dbal;
 
 
-use App\Infrastructure\DbalRepositoryAbstract;
-use App\Domain\Ports\PayIn;
+use Hank\Infrastructure\DbalRepositoryAbstract;
+use Hank\Domain\Ports\PayIn;
 use Ramsey\Uuid\UuidInterface;
 
 class PayInDbalAdapter extends DbalRepositoryAbstract implements PayIn

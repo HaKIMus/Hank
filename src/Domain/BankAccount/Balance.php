@@ -6,7 +6,7 @@
  * Time: 09:53
  */
 
-namespace App\Domain\BankAccount;
+namespace Hank\Domain\BankAccount;
 
 use Money\Currency;
 

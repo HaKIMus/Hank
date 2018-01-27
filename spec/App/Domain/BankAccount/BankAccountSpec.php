@@ -2,14 +2,14 @@
 
 namespace spec\App\Domain\BankAccount;
 
-use App\Domain\BankAccount\Balance;
-use App\Domain\BankAccount\BankAccount;
-use App\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
-use App\Domain\BankAccount\Exception\NoAmountOfMoneyException;
-use App\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
-use App\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
-use App\Domain\Ports\PayIn;
-use App\Domain\Ports\PayInLogSystem;
+use Hank\Domain\BankAccount\Balance;
+use Hank\Domain\BankAccount\BankAccount;
+use Hank\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
+use Hank\Domain\BankAccount\Exception\NoAmountOfMoneyException;
+use Hank\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
+use Hank\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
+use Hank\Domain\Ports\PayIn;
+use Hank\Domain\Ports\PayInLogSystem;
 use Money\Currency;
 use PhpSpec\ObjectBehavior;
 use Ramsey\Uuid\Uuid;

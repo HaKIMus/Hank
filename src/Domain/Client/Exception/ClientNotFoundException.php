@@ -6,6 +6,6 @@
  * Time: 16:34
  */
 
-namespace App\Domain\Client\Exception;
+namespace Hank\Domain\Client\Exception;
 
 class ClientNotFoundException extends \DomainException {}

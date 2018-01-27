@@ -6,13 +6,13 @@
  * Time: 16:39
  */
 
-namespace App\Infrastructure\Domain\Adapters\Db\Dbal;
+namespace Hank\Infrastructure\Domain\Adapters\Db\Dbal;
 
-use App\Application\Query\View\BankAccount\BankAccountView;
-use App\Application\Query\View\Client\ClientView;
-use App\Domain\Client\Exception\ClientNotFoundException;
-use App\Domain\Ports\ClientStore;
-use App\Infrastructure\DbalRepositoryAbstract;
+use Hank\Application\Query\View\BankAccount\BankAccountView;
+use Hank\Application\Query\View\Client\ClientView;
+use Hank\Domain\Client\Exception\ClientNotFoundException;
+use Hank\Domain\Ports\ClientStore;
+use Hank\Infrastructure\DbalRepositoryAbstract;
 use Ramsey\Uuid\UuidInterface;
 
 class ClientDbalAdapter extends DbalRepositoryAbstract implements ClientStore

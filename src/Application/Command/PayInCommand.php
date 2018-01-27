@@ -6,7 +6,7 @@
  * Time: 07:13
  */
 
-namespace App\Application\Command;
+namespace Hank\Application\Command;
 
 class PayInCommand
 {

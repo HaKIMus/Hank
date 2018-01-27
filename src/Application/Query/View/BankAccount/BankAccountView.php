@@ -6,7 +6,7 @@
  * Time: 22:10
  */
 
-namespace App\Application\Query\View\BankAccount;
+namespace Hank\Application\Query\View\BankAccount;
 
 
 class BankAccountView

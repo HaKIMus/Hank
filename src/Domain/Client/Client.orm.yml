@@ -1,4 +1,4 @@
-App\Domain\Client\Client:
+Hank\Domain\Client\Client:
   type: entity
   table: client
   id:
@@ -12,17 +12,17 @@ App\Domain\Client\Client:
     ~ #none
   embedded:
     name:
-      class: App\Domain\Client\Name
+      class: Hank\Domain\Client\Name
       columnPrefix: false
     password:
-      class: App\Domain\Client\Password
+      class: Hank\Domain\Client\Password
       columnPrefix: false
     email:
-      class: App\Domain\Client\Email
+      class: Hank\Domain\Client\Email
       columnPrefix: false
   oneToOne:
     bankAccount:
-      targetEntity: App\Domain\BankAccount\BankAccount
+      targetEntity: Hank\Domain\BankAccount\BankAccount
       cascade: ["persist", "remove"]
       joinColumn:
         name: bankAccountId

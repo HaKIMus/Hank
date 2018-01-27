@@ -1,9 +1,9 @@
 <?php
 
-namespace App\UI\Symfony\Controller;
+namespace Hank\UI\Symfony\Controller;
 
-use App\Application\Authorization\Exception\ClientNotSignedIn;
-use App\Infrastructure\Service\ClientService;
+use Hank\Application\Authorization\Exception\ClientNotSignedIn;
+use Hank\Infrastructure\Service\ClientService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 

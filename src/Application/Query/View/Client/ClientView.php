@@ -6,10 +6,10 @@
  * Time: 16:43
  */
 
-namespace App\Application\Query\View\Client;
+namespace Hank\Application\Query\View\Client;
 
 
-use App\Application\Query\View\BankAccount\BankAccountView;
+use Hank\Application\Query\View\BankAccount\BankAccountView;
 
 class ClientView
 {

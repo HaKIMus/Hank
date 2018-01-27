@@ -6,12 +6,12 @@
  * Time: 14:27
  */
 
-namespace App\Infrastructure\Domain\Repository;
+namespace Hank\Infrastructure\Domain\Repository;
 
-use App\Domain\BankAccount\BankAccount;
-use App\Domain\BankAccount\Exception\BankAccountNotFoundException;
-use App\Infrastructure\DoctrineRepositoryAbstract;
-use App\Infrastructure\RepositoryInterface;
+use Hank\Domain\BankAccount\BankAccount;
+use Hank\Domain\BankAccount\Exception\BankAccountNotFoundException;
+use Hank\Infrastructure\DoctrineRepositoryAbstract;
+use Hank\Infrastructure\RepositoryInterface;
 
 class BankAccountRepository extends DoctrineRepositoryAbstract implements RepositoryInterface
 {

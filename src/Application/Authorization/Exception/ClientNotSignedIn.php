@@ -6,6 +6,6 @@
  * Time: 22:01
  */
 
-namespace App\Application\Authorization\Exception;
+namespace Hank\Application\Authorization\Exception;
 
 class ClientNotSignedIn extends \Exception {}

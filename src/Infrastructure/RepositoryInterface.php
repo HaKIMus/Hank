@@ -6,7 +6,7 @@
  * Time: 14:29
  */
 
-namespace App\Infrastructure;
+namespace Hank\Infrastructure;
 
 interface RepositoryInterface
 {

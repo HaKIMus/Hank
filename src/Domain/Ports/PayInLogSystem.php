@@ -6,7 +6,7 @@
  * Time: 15:29
  */
 
-namespace App\Domain\Ports;
+namespace Hank\Domain\Ports;
 
 use Ramsey\Uuid\Uuid;
 

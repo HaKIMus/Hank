@@ -6,7 +6,7 @@
  * Time: 17:06
  */
 
-namespace App\Application\Handler;
+namespace Hank\Application\Handler;
 
 
 interface HandlerInterface

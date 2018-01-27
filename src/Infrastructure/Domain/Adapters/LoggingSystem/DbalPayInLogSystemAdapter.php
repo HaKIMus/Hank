@@ -6,9 +6,9 @@
  * Time: 15:31
  */
 
-namespace App\Infrastructure\Domain\Adapters\LoggingSystem;
+namespace Hank\Infrastructure\Domain\Adapters\LoggingSystem;
 
-use App\Domain\Ports\PayInLogSystem;
+use Hank\Domain\Ports\PayInLogSystem;
 use Doctrine\DBAL\Connection;
 
 class DbalPayInLogSystemAdapter extends PayInLogSystem

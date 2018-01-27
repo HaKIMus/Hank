@@ -1,8 +1,8 @@
 <?php
 
-namespace App\UI\Symfony\Controller;
+namespace Hank\UI\Symfony\Controller;
 
-use App\Application\Authorization\SignOut as SignOutApplication;
+use Hank\Application\Authorization\SignOut as SignOutApplication;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;

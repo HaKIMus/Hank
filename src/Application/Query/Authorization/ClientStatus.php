@@ -6,7 +6,7 @@
  * Time: 12:03
  */
 
-namespace App\Application\Query\Authorization;
+namespace Hank\Application\Query\Authorization;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
