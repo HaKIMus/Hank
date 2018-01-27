@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 20.01.18
- * Time: 10:52
- */
 
 namespace Hank\Infrastructure\Service;
 

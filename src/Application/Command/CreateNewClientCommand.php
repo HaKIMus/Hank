@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 26.01.18
- * Time: 16:54
- */
 
 namespace Hank\Application\Command;
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 16.12.17
- * Time: 12:03
- */
 
 namespace Hank\Application\Query\Authorization;
 

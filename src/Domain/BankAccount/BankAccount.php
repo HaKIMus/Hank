@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 08.12.17
- * Time: 00:41
- */
 
 namespace Hank\Domain\BankAccount;
 

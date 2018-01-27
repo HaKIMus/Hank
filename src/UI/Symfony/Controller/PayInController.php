@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 30.12.17
- * Time: 02:58
- */
 
 namespace Hank\UI\Symfony\Controller;
 

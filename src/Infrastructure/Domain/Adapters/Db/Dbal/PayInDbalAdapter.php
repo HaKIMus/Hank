@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 03.01.18
- * Time: 21:38
- */
 
 namespace Hank\Infrastructure\Domain\Adapters\Db\Dbal;
 

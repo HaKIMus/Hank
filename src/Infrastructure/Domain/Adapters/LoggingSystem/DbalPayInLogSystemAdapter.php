@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 20.01.18
- * Time: 15:31
- */
 
 namespace Hank\Infrastructure\Domain\Adapters\LoggingSystem;
 
