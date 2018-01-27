@@ -28,7 +28,7 @@ class PayInHandler
         $this->payInLogSystem = $payInLogSystem;
     }
 
-    public function handle(PayInCommand $command)
+    public function handle(PayInCommand $command): void
     {
         $bankAccount = $this->bankAccountRepository
             ->getById(Uuid::fromString($command->getId()));

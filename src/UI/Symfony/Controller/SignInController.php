@@ -10,22 +10,19 @@ use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class SignIn extends Controller
+class SignInController extends Controller
 {
     public function index(): Response
     {
         return $this->render('authorization/sign-in.twig');
     }
 
-    public function signIn(Request $request): Response
+    public function signIn(Request $request, SessionInterface $session, ClientDbalAdapter $clientDbal): Response
     {
-        $session = $this->container->get('session');
-
         $name = $request->get('name');
         $password = $request->get('password');
-
-        $clientDbal = new ClientDbalAdapter($this->getDoctrine()->getConnection());
 
         $authorization = new AuthorizationSignIn(
             $name,

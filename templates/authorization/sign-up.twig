@@ -3,13 +3,18 @@
 {% block body %}
     {% include 'components/navbar.twig' %}
 
-    <main class="sign-in">
+    <main class="sign-up">
         <div class="container">
             <div class="row d-flex justify-content-center">
-                <form method="post" class="form-sign-in" action="{{ path('app_bank_sign_in_processing') }}">
+                <form method="post" class="form-sign-up" action="{{ path('app_bank_sign_up_processing') }}">
                     <div class="form-group">
                         <label for="inputName">Name</label>
                         <input type="text" class="form-control" id="inputName" placeholder="Enter name" name="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email" name="email">
                     </div>
 
                     <div class="form-group">
@@ -17,7 +22,7 @@
                         <input type="password" class="form-control" id="inputPassword" placeholder="Enter Password" name="password">
                     </div>
 
-                    <button type="submit" class="btn btn-sign-in btn-block">Sign in</button>
+                    <button type="submit" class="btn btn-sign-up btn-block">Sign up</button>
                 </form>
             </div>
         </div>

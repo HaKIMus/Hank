@@ -7,7 +7,7 @@ use App\Infrastructure\Service\ClientService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class ClientPanel extends Controller
+class BankHomePageController extends Controller
 {
     private $clientService;
 
@@ -19,12 +19,11 @@ class ClientPanel extends Controller
     public function index(): Response
     {
         try {
-            return $this->render('panel/client-panel.twig', [
+            return $this->render('main/homepage.twig', [
                 'client' => $this->clientService->getClient()
             ]);
         } catch (ClientNotSignedIn $e) {
-            return $this->redirectToRoute('app_bank_sign_in')
-                ->setStatusCode(401);
+            return $this->render('main/homepage.twig');
         }
     }
 }

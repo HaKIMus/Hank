@@ -23,7 +23,7 @@ App\Domain\Client\Client:
   oneToOne:
     bankAccount:
       targetEntity: App\Domain\BankAccount\BankAccount
-      cascade: ["persist"]
+      cascade: ["persist", "remove"]
       joinColumn:
         name: bankAccountId
         referencedColumnName: id

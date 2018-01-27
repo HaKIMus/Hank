@@ -4,30 +4,39 @@
 
 app_bank_homepage:
   path: /
-  controller: App\UI\Symfony\Controller\BankHomePage::index
+  controller: App\UI\Symfony\Controller\BankHomePageController::index
 
 app_bank_sign_in:
   path: /sign-in
-  controller: App\UI\Symfony\Controller\SignIn::index
+  controller: App\UI\Symfony\Controller\SignInController::index
 
 app_bank_sign_in_processing:
   path: /sign-in/processing
-  controller: App\UI\Symfony\Controller\SignIn::signIn
+  controller: App\UI\Symfony\Controller\SignInController::signIn
+  methods: [POST]
+
+app_bank_sign_up:
+  path: /sign-up
+  controller: App\UI\Symfony\Controller\SignUpController::index
+
+app_bank_sign_up_processing:
+  path: /sign-up/processing
+  controller: App\UI\Symfony\Controller\SignUpController::signUp
   methods: [POST]
 
 app_bank_sign_out:
   path: /sign-out
-  controller: App\UI\Symfony\Controller\SignOut::index
+  controller: App\UI\Symfony\Controller\SignOutController::index
 
 app_bank_client_panel:
   path: /client-panel
-  controller: App\UI\Symfony\Controller\ClientPanel::index
+  controller: App\UI\Symfony\Controller\ClientPanelController::index
 
 app_bank_pay_in_client_panel:
   path: /client-panel/pay-in
-  controller: App\UI\Symfony\Controller\PayIn::index
+  controller: App\UI\Symfony\Controller\PayInController::index
 
 app_bank_pay_in_processing:
   path: /client-panel/pay-in-processing
-  controller: App\UI\Symfony\Controller\PayIn::payIn
+  controller: App\UI\Symfony\Controller\PayInController::payIn
   methods: [POST]

@@ -12,7 +12,7 @@ interface RepositoryInterface
 {
     public function add(object $object): void;
 
-    public function getById(object $id): object;
+    public function getById(string $id): object;
 
     public function getAll(): array;
 
