@@ -9,6 +9,7 @@ use Hank\Application\Handler\PayInHandler;
 use Hank\Application\Handler\PayOutHandler;
 use Hank\Infrastructure\Domain\Adapters\Db\Dbal\PayOutDbalAdapter;
 use Hank\Infrastructure\Domain\Adapters\LoggingSystem\DbalPayInLogSystemAdapter;
+use Hank\Infrastructure\Domain\Adapters\LoggingSystem\DbalPayOutLogSystemAdapter;
 use Hank\Infrastructure\Domain\Repository\BankAccountRepository;
 use Hank\Infrastructure\Service\ClientService;
 use Hank\Infrastructure\Service\UpdateClientSessionService;
@@ -35,6 +36,7 @@ class PayOutController extends Controller
 
     public function payOut(Request $request, UpdateClientSessionService $updateClientSessionService, ClientService $clientService): Response
     {
+        $clientId = $clientService->getClient()->id();
         $bankAccountId = Uuid::fromString($clientService->getClient()->getBankAccount()->id())->toString();
 
         /** @var Connection $connection */
@@ -50,7 +52,8 @@ class PayOutController extends Controller
 
         $payOutHandler = new PayOutHandler(
             new BankAccountRepository($connection, $entityManager),
-            new PayOutDbalAdapter($connection)
+            new PayOutDbalAdapter($connection),
+            new DbalPayOutLogSystemAdapter($bankAccountId, $clientId, $connection)
         );
 
         $payOutHandler->handle($payOutCommand);

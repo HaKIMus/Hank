@@ -2,12 +2,8 @@
 
 namespace Hank\Application\Handler;
 
-use Hank\Application\Command\PayInCommand;
-
 use Hank\Domain\BankAccount\BankAccount;
-use Hank\Domain\Ports\PayIn;
-use Hank\Domain\Ports\PayInLogSystem;
-use Hank\Domain\Ports\PayOut;
+use Hank\Domain\Ports;
 use Hank\Infrastructure\Domain\Repository\BankAccountRepository;
 use Ramsey\Uuid\Uuid;
 
@@ -15,11 +11,13 @@ class PayOutHandler implements HandlerInterface
 {
     private $bankAccountRepository;
     private $payOutPort;
+    private $payOutLogSystem;
 
-    public function __construct(BankAccountRepository $bankAccountRepository, PayOut $payOutPort)
+    public function __construct(BankAccountRepository $bankAccountRepository, Ports\PayOut $payOutPort, Ports\PayOutLogSystem $payOutLogSystem)
     {
         $this->bankAccountRepository = $bankAccountRepository;
         $this->payOutPort = $payOutPort;
+        $this->payOutLogSystem = $payOutLogSystem;
     }
 
     public function handle(object $command): void
@@ -28,7 +26,7 @@ class PayOutHandler implements HandlerInterface
         $bankAccount = $this->bankAccountRepository
             ->getById(Uuid::fromString($command->getId()));
 
-        $bankAccount->payOut($command->getAmount(), $this->payOutPort);
+        $bankAccount->payOut($command->getAmount(), $this->payOutPort, $this->payOutLogSystem);
 
         $this->bankAccountRepository->commit();
     }

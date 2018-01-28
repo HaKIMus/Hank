@@ -67,8 +67,15 @@ class Balance
         $accountStore->payIn($bankAccountId, $amountOfMoney);
     }
 
-    public function payOut(float $amountOfMoneyOfMoney, Ports\PayOut $payOut, UuidInterface $bankAccountId): void
+    public function payOut(float $amountOfMoneyOfMoney, Ports\PayOut $payOut, UuidInterface $bankAccountId, Ports\PayOutLogSystem $payOutLogSystem): void
     {
+        if ($amountOfMoneyOfMoney > $this->balance) {
+            $payOutLogSystem->setImportanceOfLog(1);
+            $payOutLogSystem->setMessageOfLog('Paying ' . $amountOfMoneyOfMoney . ' which is greater than balance of client: ' . $this->balance);
+
+            $payOutLogSystem->log();
+        }
+
         $payOut->payOut($bankAccountId, $amountOfMoneyOfMoney);
     }
 }

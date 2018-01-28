@@ -21,9 +21,9 @@ class BankAccount
         $this->balance->payIn($accountStore, $amount, $logSystem, $this->id);
     }
 
-    public function payOut(float $amountOfMoneyOfMoney, Ports\PayOut $payOut): void
+    public function payOut(float $amountOfMoneyOfMoney, Ports\PayOut $payOut, Ports\PayOutLogSystem $payOutLogSystem): void
     {
-        $this->balance->payOut($amountOfMoneyOfMoney, $payOut, $this->id);
+        $this->balance->payOut($amountOfMoneyOfMoney, $payOut, $this->id, $payOutLogSystem);
     }
 
     public function moneyTransfer(): void
