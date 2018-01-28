@@ -69,6 +69,15 @@ class Balance
 
     public function payOut(float $amountOfMoneyOfMoney, Ports\PayOut $payOut, UuidInterface $bankAccountId, Ports\PayOutLogSystem $payOutLogSystem): void
     {
+        if ($amountOfMoneyOfMoney === 0.00) {
+            $payOutLogSystem->setImportanceOfLog(1);
+            $payOutLogSystem->setMessageOfLog('Paying out no amount of money denied');
+
+            $payOutLogSystem->log();
+
+            throw new NoAmountOfMoneyException();
+        }
+
         if (($this->balance - $amountOfMoneyOfMoney) < -100) {
             $payOutLogSystem->setImportanceOfLog(2);
             $payOutLogSystem->setMessageOfLog('Paying out ' . $amountOfMoneyOfMoney . $this->currency . ' amount of money denied because the balance after transaction if lower than -100');
