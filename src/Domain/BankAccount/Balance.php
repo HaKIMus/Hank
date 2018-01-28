@@ -24,7 +24,7 @@ class Balance
     public function payIn(Ports\PayIn $accountStore, float $amountOfMoney, Ports\PayInLogSystem $logSystem, UuidInterface $bankAccountId): void
     {
         if ($amountOfMoney < 0.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . ' - it\'s negative amount of money');
+            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s negative amount of money');
             $logSystem->setImportanceOfLog(1);
 
             $logSystem->log();
@@ -33,7 +33,7 @@ class Balance
         }
 
         if ($amountOfMoney === 0.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . ' - it\'s no amount of money');
+            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s no amount of money');
             $logSystem->setImportanceOfLog(1);
 
             $logSystem->log();
@@ -42,7 +42,7 @@ class Balance
         }
 
         if ($amountOfMoney < 5.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . ' - it\'s too small amount of money');
+            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s too small amount of money');
             $logSystem->setImportanceOfLog(1);
 
             $logSystem->log();
@@ -51,7 +51,7 @@ class Balance
         }
 
         if ($amountOfMoney > 10000.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . ' - it\'s too large amount of money');
+            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s too large amount of money');
             $logSystem->setImportanceOfLog(1);
 
             $logSystem->log();
@@ -59,7 +59,7 @@ class Balance
             throw new TooLargeAmountOfMoneyException();
         }
 
-        $logSystem->setMessageOfLog('Trying to pay in ' . $amountOfMoney . ' amount of money done with success');
+        $logSystem->setMessageOfLog('Trying to pay in ' . $amountOfMoney . $this->currency . ' amount of money done with success');
         $logSystem->setImportanceOfLog(1);
 
         $logSystem->log();
@@ -69,9 +69,18 @@ class Balance
 
     public function payOut(float $amountOfMoneyOfMoney, Ports\PayOut $payOut, UuidInterface $bankAccountId, Ports\PayOutLogSystem $payOutLogSystem): void
     {
+        if (($this->balance - $amountOfMoneyOfMoney) < -100) {
+            $payOutLogSystem->setImportanceOfLog(2);
+            $payOutLogSystem->setMessageOfLog('Paying out ' . $amountOfMoneyOfMoney . $this->currency . ' amount of money denied because the balance after transaction if lower than -100');
+
+            $payOutLogSystem->log();
+
+            throw new TooLargeAmountOfMoneyException();
+        }
+
         if ($amountOfMoneyOfMoney > $this->balance) {
             $payOutLogSystem->setImportanceOfLog(1);
-            $payOutLogSystem->setMessageOfLog('Paying ' . $amountOfMoneyOfMoney . ' which is greater than balance of client: ' . $this->balance);
+            $payOutLogSystem->setMessageOfLog('Paying out ' . $amountOfMoneyOfMoney . $this->currency . ' amount of money which is greater than balance of client: ' . $this->balance);
 
             $payOutLogSystem->log();
         }

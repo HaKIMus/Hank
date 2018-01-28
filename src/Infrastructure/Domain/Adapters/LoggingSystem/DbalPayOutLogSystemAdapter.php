@@ -14,6 +14,8 @@ class DbalPayOutLogSystemAdapter extends PayOutLogSystem
         parent::__construct($idOfBankAccount, $idOfClient);
 
         $this->connection = $connection;
+        $this->connection->beginTransaction();
+        $this->connection->setAutoCommit(false);
     }
 
     public function log(): void
@@ -26,5 +28,10 @@ class DbalPayOutLogSystemAdapter extends PayOutLogSystem
             'importance' => $this->getImportanceOfLog(),
             'date' => $this->dateOfLogOccurred
         ]);
+
+
+        if ($this->connection->getTransactionNestingLevel() !== 0) {
+            $this->connection->commit();
+        }
     }
 }
