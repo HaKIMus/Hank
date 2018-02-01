@@ -10,7 +10,7 @@
 
   h3 {
     font-size: 37px;
-    color: $hank-color-special;
+    color: $hank-color-special-light;
     font-weight: 300;
     height: 120px;
   }
@@ -23,6 +23,59 @@
 .join-us {
   margin-top: 80px;
   height: 620px;
-  background: linear-gradient(to right,#ff0035,#e11a60);
+  background: linear-gradient(to right, #0037ff, #006dad);
   color: #fff;
+
+  .row {
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .create-an-account {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex: 1 100%;
+
+    h3 {
+      flex: 1 100%;
+      text-align: center;
+      font-size: 4em;
+      font-weight: 300;
+      margin: 50px;
+    }
+
+    a {
+      order: 1;
+      cursor: pointer;
+      border: none;
+      padding: 7px 120px 7px 120px;
+      background: linear-gradient(to right,#d6d6d6,#ffffff);
+      font-size: 30px;
+      text-transform: uppercase;
+      letter-spacing: 10px;
+      color: #005df3;
+      box-shadow: 0 0 30px 4px rgba(23, 23, 23, 0.45);
+
+      &:hover {
+        background: linear-gradient(to right,#ffffff,#fff);
+        color: #0079ff;
+        box-shadow: 0 0 60px 4px rgba(23, 23, 23, 0.45);
+      }
+
+      &:focus {
+        background: linear-gradient(to right,#d6d6d6,#ffffff);
+        box-shadow: 0 0 30px 12px rgba(0, 163, 255, 0.45);
+        color: #005df3;
+      }
+
+      &:active {
+        background: linear-gradient(to right,#d6d6d6,#ffffff);
+        box-shadow: 0 0 10px 2px rgba(23, 23, 23, 0.45);
+        color: #005df3;
+      }
+    }
+  }
 }
