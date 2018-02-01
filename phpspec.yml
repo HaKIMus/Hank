@@ -50,8 +50,10 @@ extensions:
       #- web/index.php
     #
     # Blacklist directories for which code generation should NOT be done
-    #blacklist:
-      #- src/legacy
+    blacklist:
+      - src/UI
+      - src/Domain/Ports
+      - Hank\Application\Query\View
     #
     # Blacklist files for which code generation should NOT be done
     #blacklist_files:
