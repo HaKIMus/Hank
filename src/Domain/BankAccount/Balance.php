@@ -94,6 +94,11 @@ class Balance
             $payOutLogSystem->log();
         }
 
+        $payOutLogSystem->setImportanceOfLog(1);
+        $payOutLogSystem->setMessageOfLog('Paying out ' . $amountOfMoneyOfMoney . $this->currency . ' done with success');
+
+        $payOutLogSystem->log();
+
         $payOut->payOut($bankAccountId, $amountOfMoneyOfMoney);
     }
 }
