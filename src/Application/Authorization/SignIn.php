@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 10.12.17
- * Time: 16:54
- */
 
-namespace App\Application\Authorization;
+namespace Hank\Application\Authorization;
 
-use App\Domain\Client\Exception\ClientNotFoundException;
-use App\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter;
+use Hank\Domain\Client\Exception\ClientNotFoundException;
+use Hank\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 final class SignIn

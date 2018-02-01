@@ -1,19 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 08.12.17
- * Time: 00:41
- */
 
-namespace App\Domain\BankAccount;
+namespace Hank\Domain\BankAccount;
 
-use App\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
-use App\Domain\BankAccount\Exception\NoAmountOfMoneyException;
-use App\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
-use App\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
-use App\Domain\Ports\PayIn;
-use App\Domain\Ports\PayInLogSystem;
+use Hank\Domain\Ports;
 use Ramsey\Uuid\UuidInterface;
 
 class BankAccount
@@ -27,55 +16,14 @@ class BankAccount
         $this->balance = $balance;
     }
 
-    public function payIn(PayIn $accountStore, float $amount, PayInLogSystem $logSystem): void
+    public function payIn(Ports\PayIn $accountStore, float $amount, Ports\PayInLogSystem $logSystem): void
     {
-        if ($amount < 0.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amount . ' - it\'s negative amount of money');
-            $logSystem->setImportanceOfLog(1);
-
-            $logSystem->log();
-
-            throw new NegativeAmountOfMoneyException();
-        }
-
-        if ($amount === 0.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amount . ' - it\'s no amount of money');
-            $logSystem->setImportanceOfLog(1);
-
-            $logSystem->log();
-
-            throw new NoAmountOfMoneyException();
-        }
-
-        if ($amount < 5.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amount . ' - it\'s too small amount of money');
-            $logSystem->setImportanceOfLog(1);
-
-            $logSystem->log();
-
-            throw new TooSmallAmountOfMoneyException();
-        }
-
-        if ($amount > 10000.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amount . ' - it\'s too large amount of money');
-            $logSystem->setImportanceOfLog(1);
-
-            $logSystem->log();
-
-            throw new TooLargeAmountOfMoneyException();
-        }
-
-        $logSystem->setMessageOfLog('Trying to pay in ' . $amount . ' amount of money done with success');
-        $logSystem->setImportanceOfLog(1);
-
-        $logSystem->log();
-
-        $accountStore->payIn($this->id, $amount);
+        $this->balance->payIn($accountStore, $amount, $logSystem, $this->id);
     }
 
-    public function payOut(): void
+    public function payOut(float $amountOfMoneyOfMoney, Ports\PayOut $payOut, Ports\PayOutLogSystem $payOutLogSystem): void
     {
-
+        $this->balance->payOut($amountOfMoneyOfMoney, $payOut, $this->id, $payOutLogSystem);
     }
 
     public function moneyTransfer(): void

@@ -1,21 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 03.01.18
- * Time: 07:26
- */
 
-namespace App\Application\Handler;
+namespace Hank\Application\Handler;
 
-use App\Application\Command\CreateNewClientCommand;
-use App\Domain\BankAccount\Balance;
-use App\Domain\BankAccount\BankAccount;
-use App\Domain\Client\Client;
-use App\Domain\Client\Email;
-use App\Domain\Client\Name;
-use App\Domain\Client\Password;
-use App\Infrastructure\Domain\Repository\ClientRepository;
+use Hank\Domain\BankAccount\Balance;
+use Hank\Domain\BankAccount\BankAccount;
+use Hank\Domain\Client\Client;
+use Hank\Domain\Client\Email;
+use Hank\Domain\Client\Name;
+use Hank\Domain\Client\Password;
+use Hank\Infrastructure\Domain\Repository\ClientRepository;
 use Money\Currency;
 use Ramsey\Uuid\Uuid;
 
@@ -28,7 +21,7 @@ class CreateNewClientHandler
         $this->clientRepository = $clientRepository;
     }
 
-    public function handle(CreateNewClientCommand $command): void
+    public function handle(object $command): void
     {
         $bankAccount = new BankAccount(new Balance(
             0.00,

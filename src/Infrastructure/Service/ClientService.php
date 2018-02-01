@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 20.01.18
- * Time: 11:13
- */
 
-namespace App\Infrastructure\Service;
+namespace Hank\Infrastructure\Service;
 
-use App\Application\Authorization\Exception\ClientNotSignedIn;
-use App\Application\Query\View\Client\ClientView;
+use Hank\Application\Authorization\Exception\ClientNotSignedIn;
+use Hank\Application\Query\View\Client\ClientView;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 final class ClientService
@@ -21,6 +15,9 @@ final class ClientService
         $this->session = $session;
     }
 
+    /**
+     * @throws ClientNotSignedIn
+     */
     public function getClient(): ClientView
     {
         if ($this->session->has('client')) {

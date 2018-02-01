@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 20.01.18
- * Time: 10:52
- */
 
-namespace App\Infrastructure\Service;
+namespace Hank\Infrastructure\Service;
 
-use App\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter;
+use Hank\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 final class UpdateClientSessionService

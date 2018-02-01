@@ -1,4 +1,4 @@
-App\Domain\Client\Name:
+Hank\Domain\Client\Name:
   type: embeddable
   fields:
     name:

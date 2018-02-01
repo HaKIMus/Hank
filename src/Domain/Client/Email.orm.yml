@@ -1,4 +1,4 @@
-App\Domain\Client\Email:
+Hank\Domain\Client\Email:
   type: embeddable
   fields:
     email:

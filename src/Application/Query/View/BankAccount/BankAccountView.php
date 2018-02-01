@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 03.01.18
- * Time: 22:10
- */
 
-namespace App\Application\Query\View\BankAccount;
+namespace Hank\Application\Query\View\BankAccount;
 
 
 class BankAccountView

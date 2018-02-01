@@ -2,7 +2,7 @@
 
 namespace Hank\Application\Command;
 
-class PayInCommand
+class PayOutCommand
 {
     private $id;
     private $amount;

@@ -1,8 +1,8 @@
-App\Domain\BankAccount\Balance:
+Hank\Domain\BankAccount\Balance:
   type: embeddable
   fields:
     balance:
-      type: decimal
+      type: float
       nullable: false
       unique: false
     currency:

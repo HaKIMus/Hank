@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 10.12.17
- * Time: 16:54
- */
 
-namespace App\Application\Authorization;
+namespace Hank\Application\Authorization;
 
-use App\Application\Authorization\Exception\ClientNotSignedIn;
+use Hank\Application\Authorization\Exception\ClientNotSignedIn;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 

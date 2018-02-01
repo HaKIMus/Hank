@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 16.12.17
- * Time: 12:03
- */
 
-namespace App\Application\Query\Authorization;
+namespace Hank\Application\Query\Authorization;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 

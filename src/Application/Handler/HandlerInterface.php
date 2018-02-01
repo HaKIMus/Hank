@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 26.01.18
- * Time: 17:06
- */
 
-namespace App\Application\Handler;
+namespace Hank\Application\Handler;
 
 
 interface HandlerInterface
 {
-    public function handle(): void;
+    public function handle(object $command): void;
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\UI\Symfony\Controller;
+namespace Hank\UI\Symfony\Controller;
 
-use App\Application\Command\CreateNewClientCommand;
-use App\Application\Handler\CreateNewClientHandler;
-use App\Infrastructure\Domain\Repository\ClientRepository;
+use Hank\Application\Command\CreateNewClientCommand;
+use Hank\Application\Handler\CreateNewClientHandler;
+use Hank\Infrastructure\Domain\Repository\ClientRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

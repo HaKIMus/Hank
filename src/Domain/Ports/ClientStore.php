@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 03.01.18
- * Time: 06:23
- */
 
-namespace App\Domain\Ports;
+namespace Hank\Domain\Ports;
 
-use App\Application\Query\View\Client\ClientView;
+use Hank\Application\Query\View\Client\ClientView;
 use Ramsey\Uuid\UuidInterface;
 
 interface ClientStore

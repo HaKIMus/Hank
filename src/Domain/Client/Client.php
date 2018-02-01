@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 08.12.17
- * Time: 00:32
- */
 
-namespace App\Domain\Client;
+namespace Hank\Domain\Client;
 
-use App\Domain\BankAccount\BankAccount;
+use Hank\Domain\BankAccount\BankAccount;
 use Ramsey\Uuid\UuidInterface;
 
 class Client

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\UI\Symfony\Controller;
+namespace Hank\UI\Symfony\Controller;
 
-use App\Application\Authorization\SignIn as AuthorizationSignIn;
-use App\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter;
+use Hank\Application\Authorization\SignIn as AuthorizationSignIn;
+use Hank\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\PDOMySql\Driver;
 use Ramsey\Uuid\Uuid;

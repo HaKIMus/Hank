@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 09.12.17
- * Time: 14:27
- */
 
-namespace App\Infrastructure\Domain\Repository;
+namespace Hank\Infrastructure\Domain\Repository;
 
-use App\Domain\Client\Client;
-use App\Domain\Client\Exception\ClientNotFoundException;
-use App\Infrastructure\DoctrineRepositoryAbstract;
-use App\Infrastructure\RepositoryInterface;
+use Hank\Domain\Client\Client;
+use Hank\Domain\Client\Exception\ClientNotFoundException;
+use Hank\Infrastructure\DoctrineRepositoryAbstract;
+use Hank\Infrastructure\RepositoryInterface;
 
 class ClientRepository extends DoctrineRepositoryAbstract implements RepositoryInterface
 {

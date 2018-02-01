@@ -1,38 +1,32 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hakim
- * Date: 03.01.18
- * Time: 07:26
- */
 
-namespace App\Application\Handler;
+namespace Hank\Application\Handler;
 
-use App\Application\Command\PayInCommand;
+use Hank\Application\Command\PayInCommand;
 
-use App\Domain\Ports\PayIn;
-use App\Domain\Ports\PayInLogSystem;
-use App\Infrastructure\Domain\Repository\BankAccountRepository;
+use Hank\Domain\Ports\PayIn;
+use Hank\Domain\Ports\PayInLogSystem;
+use Hank\Infrastructure\Domain\Repository\BankAccountRepository;
 use Ramsey\Uuid\Uuid;
 
 class PayInHandler
 {
     private $bankAccountRepository;
-    private $bankAccountStore;
+    private $payInPort;
     private $payInLogSystem;
 
-    public function __construct(BankAccountRepository $bankAccountRepository, PayIn $bankAccountStore, PayInLogSystem $payInLogSystem)
+    public function __construct(BankAccountRepository $bankAccountRepository, PayIn $payInPort, PayInLogSystem $payInLogSystem)
     {
         $this->bankAccountRepository = $bankAccountRepository;
-        $this->bankAccountStore = $bankAccountStore;
+        $this->payInPort = $payInPort;
         $this->payInLogSystem = $payInLogSystem;
     }
 
-    public function handle(PayInCommand $command): void
+    public function handle(object $command): void
     {
         $bankAccount = $this->bankAccountRepository
             ->getById(Uuid::fromString($command->getId()));
 
-        $bankAccount->payIn($this->bankAccountStore, $command->getAmount(), $this->payInLogSystem);
+        $bankAccount->payIn($this->payInPort, $command->getAmount(), $this->payInLogSystem);
     }
 }

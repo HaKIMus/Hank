@@ -23,11 +23,11 @@ doctrine:
                 is_bundle: false
                 type: yml
                 dir: '%kernel.project_dir%/src/Domain/Client'
-                prefix: 'App\Domain\Client'
+                prefix: 'Hank\Domain\Client'
                 alias: Client
             BankAccount:
                 is_bundle: false
                 type: yml
                 dir: '%kernel.project_dir%/src/Domain/BankAccount'
-                prefix: 'App\Domain\BankAccount'
+                prefix: 'Hank\Domain\BankAccount'
                 alias: BankAccount

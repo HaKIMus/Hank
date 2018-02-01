@@ -2,10 +2,10 @@
 
 namespace Hank\Infrastructure\Domain\Adapters\LoggingSystem;
 
-use Hank\Domain\Ports\PayInLogSystem;
 use Doctrine\DBAL\Connection;
+use Hank\Domain\Ports\PayOutLogSystem;
 
-class DbalPayInLogSystemAdapter extends PayInLogSystem
+class DbalPayOutLogSystemAdapter extends PayOutLogSystem
 {
     private $connection;
 
@@ -14,6 +14,8 @@ class DbalPayInLogSystemAdapter extends PayInLogSystem
         parent::__construct($idOfBankAccount, $idOfClient);
 
         $this->connection = $connection;
+        $this->connection->beginTransaction();
+        $this->connection->setAutoCommit(false);
     }
 
     public function log(): void
@@ -27,6 +29,9 @@ class DbalPayInLogSystemAdapter extends PayInLogSystem
             'date' => $this->dateOfLogOccurred
         ]);
 
-        $this->connection->commit();
+
+        if ($this->connection->getTransactionNestingLevel() !== 0) {
+            $this->connection->commit();
+        }
     }
 }

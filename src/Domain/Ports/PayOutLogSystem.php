@@ -4,7 +4,7 @@ namespace Hank\Domain\Ports;
 
 use Ramsey\Uuid\Uuid;
 
-abstract class PayInLogSystem
+abstract class PayOutLogSystem
 {
     protected $id;
     protected $dateOfLogOccurred;
