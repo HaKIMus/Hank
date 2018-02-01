@@ -19,6 +19,7 @@
         "twbs/bootstrap": "4.0.0-alpha.6"
     },
     "require-dev": {
+        "leanphp/phpspec-code-coverage": "^4.0",
         "symfony/dotenv": "^4.0",
         "symfony/thanks": "^1.0"
     },
