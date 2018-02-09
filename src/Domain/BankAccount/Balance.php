@@ -78,7 +78,7 @@ class Balance
             throw new NoAmountOfMoneyException();
         }
 
-        if (($this->balance - $amountOfMoneyOfMoney) < -100) {
+        if (($this->balance - $amountOfMoneyOfMoney) <= -100) {
             $payOutLogSystem->setImportanceOfLog(2);
             $payOutLogSystem->setMessageOfLog('Paying out ' . $amountOfMoneyOfMoney . $this->currency . ' amount of money denied because the balance after transaction if lower than -100');
 
