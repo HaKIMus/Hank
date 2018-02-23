@@ -10,7 +10,7 @@ use Hank\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
 use Hank\Domain\Ports\PayIn;
 use Hank\Domain\Ports\PayInLogSystem;
 use Hank\Domain\Ports\PayOut;
-use Hank\Domain\Ports\PayOutLogSystem;
+use Hank\Domain\Ports\LogSystem;
 use Money\Currency;
 use PhpSpec\ObjectBehavior;
 use Ramsey\Uuid\Uuid;
@@ -76,7 +76,7 @@ class BalanceSpec extends ObjectBehavior
     function it_allows_us_to_pay_out_money($payOutPort, $logSystem): void
     {
         $payOutPort->implement(PayOut::class);
-        $logSystem->beADoubleOf(PayOutLogSystem::class);
+        $logSystem->beADoubleOf(LogSystem::class);
 
         $this->payOut(20, $payOutPort, Uuid::uuid4(), $logSystem);
     }
@@ -84,7 +84,7 @@ class BalanceSpec extends ObjectBehavior
     function it_throws_exception_when_amount_is_null_pay_out_money($payOutPort, $logSystem): void
     {
         $payOutPort->implement(PayOut::class);
-        $logSystem->beADoubleOf(PayOutLogSystem::class);
+        $logSystem->beADoubleOf(LogSystem::class);
 
         $this->payOut(20, $payOutPort, Uuid::uuid4(), $logSystem);
     }
@@ -92,7 +92,7 @@ class BalanceSpec extends ObjectBehavior
     function it_throws_exception_when_balance_after_transcation_will_be_less_than_minus_100($payOutPort, $logSystem): void
     {
         $payOutPort->implement(PayOut::class);
-        $logSystem->beADoubleOf(PayOutLogSystem::class);
+        $logSystem->beADoubleOf(LogSystem::class);
 
         $this->shouldThrow(TooLargeAmountOfMoneyException::class)
             ->during('payOut', [130, $payOutPort, Uuid::uuid4(), $logSystem]);

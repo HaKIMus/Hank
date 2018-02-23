@@ -33,7 +33,7 @@ class BankAccountSpec extends ObjectBehavior
     function it_allows_us_to_pay_out_money($payOutPort, $logSystem): void
     {
         $payOutPort->implement(Ports\PayOut::class);
-        $logSystem->beADoubleOf(Ports\PayOutLogSystem::class);
+        $logSystem->beADoubleOf(Ports\LogSystem::class);
 
         $this->payOut(15, $payOutPort, $logSystem);
     }

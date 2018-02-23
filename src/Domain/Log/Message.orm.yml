@@ -1,0 +1,7 @@
+Hank\Domain\Log\Message:
+  type: embeddable
+  fields:
+    message:
+      type: string
+      nullable: false
+      unique: false

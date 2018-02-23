@@ -9,6 +9,8 @@ use Hank\Infrastructure\Domain\Adapters\Db\Dbal\PayInDbalAdapter;
 use Hank\Infrastructure\Domain\Adapters\Db\Dbal\PayOutDbalAdapter;
 use Hank\Infrastructure\Domain\Adapters\LoggingSystem\DbalPayInLogSystemAdapter;
 use Hank\Infrastructure\Domain\Repository\BankAccountRepository;
+use Hank\Infrastructure\Domain\Repository\ClientRepository;
+use Hank\Infrastructure\Domain\Repository\LogRepository;
 use Hank\Infrastructure\Service\ClientService;
 use Hank\Infrastructure\Service\UpdateClientSessionService;
 use Doctrine\DBAL\Connection;
@@ -39,7 +41,7 @@ class PayInController extends Controller
         }
     }
 
-    public function payIn(Request $request, UpdateClientSessionService $updateClientSessionService): Response
+    public function payIn(Request $request, UpdateClientSessionService $updateClientSessionService, LogRepository $logRepository): Response
     {
         $clientId = Uuid::fromString($this->clientService->getClient()->id());
 
@@ -52,19 +54,21 @@ class PayInController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
 
         $payInCommand = new PayInCommand(
+            $request->get('amount'),
             $bankAccountId,
-            $request->get('amount')
+            $clientId
         );
 
         $payInHandler = new PayInHandler(
             new BankAccountRepository($connection, $entityManager),
             new PayInDbalAdapter($connection),
-            new DbalPayInLogSystemAdapter($bankAccountId, $clientId, $connection)
+            $logRepository
         );
 
         $payInHandler->handle($payInCommand);
 
         $updateClientSessionService->update();
+
 
         return $this->redirectToRoute('app_bank_pay_in_client_panel');
     }

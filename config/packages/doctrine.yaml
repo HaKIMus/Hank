@@ -31,3 +31,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Domain/BankAccount'
                 prefix: 'Hank\Domain\BankAccount'
                 alias: BankAccount
+            Log:
+                is_bundle: false
+                type: yml
+                dir: '%kernel.project_dir%/src/Domain/Log'
+                prefix: 'Hank\Domain\Log'
+                alias: Log

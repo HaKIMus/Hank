@@ -1,0 +1,27 @@
+Hank\Domain\Log\Log:
+  type: entity
+  table: logs
+  id:
+    id:
+      type: uuid
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidGenerator
+  fields:
+    bankAccount:
+      type: uuid
+      name: bankAccountId
+    client:
+      type: uuid
+      name: clientId
+  embedded:
+    message:
+      class: Hank\Domain\Log\Message
+      columnPrefix: false
+    importance:
+      class: Hank\Domain\Log\Importance
+      columnPrefix: false
+    date:
+      class: Hank\Domain\Log\Date
+      columnPrefix: false

@@ -4,22 +4,29 @@ namespace Hank\Application\Command;
 
 class PayOutCommand
 {
-    private $id;
+    private $bankAccountId;
     private $amount;
+    private $clientId;
 
-    public function __construct(string $id, float $amount)
+    public function __construct(float $amount, string $bankAccountId, string $clientId)
     {
-        $this->id = $id;
+        $this->bankAccountId = $bankAccountId;
         $this->amount = $amount;
+        $this->clientId = $clientId;
     }
 
-    public function getId(): string
+    public function getBankAccountId(): string
     {
-        return $this->id;
+        return $this->bankAccountId;
     }
 
     public function getAmount(): float
     {
         return $this->amount;
+    }
+
+    public function getClientId(): string
+    {
+        return $this->clientId;
     }
 }

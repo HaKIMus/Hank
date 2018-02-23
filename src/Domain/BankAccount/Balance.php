@@ -6,8 +6,14 @@ use Hank\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
 use Hank\Domain\BankAccount\Exception\NoAmountOfMoneyException;
 use Hank\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
 use Hank\Domain\BankAccount\Exception\TooSmallAmountOfMoneyException;
+use Hank\Domain\Log\Date;
+use Hank\Domain\Log\Importance;
+use Hank\Domain\Log\Log;
+use Hank\Domain\Log\Message;
 use Hank\Domain\Ports;
+use Hank\Infrastructure\Domain\Repository\LogRepository;
 use Money\Currency;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class Balance
@@ -21,84 +27,149 @@ class Balance
         $this->currency = $currency;
     }
 
-    public function payIn(Ports\PayIn $accountStore, float $amountOfMoney, Ports\PayInLogSystem $logSystem, UuidInterface $bankAccountId): void
+    public function payIn(float $amountOfMoney, UuidInterface $bankAccountId, UuidInterface $clientId, Ports\PayIn $payInSystem, LogRepository $log): void
     {
         if ($amountOfMoney < 0.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s negative amount of money');
-            $logSystem->setImportanceOfLog(1);
+            $log->add(
+                new Log(
+                    new Message('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s negative amount of money'),
+                    new Importance(1),
+                    new Date(new \DateTime('now')),
+                    $bankAccountId,
+                    $clientId
+                )
+            );
 
-            $logSystem->log();
+            $log->commit();
 
             throw new NegativeAmountOfMoneyException();
         }
 
         if ($amountOfMoney === 0.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s no amount of money');
-            $logSystem->setImportanceOfLog(1);
+            $log->add(
+                new Log(
+                    new Message('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s no amount of money'),
+                    new Importance(1),
+                    new Date(new \DateTime('now')),
+                    $bankAccountId,
+                    $clientId
+                )
+            );
 
-            $logSystem->log();
+            $log->commit();
 
             throw new NoAmountOfMoneyException();
         }
 
         if ($amountOfMoney < 5.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s too small amount of money');
-            $logSystem->setImportanceOfLog(1);
+            $log->add(
+                new Log(
+                    new Message('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s too small amount of money'),
+                    new Importance(1),
+                    new Date(new \DateTime('now')),
+                    $bankAccountId,
+                    $clientId
+                )
+            );
 
-            $logSystem->log();
+            $log->commit();
 
             throw new TooSmallAmountOfMoneyException();
         }
 
         if ($amountOfMoney > 10000.00) {
-            $logSystem->setMessageOfLog('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s too large amount of money');
-            $logSystem->setImportanceOfLog(1);
+            $log->add(
+                new Log(
+                    new Message('Trying to pay in: ' . $amountOfMoney . $this->currency . ' - it\'s too large amount of money'),
+                    new Importance(1),
+                    new Date(new \DateTime('now')),
+                    $bankAccountId,
+                    $clientId
+                )
+            );
 
-            $logSystem->log();
+            $log->commit();
 
             throw new TooLargeAmountOfMoneyException();
         }
 
-        $logSystem->setMessageOfLog('Trying to pay in ' . $amountOfMoney . $this->currency . ' amount of money done with success');
-        $logSystem->setImportanceOfLog(1);
+        $log->add(
+            new Log(
+                new Message('Trying to pay in ' . $amountOfMoney . $this->currency . ' amount of money done with success'),
+                new Importance(1),
+                new Date(new \DateTime('now')),
+                $bankAccountId,
+                $clientId
+            )
+        );
 
-        $logSystem->log();
+        $log->commit();
 
-        $accountStore->payIn($bankAccountId, $amountOfMoney);
+        $payInSystem->payIn($bankAccountId, $amountOfMoney);
     }
 
-    public function payOut(float $amountOfMoneyOfMoney, Ports\PayOut $payOut, UuidInterface $bankAccountId, Ports\PayOutLogSystem $payOutLogSystem): void
+    public function payOut(float $amountOfMoney, UuidInterface $bankAccountId, UuidInterface $clientId, Ports\PayOut $payOut, LogRepository $log): void
     {
-        if ($amountOfMoneyOfMoney === 0.00) {
-            $payOutLogSystem->setImportanceOfLog(1);
-            $payOutLogSystem->setMessageOfLog('Paying out no amount of money denied');
+        if ($amountOfMoney === 0.00) {
+            $log->add(
+                new Log(
+                    new Message('Paying out no amount of money denied'),
+                    new Importance(2),
+                    new Date(new \DateTime('now')),
+                    $bankAccountId,
+                    $clientId
+                )
+            );
 
-            $payOutLogSystem->log();
+            $log->commit();
 
             throw new NoAmountOfMoneyException();
         }
 
-        if (($this->balance - $amountOfMoneyOfMoney) <= -100) {
-            $payOutLogSystem->setImportanceOfLog(2);
-            $payOutLogSystem->setMessageOfLog('Paying out ' . $amountOfMoneyOfMoney . $this->currency . ' amount of money denied because the balance after transaction if lower than -100');
+        if (($this->balance - $amountOfMoney) <= -100) {
+            $log->add(
+                new Log(
+                    new Message('Paying out ' . $amountOfMoney . $this->currency . ' amount of money denied because the balance after transaction if lower than -100'),
+                    new Importance(2),
+                    new Date(new \DateTime('now')),
+                    $bankAccountId,
+                    $clientId
+                )
+            );
 
-            $payOutLogSystem->log();
+            $log->commit();
 
             throw new TooLargeAmountOfMoneyException();
         }
 
-        if ($amountOfMoneyOfMoney > $this->balance) {
-            $payOutLogSystem->setImportanceOfLog(1);
-            $payOutLogSystem->setMessageOfLog('Paying out ' . $amountOfMoneyOfMoney . $this->currency . ' amount of money which is greater than balance of client: ' . $this->balance);
+        if ($amountOfMoney > $this->balance) {
+            $log->add(
+                new Log(
+                    new Message('Paying out ' . $amountOfMoney . $this->currency . ' amount of money which is greater than balance of client: ' . $this->balance),
+                    new Importance(1),
+                    new Date(new \DateTime('now')),
+                    $bankAccountId,
+                    $clientId
+                )
+            );
 
-            $payOutLogSystem->log();
+            $log->commit();
+
+            throw new TooLargeAmountOfMoneyException();
         }
 
-        $payOutLogSystem->setImportanceOfLog(1);
-        $payOutLogSystem->setMessageOfLog('Paying out ' . $amountOfMoneyOfMoney . $this->currency . ' done with success');
+        $log->add(
+            new Log(
+                new Message('Paying out ' . $amountOfMoney . $this->currency . ' done with success'),
+                new Importance(1),
+                new Date(new \DateTime('now')),
+                $bankAccountId,
+                $clientId
+            )
+        );
 
-        $payOutLogSystem->log();
+        $log->commit();
 
-        $payOut->payOut($bankAccountId, $amountOfMoneyOfMoney);
+        $payOut->payOut($bankAccountId, $amountOfMoney);
     }
 }

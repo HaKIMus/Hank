@@ -1,0 +1,7 @@
+Hank\Domain\Log\Date:
+  type: embeddable
+  fields:
+    date:
+      type: date
+      nullable: false
+      unique: false

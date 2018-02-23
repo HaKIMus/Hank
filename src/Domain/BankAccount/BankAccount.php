@@ -3,6 +3,7 @@
 namespace Hank\Domain\BankAccount;
 
 use Hank\Domain\Ports;
+use Hank\Infrastructure\Domain\Repository\LogRepository;
 use Ramsey\Uuid\UuidInterface;
 
 class BankAccount
@@ -16,14 +17,14 @@ class BankAccount
         $this->balance = $balance;
     }
 
-    public function payIn(Ports\PayIn $accountStore, float $amount, Ports\PayInLogSystem $logSystem): void
+    public function payIn(float $amount, UuidInterface $clientId, Ports\PayIn $payIn, LogRepository $log): void
     {
-        $this->balance->payIn($accountStore, $amount, $logSystem, $this->id);
+        $this->balance->payIn($amount, $this->id, $clientId, $payIn, $log);
     }
 
-    public function payOut(float $amountOfMoneyOfMoney, Ports\PayOut $payOut, Ports\PayOutLogSystem $payOutLogSystem): void
+    public function payOut(float $amount, UuidInterface $clientId, Ports\PayOut $payOut, LogRepository $log): void
     {
-        $this->balance->payOut($amountOfMoneyOfMoney, $payOut, $this->id, $payOutLogSystem);
+        $this->balance->payOut($amount, $this->id, $clientId, $payOut, $log);
     }
 
     public function moneyTransfer(): void

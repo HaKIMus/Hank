@@ -36,3 +36,7 @@ services:
         arguments:
             $connection: '@doctrine.dbal.default_connection'
             $entityManager: '@doctrine.orm.entity_manager'
+    Hank\Infrastructure\Domain\Repository\LogRepository:
+        arguments:
+            $connection: '@doctrine.dbal.default_connection'
+            $entityManager: '@doctrine.orm.entity_manager'

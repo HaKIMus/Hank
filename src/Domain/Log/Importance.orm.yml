@@ -1,0 +1,7 @@
+Hank\Domain\Log\Importance:
+  type: embeddable
+  fields:
+    importance:
+      type: string
+      nullable: false
+      unique: false
