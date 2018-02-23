@@ -3,13 +3,9 @@
 namespace Hank\Application\Handler;
 
 use Hank\Application\Command\PayInCommand;
-
 use Hank\Domain\BankAccount\BankAccount;
-use Hank\Domain\Client\Client;
 use Hank\Domain\Ports\PayIn;
-use Hank\Domain\Ports\PayInLogSystem;
 use Hank\Infrastructure\Domain\Repository\BankAccountRepository;
-use Hank\Infrastructure\Domain\Repository\ClientRepository;
 use Hank\Infrastructure\Domain\Repository\LogRepository;
 use Ramsey\Uuid\Uuid;
 

@@ -5,6 +5,7 @@ namespace spec\Hank\Domain\BankAccount;
 use Hank\Domain\BankAccount\Balance;
 use Hank\Domain\BankAccount\BankAccount;
 use Hank\Domain\Ports;
+use Hank\Infrastructure\Domain\Repository\LogRepository;
 use Money\Currency;
 use PhpSpec\ObjectBehavior;
 use Ramsey\Uuid\Uuid;
@@ -22,19 +23,19 @@ class BankAccountSpec extends ObjectBehavior
         $this->shouldHaveType(BankAccount::class);
     }
 
-    function it_allows_us_to_pay_in_money($bankAccountStore, $logSystem): void
+    function it_allows_us_to_pay_in_money($payInPort, $logSystem): void
     {
-        $bankAccountStore->implement(Ports\PayIn::class);
-        $logSystem->beADoubleOf(Ports\PayInLogSystem::class);
+        $payInPort->implement(Ports\PayIn::class);
+        $logSystem->beADoubleOf(LogRepository::class);
 
-        $this->payIn($bankAccountStore, 20, $logSystem);
+        $this->payIn(20, Uuid::uuid4(), $payInPort, $logSystem);
     }
 
     function it_allows_us_to_pay_out_money($payOutPort, $logSystem): void
     {
         $payOutPort->implement(Ports\PayOut::class);
-        $logSystem->beADoubleOf(Ports\LogSystem::class);
+        $logSystem->beADoubleOf(LogRepository::class);
 
-        $this->payOut(15, $payOutPort, $logSystem);
+        $this->payOut(20, Uuid::uuid4(), $payOutPort, $logSystem);
     }
 }
