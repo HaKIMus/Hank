@@ -2,6 +2,7 @@
 
 namespace Hank\UI\Symfony\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Hank\Application\Authorization\Exception\ClientNotSignedIn;
 use Hank\Application\Command\PayInCommand;
 use Hank\Application\Handler\PayInHandler;
@@ -41,17 +42,15 @@ class PayInController extends Controller
         }
     }
 
-    public function payIn(Request $request, UpdateClientSessionService $updateClientSessionService, LogRepository $logRepository): Response
+    public function payIn(
+        Request $request,
+        UpdateClientSessionService $updateClientSessionService,
+        LogRepository $logRepository,
+        EntityManagerInterface $entityManager): Response
     {
         $clientId = Uuid::fromString($this->clientService->getClient()->id());
 
         $bankAccountId = Uuid::fromString($this->clientService->getClient()->getBankAccount()->id())->toString();
-
-        /** @var Connection $connection */
-        $connection = $this->getDoctrine()->getConnection();
-
-        /** @var EntityManager $entityManager */
-        $entityManager = $this->getDoctrine()->getManager();
 
         $payInCommand = new PayInCommand(
             $request->get('amount'),
@@ -60,12 +59,16 @@ class PayInController extends Controller
         );
 
         $payInHandler = new PayInHandler(
-            new BankAccountRepository($connection, $entityManager),
-            new PayInDbalAdapter($connection),
+            new BankAccountRepository($entityManager->getConnection(), $entityManager),
+            new PayInDbalAdapter($entityManager->getConnection()),
             $logRepository
         );
 
-        $payInHandler->handle($payInCommand);
+        try {
+            $payInHandler->handle($payInCommand);
+        } catch (\Exception $exception) {
+            return $this->redirectToRoute('app_bank_pay_in_client_panel', [], 403);
+        }
 
         $updateClientSessionService->update();
 
