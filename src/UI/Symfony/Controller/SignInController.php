@@ -4,9 +4,6 @@ namespace Hank\UI\Symfony\Controller;
 
 use Hank\Application\Authorization\SignIn as AuthorizationSignIn;
 use Hank\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter;
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Driver\PDOMySql\Driver;
-use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
