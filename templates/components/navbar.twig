@@ -10,30 +10,32 @@
                 </a>
             </li>
 
-            {% if client is defined %}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li class="nav-item">
                     <a class="nav-link{% if app.request.get('_route') == 'app_bank_client_panel' %} nav-link-active{% endif %}"
                        href="{{ path('app_bank_client_panel') }}">
-                        Panel
+                        Client Panel
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_bank_sign_out') }}">Sign out</a>
+                    <a class="nav-link" href="{{ path('logout') }}">
+                        Sign Out
+                    </a>
                 </li>
 
-                {% else %}
+                {% elseif not is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li class="nav-item">
-                        <a class="nav-link {% if app.request.get('_route') == 'app_bank_sign_in' %} nav-link-active{% endif %}"
+                        <a class="nav-link{% if app.request.get('_route') == 'app_bank_sign_in' %} nav-link-active{% endif %}"
                            href="{{ path('app_bank_sign_in') }}">
-                            Sign in
+                            Sign In
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {% if app.request.get('_route') == 'app_bank_sign_up' %} nav-link-active{% endif %}"
+                        <a class="nav-link{% if app.request.get('_route') == 'app_bank_sign_up' %} nav-link-active{% endif %}"
                            href="{{ path('app_bank_sign_up') }}">
-                            Sign up
+                            Sign Up
                         </a>
                     </li>
             {% endif %}

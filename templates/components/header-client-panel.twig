@@ -1,9 +1,9 @@
 <header class="w-100 client-panel-header d-flex flex-wrap justify-content-between">
-    <h3>Hello, <span>{{ client.name }}</span>!</h3>
+    <h3>Hello, <span>{{ app.user.username }}</span>!</h3>
 
     <div class="avatar-container">
         <img src="https://cdn.iconscout.com/public/images/icon/premium/png-512/avatar-coder-developer-man-programmer-3fdf843f181e665c-512x512.png" alt="Avatar">
     </div>
 
-    <span>Balance: <b class="hank-color-special-light">{{ client.bankAccount.balance }} EUR</b></span>
+    <span>Balance: <b class="hank-color-special-light">{{ app.user.bankAccount.balance }} {{ app.user.bankAccount.currency }}</b></span>
 </header>

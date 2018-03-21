@@ -22,15 +22,20 @@ class SignUpController extends Controller
         $email = $request->get('email');
         $password = $request->get('password');
 
-        $signUpCommand = new CreateNewClientCommand(
-            $name,
-            $password,
-            $email
-        );
+        $submittedToken = $request->request->get('_csrf_token');
 
-        $signUpHandler = new CreateNewClientHandler($clientRepository);
+        if ($this->isCsrfTokenValid('authenticate', $submittedToken)) {
+            $signUpCommand = new CreateNewClientCommand(
+                $name,
+                $password,
+                $email
+            );
 
-        $signUpHandler->handle($signUpCommand);
+            $signUpHandler = new CreateNewClientHandler($clientRepository);
+            $signUpHandler->handle($signUpCommand);
+
+            return $this->redirectToRoute('app_bank_sign_in');
+        }
 
         return $this->redirectToRoute('app_bank_sign_in');
     }

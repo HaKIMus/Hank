@@ -4,6 +4,7 @@ namespace Hank\Domain\BankAccount;
 
 use Hank\Domain\Ports;
 use Hank\Infrastructure\Domain\Repository\LogRepository;
+use Money\Currency;
 use Ramsey\Uuid\UuidInterface;
 
 class BankAccount
@@ -32,8 +33,23 @@ class BankAccount
 
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function setId(UuidInterface $id): void
     {
         $this->id = $id;
+    }
+
+    public function getBalance(): float
+    {
+        return $this->balance->getBalance();
+    }
+
+    public function getCurrency(): string
+    {
+        return $this->balance->getCurrency();
     }
 }

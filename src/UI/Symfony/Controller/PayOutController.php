@@ -18,27 +18,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PayOutController extends Controller
 {
-    public function index(ClientService $clientService): Response
+    public function index(): Response
     {
-        try {
-            return $this->render('panel/pay-out-client-panel.twig', [
-                'client' => $clientService->getClient()
-            ]);
-        } catch (ClientNotSignedIn $e) {
-            return $this->redirectToRoute('app_bank_sign_out')
-                ->setStatusCode(401);
-        }
+        return $this->render('panel/pay-out-client-panel.twig');
     }
 
     public function payOut(
         Request $request,
-        UpdateClientSessionService $updateClientSessionService,
-        ClientService $clientService,
         LogRepository $logRepository,
         EntityManagerInterface $entityManager
     ): Response {
-        $clientId = $clientService->getClient()->id();
-        $bankAccountId = Uuid::fromString($clientService->getClient()->getBankAccount()->id())->toString();
+        $clientId = $this->getUser()->getId()->toString();
+        $bankAccountId = Uuid::fromString($this->getUser()->getBankAccount()->getId())->toString();
 
         $payOutCommand = new PayOutCommand(
             $request->get('amount'),
@@ -57,10 +48,8 @@ class PayOutController extends Controller
         try {
             $payOutHandler->handle($payOutCommand);
         } catch (\Exception $exception) {
-            return $this->redirectToRoute('app_bank_pay_out_client_panel', [], 403);
+            return $this->redirectToRoute('app_bank_pay_out_client_panel');
         }
-
-        $updateClientSessionService->update();
 
         return $this->redirectToRoute('app_bank_pay_out_client_panel');
     }

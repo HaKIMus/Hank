@@ -1,3 +1,8 @@
 <div class="client-panel-header-background">
-    <img src="http://all4desktop.com/data_images/1680%20x%201050/4167926-os-x-mountain-lion.jpg" alt="Client panel background">
+    {% if app.user.background %}
+        <img src="{{ app.user.background }}" alt="Client's panel background">
+
+        {% else %}
+                <img src="http://all4desktop.com/data_images/1680%20x%201050/4167926-os-x-mountain-lion.jpg" alt="Client's panel background">
+    {% endif %}
 </div>

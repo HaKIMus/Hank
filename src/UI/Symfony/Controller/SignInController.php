@@ -2,38 +2,23 @@
 
 namespace Hank\UI\Symfony\Controller;
 
-use Hank\Application\Authorization\SignIn as AuthorizationSignIn;
-use Hank\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 
 class SignInController extends Controller
 {
-    public function index(): Response
+    public function index(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('authorization/sign-in.twig');
-    }
+        $error = $authenticationUtils->getLastAuthenticationError();
 
-    public function signIn(Request $request, SessionInterface $session, ClientDbalAdapter $clientDbal): Response
-    {
-        $name = $request->get('name');
-        $password = $request->get('password');
+        $lastUsername = $authenticationUtils->getLastUsername();
 
-        $authorization = new AuthorizationSignIn(
-            $name,
-            $password,
-            $clientDbal,
-            $session
-        );
-
-        if ($authorization->validateData()) {
-            $authorization->setClientSession();
-
-            return $this->redirectToRoute('app_bank_client_panel');
-        }
-
-        return $this->redirectToRoute('app_bank_sign_in');
+        return $this->render('authorization/sign-in.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]);
     }
 }

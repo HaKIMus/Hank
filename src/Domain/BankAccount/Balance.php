@@ -27,6 +27,16 @@ class Balance
         $this->currency = $currency;
     }
 
+    public function getBalance(): float
+    {
+        return $this->balance;
+    }
+
+    public function getCurrency(): string
+    {
+        return $this->currency;
+    }
+
     public function payIn(float $amountOfMoney, UuidInterface $bankAccountId, UuidInterface $clientId, Ports\PayIn $payInSystem, LogRepository $log): void
     {
         if ($amountOfMoney < 0.00) {
@@ -113,7 +123,7 @@ class Balance
         if ($amountOfMoney === 0.00) {
             $log->add(
                 new Log(
-                    new Message('Paying out no amount of money denied'),
+                    new Message('Paying 0out no amount of money denied'),
                     new Importance(2),
                     new Date(new \DateTime('now')),
                     $bankAccountId,
@@ -126,7 +136,7 @@ class Balance
             throw new NoAmountOfMoneyException();
         }
 
-        if (($this->balance - $amountOfMoney) <= -100) {
+        if (($this->balance - $amountOfMoney) < -100) {
             $log->add(
                 new Log(
                     new Message('Paying out ' . $amountOfMoney . $this->currency . ' amount of money denied because the balance after transaction if lower than -100'),
@@ -142,7 +152,10 @@ class Balance
             throw new TooLargeAmountOfMoneyException();
         }
 
-        if ($amountOfMoney > $this->balance) {
+        /**
+         * The couple of code isn't write down in the scenario
+         */
+/*        if ($amountOfMoney > $this->balance) {
             $log->add(
                 new Log(
                     new Message('Paying out ' . $amountOfMoney . $this->currency . ' amount of money which is greater than balance of client: ' . $this->balance),
@@ -156,7 +169,7 @@ class Balance
             $log->commit();
 
             throw new TooLargeAmountOfMoneyException();
-        }
+        }*/
 
         $log->add(
             new Log(
