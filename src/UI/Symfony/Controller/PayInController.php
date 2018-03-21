@@ -23,34 +23,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PayInController extends Controller
 {
-    private $clientService;
-
-    public function __construct(ClientService $clientService)
-    {
-        $this->clientService = $clientService;
-    }
-
     public function index(): Response
     {
-        try {
-            return $this->render('panel/pay-in-client-panel.twig', [
-                'client' => $this->clientService->getClient()
-            ]);
-        } catch (ClientNotSignedIn $e) {
-            return $this->redirectToRoute('app_bank_sign_in')
-                ->setStatusCode(401);
-        }
+        return $this->render('panel/pay-in-client-panel.twig');
     }
 
     public function payIn(
         Request $request,
-        UpdateClientSessionService $updateClientSessionService,
         LogRepository $logRepository,
         EntityManagerInterface $entityManager): Response
     {
-        $clientId = Uuid::fromString($this->clientService->getClient()->id());
+        $clientId = Uuid::fromString($this->getUser()->getId()->toString());
 
-        $bankAccountId = Uuid::fromString($this->clientService->getClient()->getBankAccount()->id())->toString();
+        $bankAccountId = Uuid::fromString($this->getUser()->getBankAccount()->getId())->toString();
 
         $payInCommand = new PayInCommand(
             $request->get('amount'),
@@ -64,14 +49,13 @@ class PayInController extends Controller
             $logRepository
         );
 
+        $entityManager->commit();
+
         try {
             $payInHandler->handle($payInCommand);
         } catch (\Exception $exception) {
             return $this->redirectToRoute('app_bank_pay_in_client_panel', [], 403);
         }
-
-        $updateClientSessionService->update();
-
 
         return $this->redirectToRoute('app_bank_pay_in_client_panel');
     }

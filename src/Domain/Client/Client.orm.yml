@@ -9,11 +9,19 @@ Hank\Domain\Client\Client:
       customIdGenerator:
         class: Ramsey\Uuid\Doctrine\UuidGenerator
   fields:
-    ~ #none
-  embedded:
-    name:
-      class: Hank\Domain\Client\Name
-      columnPrefix: false
+    #~ #none
+    username:
+      type: string
+      length: 32
+    background:
+      type: string
+      options:
+        default: http://all4desktop.com/data_images/1680%20x%201050/4167926-os-x-mountain-lion.jpg
+
+  #embedded:
+    #username:
+#      class: Hank\Domain\Client\Username
+#      columnPrefix: false
     password:
       class: Hank\Domain\Client\Password
       columnPrefix: false

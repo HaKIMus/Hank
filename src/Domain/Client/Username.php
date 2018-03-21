@@ -2,18 +2,18 @@
 
 namespace Hank\Domain\Client;
 
-class Email
+class Username
 {
-    private $email;
+    private $username;
 
     public function __construct(
-        string $email
+        string $username
     ) {
-        $this->email = $email;
+        $this->username = $username;
     }
 
     public function __toString(): string
     {
-        return $this->email;
+        return $this->username;
     }
 }

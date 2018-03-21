@@ -11,4 +11,9 @@ class Password
     ) {
         $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
+
+    public function __toString(): string
+    {
+        return $this->password;
+    }
 }

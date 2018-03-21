@@ -22,6 +22,7 @@ class ClientDbalAdapter extends DbalRepositoryAbstract implements ClientStore
                 'c.password',
                 'c.email',
                 'c.bankAccountId',
+                'c.background',
                 'ba.id AS bankAccountId',
                 'ba.balance',
                 'ba.currency'

@@ -17,21 +17,13 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    Hank\UI\Symfony\Controller\:
-        resource: '../src/UI/Symfony/Controller'
-        tags: ['controller.service_arguments']
+
+    #Hank\UI\Symfony\Controller\:
+    #    resource: '../src/UI/Symfony/Controller'
+    #    tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    Hank\Infrastructure\Service\ClientService:
-        arguments:
-            $session: '@session'
-
-    Hank\Infrastructure\Service\UpdateClientSessionService:
-        arguments:
-            $session: '@session'
-            $clientDbalAdapter: '@Hank\Infrastructure\Domain\Adapters\Db\Dbal\ClientDbalAdapter'
-
     Hank\Infrastructure\Domain\Repository\ClientRepository:
         arguments:
             $connection: '@doctrine.dbal.default_connection'

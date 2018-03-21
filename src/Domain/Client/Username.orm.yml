@@ -1,7 +1,7 @@
-Hank\Domain\Client\Name:
+Hank\Domain\Client\Username:
   type: embeddable
   fields:
-    name:
+    username:
       type: string
       nullable: false
       unique: true

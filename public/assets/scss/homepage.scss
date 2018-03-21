@@ -28,7 +28,7 @@
 .join-us {
   margin-top: 80px;
   height: 620px;
-  background: linear-gradient(to right, #0037ff, #006dad);
+  background: linear-gradient(to right,#8a1154,#4c1050);
   color: #fff;
 
   .row {
@@ -61,25 +61,26 @@
       font-size: 30px;
       text-transform: uppercase;
       letter-spacing: 10px;
-      color: #005df3;
+      color: #cc0b84;
       box-shadow: 0 0 30px 4px rgba(23, 23, 23, 0.45);
+      transition-duration: 0.1s;
 
       &:hover {
         background: linear-gradient(to right,#ffffff,#fff);
-        color: #0079ff;
+        color: #d63198;
         box-shadow: 0 0 60px 4px rgba(23, 23, 23, 0.45);
       }
 
       &:focus {
         background: linear-gradient(to right,#d6d6d6,#ffffff);
         box-shadow: 0 0 20px 8px rgba(23, 23, 23, 0.45);
-        color: #005df3;
+        color: #d63198;
       }
 
       &:active {
         background: linear-gradient(to right,#d6d6d6,#ffffff);
         box-shadow: 0 0 20px 8px rgba(23, 23, 23, 0.45);
-        color: #005df3;
+        color: #d63198;
       }
     }
   }
