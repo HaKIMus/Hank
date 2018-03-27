@@ -3,7 +3,7 @@
     "license": "proprietary",
     "require": {
         "php": "^7.2.0",
-        "doctrine/orm": "^2.5",
+        "doctrine/orm": "^2.6.1",
         "moneyphp/money": "^3.0",
         "phpspec/phpspec": "^4.2",
         "ramsey/uuid-doctrine": "^1.4",
@@ -19,6 +19,7 @@
         "symfony/security-bundle": "^4.0",
         "symfony/security-csrf": "^4.0",
         "symfony/twig-bundle": "^4.0",
+        "symfony/var-dumper": "^4.0",
         "symfony/yaml": "^4.0",
         "twbs/bootstrap": "4.0.0-alpha.6"
     },
@@ -26,7 +27,8 @@
         "leanphp/phpspec-code-coverage": "^4.0",
         "symfony/dotenv": "^4.0",
         "symfony/profiler-pack": "^1.0",
-        "symfony/thanks": "^1.0"
+        "symfony/thanks": "^1.0",
+        "symfony/web-server-bundle": "^4.0"
     },
     "config": {
         "preferred-install": {

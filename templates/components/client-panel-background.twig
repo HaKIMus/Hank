@@ -1,8 +1,48 @@
-<div class="client-panel-header-background">
-    {% if app.user.background %}
-        <img src="{{ app.user.background }}" alt="Client's panel background">
+{% if changeBackgroundError %}
+    <div class="alert alert-warning m-2 text-center" role="alert">
+        {% for error in changeBackgroundError %}
+        <p>
+            {{ error }}
+        </p>
+        {% endfor %}
+    </div>
+{% endif %}
 
-        {% else %}
-                <img src="http://all4desktop.com/data_images/1680%20x%201050/4167926-os-x-mountain-lion.jpg" alt="Client's panel background">
-    {% endif %}
+<div class="client-panel-header-background"
+        style="{% if app.user.background %}background: url({{ app.user.background }});{% else %}background: url(http://all4desktop.com/data_images/1680%20x%201050/4167926-os-x-mountain-lion.jpg);{% endif %}
+                background-size: cover; background-repeat: no-repeat;">
+
+    <div class="client-panel-header-background__change-background">
+        <button class="btn client-panel-header-background__change-background--button content-blurred" data-toggle="modal" data-target="#changeBackgroundModal">
+            <img src="{{ asset("assets/img/icons8-settings-50.png") }}">
+        </button>
+    </div>
+</div>
+
+<div class="modal fade" id="changeBackgroundModal" tabindex="-1" role="dialog" aria-labelledby="changeBackgroundModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change background</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form action="{{ path('app_bank_client_panel_change_background') }}" method="post">
+                    <div class="form-group">
+                        <label for="urlToBackground">URL for new background:</label>
+                        <input type="url" class="form-control" id="urlToBackground" aria-describedby="urlHelp" placeholder="Enter URL" name="url" required>
+                        <small id="urlHelp" class="form-text text-muted">The URL cannot begin with: file://</small>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

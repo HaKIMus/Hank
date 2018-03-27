@@ -12,6 +12,10 @@ app_bank_client_panel:
   path: /client-panel
   controller: Hank\UI\Symfony\Controller\ClientPanelController::index
 
+app_bank_client_panel_change_background:
+  path: /client-panel/change-background
+  controller: Hank\UI\Symfony\Controller\ClientPanelController::changeClintBackground
+
 #Sign In
 app_bank_sign_in:
   path: /sign-in
