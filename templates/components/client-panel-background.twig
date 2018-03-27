@@ -1,9 +1,9 @@
-{% if changeBackgroundError %}
+{% if errors is defined and errors is not null %}
     <div class="alert alert-warning m-2 text-center" role="alert">
-        {% for error in changeBackgroundError %}
-        <p>
-            {{ error }}
-        </p>
+        {% for error in errors %}
+            <p>
+                {{ error }}
+            </p>
         {% endfor %}
     </div>
 {% endif %}
