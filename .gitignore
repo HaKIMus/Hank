@@ -11,3 +11,6 @@ composer.lock
 node_modules/
 
 coverage/
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###

@@ -32,3 +32,6 @@ services:
         arguments:
             $connection: '@doctrine.dbal.default_connection'
             $entityManager: '@doctrine.orm.entity_manager'
+    Hank\Infrastructure\Service\ChangeBackgroundService:
+        arguments:
+            $connection: '@doctrine.dbal.default_connection'

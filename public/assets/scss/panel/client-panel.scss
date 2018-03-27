@@ -3,14 +3,41 @@
 }
 
 .client-panel-header-background {
+  position: relative;
   width: 100%;
   height: 350px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 1px 1px rgba(0,0,0,.19), 0 2px 10px rgba(0,0,0,.23);
+  z-index: 1;
+  overflow: hidden;
 
-  img {
+  .client-panel-header-background__change-background {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    display: flex;
+
+    .client-panel-header-background__change-background--button {
+      opacity: 0.3;
+      cursor: pointer;
+      position: relative;
+      margin-left: auto;
+      margin-right: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 0 0 5px 5px;
+      border: none;
+      overflow: hidden;
+      width: 50px;
+      height: 50px;
+      padding: 10px;
+
+      &:hover {
+        opacity: inherit;
+      }
+
+      img {
+        z-index: 9999;
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }
 
