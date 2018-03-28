@@ -3,6 +3,7 @@
 namespace Hank\Infrastructure\Service;
 
 use Doctrine\DBAL\Connection;
+use Ramsey\Uuid\UuidInterface;
 
 class ChangeBackgroundService
 {
@@ -13,12 +14,29 @@ class ChangeBackgroundService
         $this->connection = $connection;
     }
 
-    public function change(string $urlToNewBackground, string $clientId): void
+    public function change(string $urlToNewBackground, UuidInterface $clientId): void
     {
-        $contentType = get_headers($urlToNewBackground, 1)['Content-Type'];
+        $this->translateErrorsToException();
+
+        try {
+            $contentType = get_headers($urlToNewBackground, 1)['Content-Type'];
+        } catch (\Exception $exception) {
+            throw new \Exception('We cannot download the image from this page');
+        }
+
+        if (is_array($contentType)) {
+            foreach ($contentType as $type) {
+                if ($this->isFirstWordLike($type, 'image')) {
+                    $contentType = $type;
+                    break;
+                } else {
+                    throw new \InvalidArgumentException('The URL is not a image');
+                }
+            }
+        }
 
         if (!$this->isFirstWordLike($contentType, 'image')) {
-            throw new \InvalidArgumentException('The URL is not image');
+            throw new \InvalidArgumentException('The URL is not a image');
         }
 
         $queryBuilder = $this->connection->createQueryBuilder();
@@ -39,5 +57,18 @@ class ChangeBackgroundService
         }
 
         return false;
+    }
+
+    private function translateErrorsToException(): bool
+    {
+        set_error_handler(function($errno, $errstr, $errfile, $errline, array $errcontext) {
+            if (0 === error_reporting()) {
+                return false;
+            }
+
+            throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
+        });
+
+        return true;
     }
 }
