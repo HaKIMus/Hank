@@ -2,16 +2,16 @@
 
 namespace Hank\Infrastructure\Service;
 
-use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Query\QueryBuilder;
 use Ramsey\Uuid\UuidInterface;
 
 class ChangeBackgroundService
 {
-    private $connection;
+    private $queryBuilder;
 
-    public function __construct(Connection $connection)
+    public function __construct(QueryBuilder $queryBuilder)
     {
-        $this->connection = $connection;
+        $this->queryBuilder = $queryBuilder;
     }
 
     public function change(string $urlToNewBackground, UuidInterface $clientId): void
@@ -39,15 +39,13 @@ class ChangeBackgroundService
             throw new \InvalidArgumentException('The URL is not a image');
         }
 
-        $queryBuilder = $this->connection->createQueryBuilder();
-
-        $queryBuilder->update('client')
+        $this->queryBuilder->update('client')
             ->set('background', ':newBackground')
             ->where('id = :id')
             ->setParameter('newBackground', $urlToNewBackground)
             ->setParameter('id', $clientId);
 
-        $queryBuilder->execute();
+        $this->queryBuilder->execute();
     }
 
     private function isFirstWordLike(string $sentence, string $word): bool
