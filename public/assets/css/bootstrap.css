@@ -7,6 +7,7 @@
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 @import url("https://fonts.googleapis.com/css?family=Lato:100,300,400,700&subset=latin-ext");
 @import url("https://fonts.googleapis.com/css?family=Kanit:100");
+@import url("http://weloveiconfonts.com/api/?family=entypo");
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -6019,18 +6020,33 @@ a {
   content: "";
   position: absolute;
   display: block;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  -webkit-filter: blur(20px);
-  -moz-filter: blur(15px);
-  -o-filter: blur(15px);
-  -ms-filter: blur(15px);
-  filter: blur(15px);
+  filter: blur(10px);
   opacity: 0.95;
-  background-color: #1d1e1f;
+  background-color: #fff; }
+
+.content-blurred.content-blurred--change-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: .4;
+  display: block;
   z-index: -1; }
+  .content-blurred.content-blurred--change-background::before {
+    z-index: -1;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+    width: 150px;
+    height: 150px;
+    background-color: #fff;
+    right: -75px;
+    top: -75px; }
 
 .navbar-hank {
   background-color: #fff;
@@ -6068,26 +6084,39 @@ a {
   width: 100%;
   height: 350px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.19), 0 2px 10px rgba(0, 0, 0, 0.23);
-  z-index: 1;
-  overflow: hidden; }
+  z-index: 1; }
   .client-panel-header-background .client-panel-header-background__change-background {
     width: 100%;
     display: flex; }
     .client-panel-header-background .client-panel-header-background__change-background .client-panel-header-background__change-background--button {
-      opacity: 0.3;
+      z-index: 9999;
       cursor: pointer;
       position: relative;
       margin-left: auto;
       margin-right: 20px;
-      background: rgba(0, 0, 0, 0.3);
       border-radius: 0 0 5px 5px;
       border: none;
       overflow: hidden;
       width: 50px;
       height: 50px;
       padding: 10px; }
-      .client-panel-header-background .client-panel-header-background__change-background .client-panel-header-background__change-background--button:hover {
-        opacity: inherit; }
+      @supports not ((-webkit-backdrop-filter: blur(5px)) or (backdrop-filter: blur(5px))) {
+        .client-panel-header-background .client-panel-header-background__change-background .client-panel-header-background__change-background--button {
+          opacity: 0.4; }
+          .client-panel-header-background .client-panel-header-background__change-background .client-panel-header-background__change-background--button:hover {
+            opacity: .90; } }
+      @supports (-webkit-backdrop-filter: blur(5px)) or (backdrop-filter: blur(5px)) {
+        .client-panel-header-background .client-panel-header-background__change-background .client-panel-header-background__change-background--button {
+          background-color: rgba(255, 255, 255, 0.5);
+          -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px); }
+          .client-panel-header-background .client-panel-header-background__change-background .client-panel-header-background__change-background--button:hover {
+            background-color: rgba(255, 255, 255, 0.9); } }
+      @supports (-webkit-backdrop-filter: blur(5px)) or (backdrop-filter: blur(5px)) {
+        .client-panel-header-background .client-panel-header-background__change-background .client-panel-header-background__change-background--button .content-blurred {
+          display: none; } }
+      .client-panel-header-background .client-panel-header-background__change-background .client-panel-header-background__change-background--button:hover .content-blurred--change-background {
+        opacity: .90; }
       .client-panel-header-background .client-panel-header-background__change-background .client-panel-header-background__change-background--button img {
         z-index: 9999;
         width: 100%;
