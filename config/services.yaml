@@ -24,6 +24,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    doctrine.dbal.query_builder:
+        class: Doctrine\DBAL\Query\QueryBuilder
+
     Hank\Infrastructure\Domain\Repository\ClientRepository:
         arguments:
             $connection: '@doctrine.dbal.default_connection'
@@ -34,4 +37,4 @@ services:
             $entityManager: '@doctrine.orm.entity_manager'
     Hank\Infrastructure\Service\ChangeBackgroundService:
         arguments:
-            $connection: '@doctrine.dbal.default_connection'
+            $queryBuilder: '@doctrine.dbal.query_builder'
