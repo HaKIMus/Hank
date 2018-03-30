@@ -18,13 +18,21 @@ class BankAccount
         $this->balance = $balance;
     }
 
-    public function payIn(float $amount, UuidInterface $clientId, Ports\PayIn $payIn, LogRepository $log): void
-    {
+    public function payIn(
+        float $amount,
+        UuidInterface $clientId,
+        Ports\PayIn $payIn,
+        LogRepository $log
+    ): void {
         $this->balance->payIn($amount, $this->id, $clientId, $payIn, $log);
     }
 
-    public function payOut(float $amount, UuidInterface $clientId, Ports\PayOut $payOut, LogRepository $log): void
-    {
+    public function payOut(
+        float $amount,
+        UuidInterface $clientId,
+        Ports\PayOut $payOut,
+        LogRepository $log
+    ): void {
         $this->balance->payOut($amount, $this->id, $clientId, $payOut, $log);
     }
 
