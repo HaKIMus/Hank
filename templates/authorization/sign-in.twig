@@ -10,7 +10,7 @@
                     <div class="d-lg-flex alert alert-danger w-100" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
-                <form method="post" class="form-sign-in" action="{{ path('app_bank_sign_in') }}">
+                <form method="post" class="form-sign-in" action="{{ path('hank_sign_in') }}">
                     <div class="form-group">
                         <label for="inputName">Name</label>
                         <input type="text" class="form-control" id="inputName" placeholder="Enter name" name="username" value="{{ last_username }}">

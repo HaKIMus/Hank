@@ -45,9 +45,9 @@ class PayOutController extends Controller
         try {
             $payOutHandler->handle($payOutCommand);
         } catch (\Exception $exception) {
-            return $this->redirectToRoute('app_bank_pay_out_client_panel');
+            return $this->redirectToRoute('hank_pay_out_client_panel');
         }
 
-        return $this->redirectToRoute('app_bank_pay_out_client_panel');
+        return $this->redirectToRoute('hank_pay_out_client_panel');
     }
 }

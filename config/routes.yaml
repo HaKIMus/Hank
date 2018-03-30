@@ -3,31 +3,33 @@
 #    defaults: { _controller: 'Hank\Controller\DefaultController::index' }
 
 #Homepage
-app_bank_homepage:
+hank_homepage:
   path: /
   controller: Hank\UI\Symfony\Controller\BankHomePageController::index
 
 #Client Panel
-app_bank_client_panel:
+hank_client_panel:
   path: /client-panel
   controller: Hank\UI\Symfony\Controller\ClientPanelController::index
 
-app_bank_client_panel_change_background:
+hank_client_panel_change_background:
   path: /client-panel/change-background
   controller: Hank\UI\Symfony\Controller\ClientPanelController::changeClintBackground
 
+#Send money to friends
+
 #Sign In
-app_bank_sign_in:
+hank_sign_in:
   path: /sign-in
   controller: Hank\UI\Symfony\Controller\SignInController::index
 
 #Sign Up
-app_bank_sign_up:
+hank_sign_up:
   path: /sign-up
   controller: Hank\UI\Symfony\Controller\SignUpController::index
 
 #Sign Up Processing
-app_bank_sign_up_processing:
+hank_sign_up_processing:
   path: /sign-up-processing
   controller: Hank\UI\Symfony\Controller\SignUpController::signUp
 
@@ -36,23 +38,23 @@ logout:
   path: /sign-out
 
 #Pay In
-app_bank_pay_in_client_panel:
+hank_pay_in_client_panel:
   path: /client-panel/pay-in
   controller: Hank\UI\Symfony\Controller\PayInController::index
 
 #Pay In Processing
-app_bank_pay_in_processing:
+hank_pay_in_processing:
   path: /client-panel/pay-in-processing
   controller: Hank\UI\Symfony\Controller\PayInController::payIn
   methods: [POST]
 
 #Pay Out
-app_bank_pay_out_client_panel:
+hank_pay_out_client_panel:
   path: /client-panel/pay-out
   controller: Hank\UI\Symfony\Controller\PayOutController::index
 
 #Pay Out Processing
-app_bank_pay_out_processing:
+hank_pay_out_processing:
   path: /client-panel/pay-out-processing
   controller: Hank\UI\Symfony\Controller\PayOutController::payOut
   methods: [POST]
