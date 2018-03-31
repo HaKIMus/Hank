@@ -4,6 +4,10 @@ namespace spec\Hank\Domain\BankAccount;
 
 use Hank\Domain\BankAccount\Balance;
 use Hank\Domain\BankAccount\BankAccount;
+use Hank\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
+use Hank\Domain\BankAccount\Exception\NoAmountOfMoneyException;
+use Hank\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
+use Hank\Domain\Client\Email;
 use Hank\Domain\Ports;
 use Hank\Infrastructure\Domain\Repository\LogRepository;
 use Money\Currency;
@@ -14,7 +18,7 @@ class BankAccountSpec extends ObjectBehavior
 {
     function let(): void
     {
-        $this->beConstructedWith(new Balance( 20, new Currency('EUR')));
+        $this->beConstructedWith(new Balance( 20.00, new Currency('EUR')));
         $this->setId(Uuid::uuid4());
     }
 
@@ -28,7 +32,7 @@ class BankAccountSpec extends ObjectBehavior
         $payInPort->implement(Ports\PayIn::class);
         $logSystem->beADoubleOf(LogRepository::class);
 
-        $this->payIn(20, Uuid::uuid4(), $payInPort, $logSystem);
+        $this->payIn(20.00, Uuid::uuid4(), $payInPort, $logSystem);
     }
 
     function it_allows_us_to_pay_out_money($payOutPort, $logSystem): void
@@ -36,6 +40,37 @@ class BankAccountSpec extends ObjectBehavior
         $payOutPort->implement(Ports\PayOut::class);
         $logSystem->beADoubleOf(LogRepository::class);
 
-        $this->payOut(20, Uuid::uuid4(), $payOutPort, $logSystem);
+        $this->payOut(20.00, Uuid::uuid4(), $payOutPort, $logSystem);
+    }
+
+    function it_allows_us_to_send_money_to_friend($sendingMoneyPort): void
+    {
+        $sendingMoneyPort->implement(Ports\SendingMoneyToFriend::class);
+
+        $this->sendMoneyToFriend(20.00, new Email('example@email.com'), $sendingMoneyPort);
+    }
+
+    function it_throws_exception_if_is_sending_amount_greater_than_our_balance($sendingMoneyPort): void
+    {
+        $sendingMoneyPort->implement(Ports\SendingMoneyToFriend::class);
+
+        $this->shouldThrow(TooLargeAmountOfMoneyException::class)
+            ->during('sendMoneyToFriend', [25.00, new Email('example@email.com'), $sendingMoneyPort]);
+    }
+
+    function it_throws_exception_if_is_sending_negative_amount_of_money($sendingMoneyPort): void
+    {
+        $sendingMoneyPort->implement(Ports\SendingMoneyToFriend::class);
+
+        $this->shouldThrow(NegativeAmountOfMoneyException::class)
+            ->during('sendMoneyToFriend', [-30.00, new Email('example@email.com'), $sendingMoneyPort]);
+    }
+
+    function it_throws_exception_if_is_sending_no_amount_of_money($sendingMoneyPort): void
+    {
+        $sendingMoneyPort->implement(Ports\SendingMoneyToFriend::class);
+
+        $this->shouldThrow(NoAmountOfMoneyException::class)
+            ->during('sendMoneyToFriend', [00.00, new Email('example@email.com'), $sendingMoneyPort]);
     }
 }

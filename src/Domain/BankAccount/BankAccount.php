@@ -2,6 +2,9 @@
 
 namespace Hank\Domain\BankAccount;
 
+use Hank\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
+use Hank\Domain\BankAccount\Exception\NoAmountOfMoneyException;
+use Hank\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
 use Hank\Domain\Client\Email;
 use Hank\Domain\Ports;
 use Hank\Infrastructure\Domain\Repository\LogRepository;
@@ -42,9 +45,20 @@ class BankAccount
         Ports\SendingMoneyToFriend $sendingMoney
     ): void {
         /**
-         * @TODO: Domain logic
-         * @TODO: Spec
+         * @TODO: Logging system
          */
+
+        if ($amount < 0) {
+            throw new NegativeAmountOfMoneyException();
+        }
+
+        if ($amount === 0.00) {
+            throw new NoAmountOfMoneyException();
+        }
+
+        if ($amount > $this->balance->getBalance()) {
+            throw new TooLargeAmountOfMoneyException();
+        }
 
         $sendingMoney->send($amount, $email, $this->id);
     }
