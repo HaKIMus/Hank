@@ -33,9 +33,9 @@ class ClientPanelController extends Controller
         } catch (\Exception $exception) {
             $flashBag->add('error', 'The URL is not an image!');
 
-            return $this->redirectToRoute('app_bank_client_panel');
+            return $this->redirectToRoute('hank_client_panel');
         }
 
-        return $this->redirectToRoute('app_bank_client_panel');
+        return $this->redirectToRoute('hank_client_panel');
     }
 }

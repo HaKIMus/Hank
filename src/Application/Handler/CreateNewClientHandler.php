@@ -13,7 +13,7 @@ use Hank\Infrastructure\Domain\Repository\ClientRepository;
 use Money\Currency;
 use Ramsey\Uuid\Uuid;
 
-class CreateNewClientHandler
+class CreateNewClientHandler implements HandlerInterface
 {
     private $clientRepository;
 

@@ -34,9 +34,9 @@ class SignUpController extends Controller
             $signUpHandler = new CreateNewClientHandler($clientRepository);
             $signUpHandler->handle($signUpCommand);
 
-            return $this->redirectToRoute('app_bank_sign_in');
+            return $this->redirectToRoute('hank_sign_in');
         }
 
-        return $this->redirectToRoute('app_bank_sign_in');
+        return $this->redirectToRoute('hank_sign_in');
     }
 }

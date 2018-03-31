@@ -9,14 +9,17 @@ use Hank\Infrastructure\Domain\Repository\BankAccountRepository;
 use Hank\Infrastructure\Domain\Repository\LogRepository;
 use Ramsey\Uuid\Uuid;
 
-class PayInHandler
+class PayInHandler implements HandlerInterface
 {
     private $bankAccountRepository;
     private $payInPort;
     private $payInLogSystem;
 
-    public function __construct(BankAccountRepository $bankAccountRepository, PayIn $payInPort, LogRepository $logRepository)
-    {
+    public function __construct(
+        BankAccountRepository $bankAccountRepository,
+        PayIn $payInPort,
+        LogRepository $logRepository
+    ) {
         $this->bankAccountRepository = $bankAccountRepository;
         $this->payInPort = $payInPort;
         $this->payInLogSystem = $logRepository;

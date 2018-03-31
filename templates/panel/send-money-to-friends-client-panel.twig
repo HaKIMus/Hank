@@ -1,0 +1,33 @@
+{% extends 'template.twig' %}
+
+{% block body %}
+    {% include 'components/navbar.twig' %}
+    {% include 'components/client-panel-background.twig' %}
+
+    <main class="client-panel">
+        <div class="container">
+            <div class="row d-flex">
+                {% include 'components/header-client-panel.twig' %}
+                {% include 'components/navbar-client-panel.twig' %}
+
+                <div class="col-sm-9">
+                    <h2 class="hank-color-special-light">Send money to friends</h2>
+
+                    <form method="post" class="form-pay-in" action="{{ path('hank_send_money_to_friends_processing') }}">
+                        <div class="form-group">
+                            <label for="email">Friend's E-mail</label>
+                            <input type="email" class="form-control" id="amount" name="email" placeholder="friend@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" class="form-control" id="amount" name="amount" value="00.00" step="00.01" max="10000" min="5" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-block btn-hank">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
