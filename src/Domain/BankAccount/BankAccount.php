@@ -6,6 +6,10 @@ use Hank\Domain\BankAccount\Exception\NegativeAmountOfMoneyException;
 use Hank\Domain\BankAccount\Exception\NoAmountOfMoneyException;
 use Hank\Domain\BankAccount\Exception\TooLargeAmountOfMoneyException;
 use Hank\Domain\Client\Email;
+use Hank\Domain\Log\Date;
+use Hank\Domain\Log\Importance;
+use Hank\Domain\Log\Log;
+use Hank\Domain\Log\Message;
 use Hank\Domain\Ports;
 use Hank\Infrastructure\Domain\Repository\LogRepository;
 use Ramsey\Uuid\UuidInterface;
@@ -42,23 +46,69 @@ class BankAccount
     public function sendMoneyToFriend(
         float $amount,
         Email $email,
-        Ports\SendingMoneyToFriend $sendingMoney
+        Ports\SendingMoneyToFriend $sendingMoney,
+        LogRepository $log,
+        UuidInterface $clientId
     ): void {
-        /**
-         * @TODO: Logging system
-         */
-
         if ($amount < 0) {
+            $log->add(
+                new Log(
+                    new Message('Sending negative amount of money denied'),
+                    new Importance(1),
+                    new Date(new \DateTime('now')),
+                    $this->id,
+                    $clientId
+                )
+            );
+
+            $log->commit();
+
             throw new NegativeAmountOfMoneyException();
         }
 
         if ($amount === 0.00) {
+            $log->add(
+                new Log(
+                    new Message('Sending no amount of money denied'),
+                    new Importance(1),
+                    new Date(new \DateTime('now')),
+                    $this->id,
+                    $clientId
+                )
+            );
+
+            $log->commit();
+
             throw new NoAmountOfMoneyException();
         }
 
         if ($amount > $this->balance->getBalance()) {
+            $log->add(
+                new Log(
+                    new Message('Sending amount of money which is greater than balance denied'),
+                    new Importance(1),
+                    new Date(new \DateTime('now')),
+                    $this->id,
+                    $clientId
+                )
+            );
+
+            $log->commit();
+
             throw new TooLargeAmountOfMoneyException();
         }
+
+        $log->add(
+            new Log(
+                new Message('Sending done with success'),
+                new Importance(1),
+                new Date(new \DateTime('now')),
+                $this->id,
+                $clientId
+            )
+        );
+
+        $log->commit();
 
         $sendingMoney->send($amount, $email, $this->id);
     }

@@ -9,18 +9,25 @@ use Hank\Domain\Ports;
 use Hank\Infrastructure\Domain\Repository\BankAccountRepository;
 use Hank\Infrastructure\Domain\Repository\LogRepository;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class SendMoneyToFriendsHandler implements  HandlerInterface
 {
     private $bankAccountRepository;
     private $sendingMoneyToFriend;
+    private $logRepository;
+    private $clientId;
 
     public function __construct(
         BankAccountRepository $bankAccountRepository,
-        Ports\SendingMoneyToFriend $sendingMoneyToFriend
+        Ports\SendingMoneyToFriend $sendingMoneyToFriend,
+        LogRepository $logRepository,
+        UuidInterface $clientId
     ) {
         $this->bankAccountRepository = $bankAccountRepository;
         $this->sendingMoneyToFriend = $sendingMoneyToFriend;
+        $this->logRepository = $logRepository;
+        $this->clientId = $clientId;
     }
 
     /**
@@ -35,7 +42,9 @@ class SendMoneyToFriendsHandler implements  HandlerInterface
         $bankAccount->sendMoneyToFriend(
             $command->getAmount(),
             new Email($command->getEmail()),
-            $this->sendingMoneyToFriend
+            $this->sendingMoneyToFriend,
+            $this->logRepository,
+            $this->clientId
         );
     }
 }

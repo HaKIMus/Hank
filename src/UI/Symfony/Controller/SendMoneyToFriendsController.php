@@ -23,16 +23,17 @@ class SendMoneyToFriendsController extends Controller
     public function send(
         Request $request,
         BankAccountRepository $bankAccountRepository,
-        SendingMoneyToFriendAdapter $sendingMoneyToFriendAdapter
+        SendingMoneyToFriendAdapter $sendingMoneyToFriendAdapter,
+        LogRepository $logRepository
     ): Response {
         $amount = $request->get('amount');
         $email = $request->get('email');
         $clientId = $this->getUser()->getId();
         $bankAccountId = $this->getUser()->getBankAccount()->getId();
 
-        $sendMoneyHandler = new SendMoneyToFriendsHandler($bankAccountRepository, $sendingMoneyToFriendAdapter);
+        $sendMoneyHandler = new SendMoneyToFriendsHandler($bankAccountRepository, $sendingMoneyToFriendAdapter, $logRepository, $clientId);
 
-        $sendMoneyHandler->handle(new SendMoneyToFriendsCommand($amount, $email, $bankAccountId, $clientId));
+        $sendMoneyHandler->handle(new SendMoneyToFriendsCommand($amount, $email, $bankAccountId));
 
         $bankAccountRepository->commit();
 
