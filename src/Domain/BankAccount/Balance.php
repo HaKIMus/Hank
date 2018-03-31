@@ -133,8 +133,8 @@ class Balance
         if ($amountOfMoney === 0.00) {
             $log->add(
                 new Log(
-                    new Message('Paying 0out no amount of money denied'),
-                    new Importance(2),
+                    new Message('Paying out no amount of money denied'),
+                    new Importance(1),
                     new Date(new \DateTime('now')),
                     $bankAccountId,
                     $clientId
@@ -150,7 +150,7 @@ class Balance
             $log->add(
                 new Log(
                     new Message('Paying out ' . $amountOfMoney . $this->currency . ' amount of money denied because the balance after transaction if lower than -100'),
-                    new Importance(2),
+                    new Importance(1),
                     new Date(new \DateTime('now')),
                     $bankAccountId,
                     $clientId

@@ -46,9 +46,9 @@ class PayInController extends Controller
         try {
             $payInHandler->handle($payInCommand);
         } catch (\Exception $exception) {
-            return $this->redirectToRoute('app_bank_pay_in_client_panel', [], 403);
+            return $this->redirectToRoute('hank_pay_in_client_panel', [], 403);
         }
 
-        return $this->redirectToRoute('app_bank_pay_in_client_panel');
+        return $this->redirectToRoute('hank_pay_in_client_panel');
     }
 }
