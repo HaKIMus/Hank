@@ -53,7 +53,7 @@ class BankAccount
         if ($amount < 0) {
             $log->add(
                 new Log(
-                    new Message('Sending negative amount of money denied'),
+                    new Message('Sending negative amount of money to ' . $email->__toString() . ' denied'),
                     new Importance(1),
                     new Date(new \DateTime('now')),
                     $this->id,
@@ -69,7 +69,7 @@ class BankAccount
         if ($amount === 0.00) {
             $log->add(
                 new Log(
-                    new Message('Sending no amount of money denied'),
+                    new Message('Sending no amount of money to ' . $email->__toString() . ' denied'),
                     new Importance(1),
                     new Date(new \DateTime('now')),
                     $this->id,
@@ -85,7 +85,7 @@ class BankAccount
         if ($amount > $this->balance->getBalance()) {
             $log->add(
                 new Log(
-                    new Message('Sending amount of money which is greater than balance denied'),
+                    new Message('Sending ' . $amount . ' amount to ' . $email->__toString() . ' of money which is greater than current balance denied'),
                     new Importance(1),
                     new Date(new \DateTime('now')),
                     $this->id,
@@ -100,7 +100,7 @@ class BankAccount
 
         $log->add(
             new Log(
-                new Message('Sending done with success'),
+                new Message('Sending ' . $amount . ' amount on money to ' . $email->__toString() . ' done with success'),
                 new Importance(1),
                 new Date(new \DateTime('now')),
                 $this->id,
