@@ -4,7 +4,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link {% if app.request.get('_route') == 'hank_homepage' %} nav-link-active{% endif %}"
+                <a class="nav-link {% if app.request.get('_route') == 'hank_homepage' %}nav-link-active{% endif %}"
                    href="{{ path('hank_homepage') }}">
                     Home
                 </a>
@@ -12,7 +12,7 @@
 
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li class="nav-item">
-                    <a class="nav-link{% if app.request.get('_route') == 'hank_client_panel' %} nav-link-active{% endif %}"
+                    <a class="nav-link {% if app.request.get('_route') == 'hank_client_panel' %}nav-link-active{% endif %}"
                        href="{{ path('hank_client_panel') }}">
                         Client Panel
                     </a>
@@ -26,14 +26,14 @@
 
                 {% elseif not is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li class="nav-item">
-                        <a class="nav-link{% if app.request.get('_route') == 'hank_sign_in' %} nav-link-active{% endif %}"
+                        <a class="nav-link {% if app.request.get('_route') == 'hank_sign_in' %}nav-link-active{% endif %}"
                            href="{{ path('hank_sign_in') }}">
                             Sign In
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link{% if app.request.get('_route') == 'hank_sign_up' %} nav-link-active{% endif %}"
+                        <a class="nav-link {% if app.request.get('_route') == 'hank_sign_up' %}nav-link-active{% endif %}"
                            href="{{ path('hank_sign_up') }}">
                             Sign Up
                         </a>

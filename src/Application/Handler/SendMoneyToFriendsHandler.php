@@ -2,31 +2,29 @@
 
 namespace Hank\Application\Handler;
 
-use Hank\Application\Command\PayInCommand;
+use Hank\Application\Command\SendMoneyToFriendsCommand;
 use Hank\Domain\BankAccount\BankAccount;
-use Hank\Domain\Ports\PayIn;
+use Hank\Domain\Client\Email;
+use Hank\Domain\Ports;
 use Hank\Infrastructure\Domain\Repository\BankAccountRepository;
 use Hank\Infrastructure\Domain\Repository\LogRepository;
 use Ramsey\Uuid\Uuid;
 
-class PayInHandler implements HandlerInterface
+class SendMoneyToFriendsHandler implements  HandlerInterface
 {
     private $bankAccountRepository;
-    private $payInPort;
-    private $payInLogSystem;
+    private $sendingMoneyToFriend;
 
     public function __construct(
         BankAccountRepository $bankAccountRepository,
-        PayIn $payInPort,
-        LogRepository $logRepository
+        Ports\SendingMoneyToFriend $sendingMoneyToFriend
     ) {
         $this->bankAccountRepository = $bankAccountRepository;
-        $this->payInPort = $payInPort;
-        $this->payInLogSystem = $logRepository;
+        $this->sendingMoneyToFriend = $sendingMoneyToFriend;
     }
 
     /**
-     * @param PayInCommand $command
+     * @param SendMoneyToFriendsCommand $command
      */
     public function handle(object $command): void
     {
@@ -34,6 +32,10 @@ class PayInHandler implements HandlerInterface
         $bankAccount = $this->bankAccountRepository
             ->getById(Uuid::fromString($command->getBankAccountId()));
 
-        $bankAccount->payIn($command->getAmount(), Uuid::fromString($command->getClientId()), $this->payInPort, $this->payInLogSystem);
+        $bankAccount->sendMoneyToFriend(
+            $command->getAmount(),
+            new Email($command->getEmail()),
+            $this->sendingMoneyToFriend
+        );
     }
 }

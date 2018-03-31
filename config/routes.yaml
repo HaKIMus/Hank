@@ -17,6 +17,13 @@ hank_client_panel_change_background:
   controller: Hank\UI\Symfony\Controller\ClientPanelController::changeClintBackground
 
 #Send money to friends
+hank_send_money_to_friends:
+  path: /client-panel/send-money
+  controller: Hank\UI\Symfony\Controller\SendMoneyToFriendsController::index
+
+hank_send_money_to_friends_processing:
+  path: /client-panel/send-money-processing
+  controller: Hank\UI\Symfony\Controller\SendMoneyToFriendsController::send
 
 #Sign In
 hank_sign_in:

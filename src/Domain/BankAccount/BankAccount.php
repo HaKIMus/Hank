@@ -2,9 +2,9 @@
 
 namespace Hank\Domain\BankAccount;
 
+use Hank\Domain\Client\Email;
 use Hank\Domain\Ports;
 use Hank\Infrastructure\Domain\Repository\LogRepository;
-use Money\Currency;
 use Ramsey\Uuid\UuidInterface;
 
 class BankAccount
@@ -36,9 +36,17 @@ class BankAccount
         $this->balance->payOut($amount, $this->id, $clientId, $payOut, $log);
     }
 
-    public function moneyTransfer(): void
-    {
+    public function sendMoneyToFriend(
+        float $amount,
+        Email $email,
+        Ports\SendingMoneyToFriend $sendingMoney
+    ): void {
+        /**
+         * @TODO: Domain logic
+         * @TODO: Spec
+         */
 
+        $sendingMoney->send($amount, $email, $this->id);
     }
 
     public function getId()
