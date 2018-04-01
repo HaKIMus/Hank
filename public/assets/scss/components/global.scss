@@ -25,15 +25,19 @@ $hank-color-gradient-dark: #ff1677;
 $hank-color-gradient-light-hover: #bb3277;
 $hank-color-gradient-dark-hover: #e8199f;
 
+$space-from-footer: 80px;
+
 body {
   font-family: $global-font;
 }
 
 a {
   color: $hank-color-link;
+  text-decoration: none;
 
-  &:hover, &:focus {
+  &:hover, &:focus, &:active {
     color: $hank-color-link-hover;
+    text-decoration: none;
   }
 }
 
