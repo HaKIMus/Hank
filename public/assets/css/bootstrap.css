@@ -5994,9 +5994,11 @@ body {
   font-family: "Lato", sans-serif; }
 
 a {
-  color: #e44588; }
-  a:hover, a:focus {
-    color: #ba2d65; }
+  color: #e44588;
+  text-decoration: none; }
+  a:hover, a:focus, a:active {
+    color: #ba2d65;
+    text-decoration: none; }
 
 .hank-color-special {
   color: #ba2d65; }
@@ -6077,7 +6079,8 @@ a {
       border-bottom: 1px solid #ba2d65; }
 
 .client-panel {
-  margin-top: 37px; }
+  margin-top: 37px;
+  margin-bottom: 80px; }
 
 .client-panel-header-background {
   position: relative;
@@ -6156,6 +6159,42 @@ a {
 
 .client-panel__form {
   margin-top: 30px; }
+
+.hank__footer {
+  display: inline-flex;
+  padding: 50px;
+  flex-flow: wrap;
+  flex: 1 100%;
+  justify-content: space-between;
+  min-height: 320px;
+  width: 100%;
+  border-top: 1px solid #ff1677;
+  background: linear-gradient(to right, #ff1e90, #ff1677);
+  font-size: 20px;
+  letter-spacing: 1px;
+  line-height: 65px; }
+  .hank__footer .container {
+    display: inline-flex;
+    padding: 0 120px 0 120px; }
+  .hank__footer a {
+    font-family: "Kanit", sans-serif;
+    color: #000000;
+    font-weight: bold; }
+    .hank__footer a:hover, .hank__footer a:focus, .hank__footer a:active {
+      color: #fff; }
+  .hank__footer .hank__footer--text {
+    margin-right: auto;
+    color: #fff; }
+  .hank__footer .hank__footer--list {
+    margin-left: auto;
+    color: #fff;
+    list-style: none; }
+    .hank__footer .hank__footer--list li img {
+      width: 45px;
+      height: 45px;
+      margin-right: 15px; }
+    .hank__footer .hank__footer--list li a {
+      display: block; }
 
 .hank-main-header {
   font-family: "Kanit", sans-serif;
@@ -6249,14 +6288,16 @@ a {
         color: #d63198; }
 
 .sign-in {
-  margin-top: 90px; }
+  margin-top: 90px;
+  margin-bottom: 80px; }
   .sign-in .form-sign-in {
     width: 400px;
     color: #ba2d65;
     font-size: 19px; }
 
 .sign-up {
-  margin-top: 90px; }
+  margin-top: 90px;
+  margin-bottom: 80px; }
   .sign-up .form-sign-up {
     width: 400px;
     color: #ba2d65;

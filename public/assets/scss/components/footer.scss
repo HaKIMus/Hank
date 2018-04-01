@@ -1,0 +1,52 @@
+.hank__footer {
+  display: inline-flex;
+  padding: 50px;
+  flex-flow: wrap;
+  flex: 1 100%;
+  justify-content: space-between;
+  min-height: 320px;
+  width: 100%;
+  border-top: 1px solid $hank-color-gradient-dark;
+  background: linear-gradient(to right, $hank-color-gradient-light, $hank-color-gradient-dark);
+  font-size: 20px;
+  letter-spacing: 1px;
+  line-height: 65px;
+
+  .container {
+    display: inline-flex;
+    padding: 0 120px 0 120px;
+  }
+
+  a {
+    font-family: $hank-font;
+    color: #000000;
+    font-weight: bold;
+
+    &:hover, &:focus, &:active {
+      color: #fff;
+    }
+  }
+
+  .hank__footer--text {
+    margin-right: auto;
+    color: #fff;
+  }
+
+  .hank__footer--list {
+    margin-left: auto;
+    color: #fff;
+    list-style: none;
+
+    li {
+      img {
+        width: 45px;
+        height: 45px;
+        margin-right: 15px;
+      }
+
+      a {
+        display: block;
+      }
+    }
+  }
+}
