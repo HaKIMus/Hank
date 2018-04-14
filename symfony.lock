@@ -263,7 +263,16 @@
     "symfony/polyfill-mbstring": {
         "version": "v1.6.0"
     },
+    "symfony/polyfill-php56": {
+        "version": "v1.7.0"
+    },
+    "symfony/polyfill-php70": {
+        "version": "v1.7.0"
+    },
     "symfony/polyfill-php72": {
+        "version": "v1.7.0"
+    },
+    "symfony/polyfill-util": {
         "version": "v1.7.0"
     },
     "symfony/process": {
@@ -295,6 +304,9 @@
             "version": "3.3",
             "ref": "f8a63faa0d9521526499c0a8f403c9964ecb0527"
         }
+    },
+    "symfony/security-csrf": {
+        "version": "v4.0.8"
     },
     "symfony/stopwatch": {
         "version": "v4.0.6"
