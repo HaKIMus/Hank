@@ -1,9 +1,38 @@
-<header class="w-100 client-panel-header d-flex flex-wrap justify-content-between">
+<header class="w-100 client-panel-header d-flex flex-wrap justify-content-between" data-toggle="modal" data-target="#changeAvatarModal">
     <h3>Hello, <span>{{ app.user.username }}</span>!</h3>
 
     <div class="avatar-container">
-        <img src="https://cdn.iconscout.com/public/images/icon/premium/png-512/avatar-coder-developer-man-programmer-3fdf843f181e665c-512x512.png" alt="Avatar">
+        <img src="{{ app.user.avatar }}" alt="Avatar">
     </div>
 
     <span>Balance: <b class="hank-color-special-light">{{ app.user.bankAccount.balance }} {{ app.user.bankAccount.currency }}</b></span>
 </header>
+
+
+<div class="modal fade" id="changeAvatarModal" tabindex="-1" role="dialog" aria-labelledby="changeAvatarModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change Avatar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form action="{{ path('hank_client_panel_change_avatar_processing') }}" method="post">
+                    <div class="form-group">
+                        <label for="urlToAvatar">URL for new avatar:</label>
+                        <input type="url" class="form-control" id="urlToAvatar" aria-describedby="urlAvatarHelp" placeholder="Enter URL" name="url" required>
+                        <small id="urlAvatarHelp" class="form-text text-muted">The URL cannot begin with: file://</small>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

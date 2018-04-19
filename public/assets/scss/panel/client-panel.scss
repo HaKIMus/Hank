@@ -88,6 +88,29 @@
 
     overflow: hidden;
     position: relative;
+
+    cursor: pointer;
+    transition-duration: 0.2s, 250ms;
+
+    &:hover {
+      background: rgba(0,0,0,0.4);
+
+      &:before {
+        content: "";
+        justify-content: center;
+        background: url("../img/icons8-settings-white-50.png") no-repeat;
+        z-index: 1;
+        background-position: center center;
+        align-items: center;
+        position: absolute;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+      }
+    }
     img {
       position: absolute;
       left: 0;

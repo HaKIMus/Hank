@@ -32,11 +32,11 @@
             </div>
 
             <div class="modal-body">
-                <form action="{{ path('hank_client_panel_change_background') }}" method="post">
+                <form action="{{ path('hank_client_panel_change_background_processing') }}" method="post">
                     <div class="form-group">
                         <label for="urlToBackground">URL for new background:</label>
-                        <input type="url" class="form-control" id="urlToBackground" aria-describedby="urlHelp" placeholder="Enter URL" name="url" required>
-                        <small id="urlHelp" class="form-text text-muted">The URL cannot begin with: file://</small>
+                        <input type="url" class="form-control" id="urlToBackground" aria-describedby="urlBackgroundHelp" placeholder="Enter URL" name="url" required>
+                        <small id="urlBackgroundHelp" class="form-text text-muted">The URL cannot begin with: file://</small>
                     </div>
 
                     <div class="modal-footer">

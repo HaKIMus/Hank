@@ -13,18 +13,21 @@ Hank\Domain\Client\Client:
     username:
       type: string
       length: 32
+
     background:
       type: string
       options:
         default: http://all4desktop.com/data_images/1680%20x%201050/4167926-os-x-mountain-lion.jpg
 
-  #embedded:
-    #username:
-#      class: Hank\Domain\Client\Username
-#      columnPrefix: false
+    avatar:
+          type: string
+          options:
+            default: https://cdn.iconscout.com/public/images/icon/premium/png-512/avatar-coder-developer-man-programmer-3fdf843f181e665c-512x512.png
+
     password:
       class: Hank\Domain\Client\Password
       columnPrefix: false
+
     email:
       class: Hank\Domain\Client\Email
       columnPrefix: false

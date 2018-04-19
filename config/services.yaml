@@ -38,3 +38,6 @@ services:
     Hank\Infrastructure\Service\ChangeBackgroundService:
         arguments:
             $queryBuilder: '@doctrine.dbal.query_builder'
+    Hank\Infrastructure\Service\ChangeAvatarService:
+        arguments:
+            $queryBuilder: '@doctrine.dbal.query_builder'
