@@ -1,8 +1,10 @@
 <?php
 
-namespace Hank\Infrastructure\Service;
+namespace Hank\Domain\Service;
 
 use Doctrine\DBAL\Query\QueryBuilder;
+use Hank\Domain\Service\Exception\NotAbleToDownloadImageException;
+use Hank\Domain\Service\Exception\NotImageException;
 use Ramsey\Uuid\UuidInterface;
 
 class ChangeAvatarService
@@ -21,7 +23,11 @@ class ChangeAvatarService
         try {
             $contentType = get_headers($urlToNewAvatar, 1)['Content-Type'];
         } catch (\Exception $exception) {
-            throw new \Exception('We cannot download the image from this page');
+            throw new NotAbleToDownloadImageException('We cannot download the image from this page');
+        }
+
+        if ($contentType === null || !$contentType) {
+            throw new NotAbleToDownloadImageException('We cannot download the image from this page');
         }
 
         if (is_array($contentType)) {
@@ -30,13 +36,13 @@ class ChangeAvatarService
                     $contentType = $type;
                     break;
                 } else {
-                    throw new \InvalidArgumentException('The URL is not a image');
+                    throw new NotImageException('The URL is not a image');
                 }
             }
         }
 
         if (!$this->isFirstWordLike($contentType, 'image')) {
-            throw new \InvalidArgumentException('The URL is not a image');
+            throw new NotImageException('The URL is not a image');
         }
 
         $this->queryBuilder->update('client')

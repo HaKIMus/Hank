@@ -2,8 +2,8 @@
 
 namespace Hank\UI\Symfony\Controller;
 
-use Hank\Infrastructure\Service\ChangeAvatarService;
-use Hank\Infrastructure\Service\ChangeBackgroundService;
+use Hank\Domain\Service\ChangeAvatarService;
+use Hank\Domain\Service\ChangeBackgroundService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
