@@ -94,7 +94,7 @@
 
     &:hover {
       background: linear-gradient(to right, rgba($hank-color-gradient-light-hover, 0.4), rgba($hank-color-gradient-dark-hover, 0.4));
-
+      
       &:before {
         content: "";
         z-index: 1;
