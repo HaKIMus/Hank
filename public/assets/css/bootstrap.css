@@ -6144,18 +6144,18 @@ a {
     cursor: pointer;
     transition-duration: 0.2s, 250ms; }
     .client-panel-header .avatar-container:hover {
-      background: rgba(0, 0, 0, 0.4); }
+      background: linear-gradient(to right, rgba(187, 50, 119, 0.4), rgba(232, 25, 159, 0.4)); }
       .client-panel-header .avatar-container:hover:before {
         content: "";
-        justify-content: center;
-        background: url("../img/icons8-settings-white-50.png") no-repeat;
         z-index: 1;
-        background-position: center center;
+        justify-content: center;
         align-items: center;
         position: absolute;
         display: flex;
         width: 100%;
         height: 100%;
+        background: url("../img/icons8-settings-white-50.png") no-repeat;
+        background-position: center center;
         font-size: 18px;
         font-weight: bold;
         color: #fff; }
@@ -6163,7 +6163,9 @@ a {
       position: absolute;
       left: 0;
       width: 100%;
-      height: 100%; }
+      height: 100%;
+      z-index: -1;
+      object-fit: contain; }
   .client-panel-header span {
     width: 100%;
     font-size: 17px; }
