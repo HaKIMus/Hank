@@ -35,6 +35,9 @@ services:
         arguments:
             $connection: '@doctrine.dbal.default_connection'
             $entityManager: '@doctrine.orm.entity_manager'
-    Hank\Infrastructure\Service\ChangeBackgroundService:
+    Hank\Domain\Service\ChangeBackgroundService:
+        arguments:
+            $queryBuilder: '@doctrine.dbal.query_builder'
+    Hank\Domain\Service\ChangeAvatarService:
         arguments:
             $queryBuilder: '@doctrine.dbal.query_builder'

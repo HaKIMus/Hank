@@ -1,11 +1,13 @@
 <?php
 
-namespace Hank\Infrastructure\Service;
+namespace Hank\Domain\Service;
 
 use Doctrine\DBAL\Query\QueryBuilder;
+use Hank\Domain\Service\Exception\NotAbleToDownloadImageException;
+use Hank\Domain\Service\Exception\NotImageException;
 use Ramsey\Uuid\UuidInterface;
 
-class ChangeBackgroundService
+class ChangeAvatarService
 {
     private $queryBuilder;
 
@@ -14,14 +16,18 @@ class ChangeBackgroundService
         $this->queryBuilder = $queryBuilder;
     }
 
-    public function change(string $urlToNewBackground, UuidInterface $clientId): void
+    public function change(string $urlToNewAvatar, UuidInterface $clientId): void
     {
         $this->translateErrorsToException();
 
         try {
-            $contentType = get_headers($urlToNewBackground, 1)['Content-Type'];
+            $contentType = get_headers($urlToNewAvatar, 1)['Content-Type'];
         } catch (\Exception $exception) {
-            throw new \Exception('We cannot download the image from this page');
+            throw new NotAbleToDownloadImageException('We cannot download the image from this page');
+        }
+
+        if ($contentType === null || !$contentType) {
+            throw new NotAbleToDownloadImageException('We cannot download the image from this page');
         }
 
         if (is_array($contentType)) {
@@ -30,19 +36,19 @@ class ChangeBackgroundService
                     $contentType = $type;
                     break;
                 } else {
-                    throw new \InvalidArgumentException('The URL is not a image');
+                    throw new NotImageException('The URL is not a image');
                 }
             }
         }
 
         if (!$this->isFirstWordLike($contentType, 'image')) {
-            throw new \InvalidArgumentException('The URL is not a image');
+            throw new NotImageException('The URL is not a image');
         }
 
         $this->queryBuilder->update('client')
-            ->set('background', ':newBackground')
+            ->set('avatar', ':newAvatar')
             ->where('id = :id')
-            ->setParameter('newBackground', $urlToNewBackground)
+            ->setParameter('newAvatar', $urlToNewAvatar)
             ->setParameter('id', $clientId);
 
         $this->queryBuilder->execute();

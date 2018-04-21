@@ -15,6 +15,7 @@ class Client implements UserInterface, \Serializable
     private $email;
     private $bankAccount;
     private $background;
+    private $avatar;
 
     public function __construct(
         UuidInterface $id,
@@ -71,7 +72,8 @@ class Client implements UserInterface, \Serializable
             $this->username,
             $this->password,
             $this->bankAccount,
-            $this->background
+            $this->background,
+            $this->avatar
         ]);
     }
 
@@ -82,7 +84,8 @@ class Client implements UserInterface, \Serializable
             $this->username,
             $this->password,
             $this->bankAccount,
-            $this->background
+            $this->background,
+            $this->avatar
             ) = unserialize($serialized);
     }
 
@@ -94,5 +97,15 @@ class Client implements UserInterface, \Serializable
     public function getBackground(): string
     {
         return $this->background;
+    }
+
+    public function setAvatar(Avatar $avatar): void
+    {
+        $this->avatar = $avatar;
+    }
+
+    public function getAvatar(): string
+    {
+        return $this->avatar;
     }
 }

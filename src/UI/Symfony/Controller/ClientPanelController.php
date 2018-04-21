@@ -2,7 +2,8 @@
 
 namespace Hank\UI\Symfony\Controller;
 
-use Hank\Infrastructure\Service\ChangeBackgroundService;
+use Hank\Domain\Service\ChangeAvatarService;
+use Hank\Domain\Service\ChangeBackgroundService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,6 +31,22 @@ class ClientPanelController extends Controller
     ): Response {
         try {
             $changeBackgroundService->change($request->get('url'), $this->getUser()->getId());
+        } catch (\Exception $exception) {
+            $flashBag->add('error', 'The URL is not an image!');
+
+            return $this->redirectToRoute('hank_client_panel');
+        }
+
+        return $this->redirectToRoute('hank_client_panel');
+    }
+
+    public function changeClientAvatar(
+        Request $request,
+        ChangeAvatarService $changeAvatarService,
+        FlashBagInterface $flashBag
+    ): Response {
+        try {
+            $changeAvatarService->change($request->get('url'), $this->getUser()->getId());
         } catch (\Exception $exception) {
             $flashBag->add('error', 'The URL is not an image!');
 
